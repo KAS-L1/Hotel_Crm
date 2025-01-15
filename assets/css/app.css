@@ -1,0 +1,15 @@
+/* APP GLOBAL STYLING */
+
+:root {
+  --app-color-primary: none;
+  --app-color-secondary: none;
+}
+
+/* CSS RESET */
+a {
+  text-decoration: none !important;
+}
+
+/* BOOTSTRAP STYLING */
+
+/* CUSTOM STYLING */

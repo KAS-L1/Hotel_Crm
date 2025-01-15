@@ -1,0 +1,23 @@
+/* CUSTOMIZE CSS */
+
+.card {
+  border: none !important;
+  box-shadow: var(--bs-box-shadow-sm) !important;
+}
+
+.dropdown-menu {
+  border: none !important;
+  box-shadow: var(--bs-box-shadow) !important;
+}
+
+.nav-link {
+  font-weight: 600 !important;
+}
+.nav-link.active {
+  color: var(--bs-primary) !important;
+  font-weight: 600 !important;
+}
+
+.table tr td {
+  vertical-align: middle !important;
+}

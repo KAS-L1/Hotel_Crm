@@ -256,7 +256,7 @@
                                 </div>
                                 <div class="truncate ltr:pl-4 rtl:pr-4">
                                     <h4 class="text-base">
-                                        <?= AUTH_USER['firstname'] . ' ' . AUTH_USER['lastname'] ?>
+                                        <?= AUTH_USER['first_name'] . ' ' . AUTH_USER['last_name'] ?>
                                     </h4>
                                     <a class="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white" href="javascript:;"><?= AUTH_USER['email'] ?></a>
                                 </div>

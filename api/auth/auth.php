@@ -16,7 +16,7 @@ if (isset($_COOKIE['_xsrf-token'])) {
         define('AUTH_USER', $user);
 
     }else{
-        die("401 Unauthorized Access");
+        redirect("/login");
     }
 
 }else{

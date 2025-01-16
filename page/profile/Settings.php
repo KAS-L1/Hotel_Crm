@@ -46,14 +46,13 @@
                                     <div id="imageCropContainer" class="w-full h-[300px] overflow-hidden bg-gray-100 flex items-center justify-center border border-gray-300 rounded-md">
                                         <!-- The cropped image will be placed here -->
                                     </div>
+                                    <div id="responseUploadPhoto"></div>
                                     <div class="mt-4 flex justify-end space-x-3">
                                         <button id="cropImage" class="btn btn-success">Crop & Save</button>
                                         <button id="cancelCrop" class="btn btn-secondary">Cancel</button>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="text-xl font-semibold text-primary"><?= AUTH_USER['firstname'] . ' ' . AUTH_USER['lastname'] ?></div>
 
                             <script>
                                 $(document).ready(function() {
@@ -128,15 +127,16 @@
 
                                         // Send cropped image to the server
                                         $.ajax({
-                                            url: "api/profile/update.php",
+                                            url: "api/profile/update_photo.php",
                                             type: "POST",
                                             data: {
                                                 image: croppedImage
                                             },
                                             success: function(res) {
                                                 profileImage.attr('src', croppedImage); // Update the profile image preview
-                                                hideModal();
+                                                // hideModal();
                                                 btn.text(originalText).prop('disabled', false);
+                                                $('#responseUploadPhoto').html(res);
                                             },
                                             error: function() {
                                                 alert("An error occurred while saving the image.");
@@ -153,6 +153,8 @@
                                 });
                             </script>
                         </div>
+
+                        <div class="text-xl font-semibold text-primary"><?= AUTH_USER['first_name'] . ' ' . AUTH_USER['last_name'] ?></div>
 
                         <ul class="m-auto mt-5 flex max-w-[160px] flex-col space-y-4 font-semibold text-white-dark">
                             <li class="flex items-center gap-2">
@@ -196,12 +198,22 @@
             </div>
             <div class="panel lg:col-span-2 xl:col-span-3">
                 <div class="mb-5">
-                    <h5 class="text-lg font-semibold dark:text-white-light">Task</h5>
+                    <h5 class="text-lg font-semibold dark:text-white-light">Form</h5>
                 </div>
                 <div class="mb-5">
-                    <form action="">
-                        <!-- Dito yung form alam ko kasama sa form yung upload profile <form method="POST" enctype="multipart/form-data> -->
-                         <!-- Yung Migration Nasa Api Folder para macheck  mo yung table -->
+                    <form action="POST">
+                        <div>
+                            <label for="firstname">First Name</label>
+                            <div class="relative text-white-dark mb-4">
+                                <?= input("text", "firstname") ?>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="lastname">Last Name</label>
+                            <div class="relative text-white-dark mb-4">
+                                <?= input("text", "lastname") ?>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

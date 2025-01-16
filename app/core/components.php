@@ -188,3 +188,80 @@ function old($key, $default = null)
 }
 
 
+function breadcrumb($items) {
+    // Get current route (you would need some custom routing logic for this)
+    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    
+    echo '<ul class="flex space-x-2 rtl:space-x-reverse">';
+
+    foreach ($items as $index => $item) {
+        $isActive = false;
+        if (isset($item['route'])) {
+            // If route is defined, check if current route matches
+            $isActive = (rtrim($item['route'], '/') === rtrim($currentPath, '/'));
+        } elseif (isset($item['url'])) {
+            // If URL is defined, check if current URL matches
+            $isActive = (rtrim($item['url'], '/') === rtrim($currentPath, '/'));
+        }
+
+        // Set classes for active item and other items
+        $activeClass = $isActive ? 'text-primary font-semibold' : 'text-[#888EA8]';
+        $separatorClass = $index !== 0 ? 'before:content-[\'/\'] ltr:before:mr-1 rtl:before:ml-1' : '';
+
+        echo "<li class=\"$separatorClass\">";
+        
+        if (isset($item['route'])) {
+            // If route is set, create a link
+            echo '<a href="' . $item['route'] . '" class="hover:underline ' . $activeClass . '">' . $item['label'] . '</a>';
+        } elseif (isset($item['url'])) {
+            // If URL is set, create a link
+            echo '<a href="' . $item['url'] . '" class="hover:underline ' . $activeClass . '">' . $item['label'] . '</a>';
+        } else {
+            // If neither route nor URL is set, it's a static breadcrumb (current page)
+            echo '<span class="font-semibold ' . $activeClass . '">' . $item['label'] . '</span>';
+        }
+
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
+
+function badge($status, $outline = false) {
+    // Define the base class based on the outline flag
+    $baseClass = $outline ? 'badge-outline-' : 'bg-';
+    
+    // Determine the class based on the status
+    switch ($status) {
+        case 'Pending':
+            $classes = $baseClass . 'dark';
+            break;
+        case 'Approved':
+            $classes = $baseClass . 'primary';
+            break;
+        case 'Rejected':
+            $classes = $baseClass . 'danger';
+            break;
+        case 'Low':
+            $classes = $baseClass . 'warning';
+            break;
+        case 'High':
+            $classes = $baseClass . 'danger';
+            break;
+        default:
+            $classes = $baseClass . 'secondary';
+    }
+
+    // Return the badge HTML with the appropriate classes
+    echo '<span class="badge ' . $classes . ' rounded-full">' . htmlspecialchars($status) . '</span>';
+}
+
+
+
+
+
+
+
+
+
+

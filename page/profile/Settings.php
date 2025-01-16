@@ -2,14 +2,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 
 <div>
-    <ul class="flex space-x-2 rtl:space-x-reverse">
-        <li>
-            <a href="javascript:;" class="text-primary hover:underline">Users</a>
-        </li>
-        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
-            <span>Profile</span>
-        </li>
-    </ul>
+
+    <?php
+    breadcrumb([
+        ['label' => 'Home', 'url' => '/dashboard'],
+        ['label' => 'Profile', 'url' => '/profile'],
+    ]);
+    ?>
+
     <div class="pt-5">
 
         <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">

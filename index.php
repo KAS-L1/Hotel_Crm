@@ -27,8 +27,8 @@ switch ($PAGE) {
     case "forgot":
         die(include_once("public/Forgot.php"));
         break;
-    case "recover":
-        die(include_once("public/Recover.php"));
+    case "reset":
+        die(include_once("public/Reset.php"));
         break;
 }
 

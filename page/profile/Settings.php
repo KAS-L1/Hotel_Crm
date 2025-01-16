@@ -213,7 +213,7 @@
                                 <div>
                                     <label for="username">User Name</label>
                                     <div class="relative text-white-dark mb-4">
-                                        <?= input("text", "username", AUTH_USER['username'], null, null, null, '') ?>
+                                        <?= input("text", "username", AUTH_USER['username'], null, null, null, 'required') ?>
                                     </div>
                                 </div>
                                 <div>

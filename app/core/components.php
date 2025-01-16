@@ -129,40 +129,42 @@ function swalAction($url, $type, $title, $buttonText = null, $text = null)
 
 function toast($type, $message, $position = null, $timer = null)
 {
-	if ($type == "success") {
-		$color = 'success';
-	} else if ($type == "warning") {
-		$color = 'warning)';
-	} else if ($type == "error") {
-		$color = 'danger';
-	} else {
-		$color = 'primary';
-	}
-	?>
-	<script>
-		$(function () {
-			var Toast = Swal.mixin({
-				toast: true,
-				position: '<?= isset($position) ? $position : 'top-right' ?>',
-				showConfirmButton: false,
-				timerProgressBar: true,
-				timer: <?= isset($timer) ? $timer : 2000 ?>,
-				customClass: {
-					popup: 'color-<?=$color?>',
-				},
-			});
-			Toast.fire({
-				icon: '<?= $type ?>',
-				title: '<?= $message ?>'
-			})
-		})
-	</script>
-	<?php
+    if ($type == "success") {
+        $color = 'success';
+    } else if ($type == "warning") {
+        $color = 'warning';
+    } else if ($type == "error") {
+        $color = 'danger';
+    } else {
+        $color = 'primary';
+    }
+    ?>
+    <script>
+        $(function () {
+            var Toast = Swal.mixin({
+                toast: true,
+                position: '<?= isset($position) ? $position : 'top-right' ?>',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                timer: <?= isset($timer) ? $timer : 2000 ?>,
+                customClass: {
+                    popup: 'color-<?=$color?>',
+                },
+            });
+            Toast.fire({
+                icon: '<?= $type ?>',
+                title: '<?= $message ?>'
+            })
+        })
+    </script>
+    <?php
 }
+
 
 
 function input($type, $name, $value= null, $placeholder = null, $class = null, $icon = true, $attributes= null)
 {
+	$value = old($name, $value);
 	?>
 		<input type="<?=$type?>" name="<?=$name?>" id="<?= $name?>" value="<?= $value?>" placeholder="<?=$placeholder?>" class="form-input <?=!empty($icon) ? 'ps-10' : 'ps-0' ?> placeholder:text-white-dark <?=$class?>" <?= $attributes?>>
 	<?php
@@ -184,3 +186,5 @@ function old($key, $default = null)
 	}
 	return isset($_SESSION['old'][$key]) ? htmlspecialchars($_SESSION['old'][$key]) : $default;
 }
+
+

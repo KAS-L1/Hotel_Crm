@@ -11,18 +11,11 @@
         </li>
     </ul>
     <div class="pt-5">
-        <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">
 
+        <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">
             <div class="panel">
                 <div class="mb-5 flex items-center justify-between">
                     <h5 class="text-lg font-semibold dark:text-white-light">Profile</h5>
-                    <a href="users-account-settings.html" class="btn btn-primary rounded-full p-2 ltr:ml-auto rtl:mr-auto">
-                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5">
-                            <path opacity="0.5" d="M4 22H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                            <path d="M14.6296 2.92142L13.8881 3.66293L7.07106 10.4799C6.60933 10.9416 6.37846 11.1725 6.17992 11.4271C5.94571 11.7273 5.74491 12.0522 5.58107 12.396C5.44219 12.6874 5.33894 12.9972 5.13245 13.6167L4.25745 16.2417L4.04356 16.8833C3.94194 17.1882 4.02128 17.5243 4.2485 17.7515C4.47573 17.9787 4.81182 18.0581 5.11667 17.9564L5.75834 17.7426L8.38334 16.8675L8.3834 16.8675C9.00284 16.6611 9.31256 16.5578 9.60398 16.4189C9.94775 16.2551 10.2727 16.0543 10.5729 15.8201C10.8275 15.6215 11.0583 15.3907 11.5201 14.929L11.5201 14.9289L18.3371 8.11195L19.0786 7.37044C20.3071 6.14188 20.3071 4.14999 19.0786 2.92142C17.85 1.69286 15.8581 1.69286 14.6296 2.92142Z" stroke="currentColor" stroke-width="1.5"></path>
-                            <path opacity="0.5" d="M13.8879 3.66406C13.8879 3.66406 13.9806 5.23976 15.3709 6.63008C16.7613 8.0204 18.337 8.11308 18.337 8.11308M5.75821 17.7437L4.25732 16.2428" stroke="currentColor" stroke-width="1.5"></path>
-                        </svg>
-                    </a>
                 </div>
                 <div class="mb-5">
                     <div class="flex flex-col items-center justify-center">
@@ -198,24 +191,108 @@
             </div>
             <div class="panel lg:col-span-2 xl:col-span-3">
                 <div class="mb-5">
-                    <h5 class="text-lg font-semibold dark:text-white-light">Form</h5>
+                    <h5 class="text-lg font-semibold dark:text-white-light">Personal Information</h5>
                 </div>
                 <div class="mb-5">
-                    <form action="POST">
-                        <div>
-                            <label for="firstname">First Name</label>
-                            <div class="relative text-white-dark mb-4">
-                                <?= input("text", "firstname") ?>
+                    <form id="formPersonal">
+                        <?= csrfProtect('generate'); ?>
+                        <div class="flex flex-col sm:flex-row">
+                            <div class="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2 ml-2">
+                                <div>
+                                    <label for="first_name">First Name</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "first_name", AUTH_USER['first_name'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="last_name">Last Name</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "last_name", AUTH_USER['last_name'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="username">User Name</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "username", AUTH_USER['username'], null, null, null, '') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="email">Email</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "email", AUTH_USER['email'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="address">Address</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "address", AUTH_USER['address'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="company">Company</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "company", AUTH_USER['company'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="contact">Contact</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("text", "contact", AUTH_USER['contact'], null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <?= button("submit", "btnLogin", "Save", null) ?>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <label for="lastname">Last Name</label>
-                            <div class="relative text-white-dark mb-4">
-                                <?= input("text", "lastname") ?>
+                    </form>
+                    <div id="responsePersonal"></div>
+                    <script>
+                        $('#formPersonal').submit(function(e) {
+                            e.preventDefault();
+                            $.post('api/profile/update_personal.php', $('#formPersonal').serialize(), function(res) {
+                                $('#responsePersonal').html(res);
+                            })
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            <div class="empty"></div>
+            <div class="panel lg:col-span-2 xl:col-span-3">
+                <div class="mb-5">
+                    <h5 class="text-lg font-semibold dark:text-white-light">Account Password</h5>
+                </div>
+                <div class="mb-5">
+                    <form id="formPassword">
+                        <?= csrfProtect('generate'); ?>
+                        <div class="flex flex-col sm:flex-row">
+                            <div class="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2 ml-2">
+                                <div>
+                                    <label for="first_name">New Password</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("password", "first_name", null, null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="last_name">Confirm Password</label>
+                                    <div class="relative text-white-dark mb-4">
+                                        <?= input("password", "last_name", null, null, null, null, 'required') ?>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <?= button("submit", "btnLogin", "Update", null) ?>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
     </div>
+
+</div>

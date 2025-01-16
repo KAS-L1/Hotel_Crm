@@ -2,6 +2,11 @@
 <?php require("jwt.php") ?>
 <?php
 
+csrfProtect('verify');
+
+// echo "Session Token: " . $_SESSION['csrf_token'] . "<br>";
+// echo "Request Token: " . $_POST['csrf_token'] . "<br>";
+
 if (!isset($_POST['username']) or !isset($_POST['password'])) die(toast("error", "Invalid server request"));
 
 $username = $DB->ESCAPE(VALID_STRING($_POST['username']));

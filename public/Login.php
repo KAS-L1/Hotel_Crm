@@ -14,6 +14,7 @@
                     </div>
                     <div id="responseLogin"></div>
                     <form id="formLogin" class="space-y-5 dark:text-white">
+                        <?= csrfProtect('generate'); ?>
                         <div>
                             <label for="username">Email or Username</label>
                             <div class="relative text-white-dark mb-4">
@@ -53,9 +54,8 @@
                                 <a href="/forgot" class="text-primary">Forgot password?</a>
                             </div>
                         </div>
-                        <?= button("submit", "btnLogin", "Log In", null) ?>
+                        <?= button("submit", "btnLogin", "Log In", null, true) ?>
                     </form>
-                    
                 </div>
             </div>
         </div>

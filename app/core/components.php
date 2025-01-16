@@ -161,17 +161,17 @@ function toast($type, $message, $position = null, $timer = null)
 }
 
 
-function input($type, $name, $placeholder = null, $class = null, $props= null)
+function input($type, $name, $value= null, $placeholder = null, $class = null, $icon = true, $attributes= null)
 {
 	?>
-		<input type="<?=$type?>" name="<?=$name?>" id="<?= $name?>" placeholder="<?=$placeholder?>" class="form-input ps-10 placeholder:text-white-dark <?=$class?>" <?=$props?>>
+		<input type="<?=$type?>" name="<?=$name?>" id="<?= $name?>" value="<?= $value?>" placeholder="<?=$placeholder?>" class="form-input <?=!empty($icon) ? 'ps-10' : 'ps-0' ?> placeholder:text-white-dark <?=$class?>" <?= $attributes?>>
 	<?php
 }
 
-function button($type, $id, $text, $class = null, $props= null)
+function button($type, $id, $text, $class = null, $width = null, $attributes= null)
 {
 	?>
-		<button type="<?=$type?>" id="<?=$id?>" class="btn btn-primary !mt-6 w-full border-0 uppercase <?=$class?>" <?=$props?>>
+		<button type="<?=$type?>" id="<?=$id?>" class="btn btn-primary !mt-6 <?=!empty($width) ? 'w-full' : '' ?> border-0 uppercase <?=$class?>" <?= $attributes?>>
 			<?= $text ?>
 		</button>
 	<?php

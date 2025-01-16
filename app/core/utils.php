@@ -16,6 +16,30 @@ function predie($data){
     die(print_r($data));
 }
 
+// CSRF Protection
+
+function csrfProtect($action = 'generate')
+{
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Generate a CSRF token if action is 'generate'
+    if ($action === 'generate') {
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate a secure random token
+        }
+        return '<input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">';
+    }
+
+    // Verify the CSRF token if action is 'verify'
+    if ($action === 'verify') {
+        if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+            return true; // Valid CSRF token
+        }
+        die('Invalid CSRF token.');
+    }
+}
 
 // INPUT VALIDATION
 function VALID_STRING($string){
@@ -33,6 +57,23 @@ function VALID_PASS($string){
 function VALID_MAIL($email){
     return filter_var($email, FILTER_SANITIZE_EMAIL);
 }
+
+function Generate_Id($id = null, $prefix = '11')
+{
+    if ($id) {
+
+        if (preg_match('/^' . preg_quote($prefix, '/') . '\d{4}$/', $id)) {
+            return "Valid ID: " . $id;
+        } else {
+            return "Invalid ID format";
+        }
+    } else {
+       
+        $random_digits = str_pad(rand(0, 9999), 4, "0", STR_PAD_LEFT); 
+        return $prefix . $random_digits; 
+    }
+}
+
 
 
 // CHARACTER FORMATING

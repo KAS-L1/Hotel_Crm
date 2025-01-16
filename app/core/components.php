@@ -176,3 +176,11 @@ function button($type, $id, $text, $class = null, $width = null, $attributes= nu
 		</button>
 	<?php
 }
+
+function old($key, $default = null)
+{
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	return isset($_SESSION['old'][$key]) ? htmlspecialchars($_SESSION['old'][$key]) : $default;
+}

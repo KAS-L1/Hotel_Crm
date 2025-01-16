@@ -271,15 +271,15 @@
                         <div class="flex flex-col sm:flex-row">
                             <div class="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2 ml-2">
                                 <div>
-                                    <label for="first_name">New Password</label>
+                                    <label for="newPassword">New Password</label>
                                     <div class="relative text-white-dark mb-4">
-                                        <?= input("password", "first_name", null, null, null, null, 'required') ?>
+                                        <?= input("password", "newPassword", null, null, null, null, 'required') ?>
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="last_name">Confirm Password</label>
+                                    <label for="confirmPassword">Confirm Password</label>
                                     <div class="relative text-white-dark mb-4">
-                                        <?= input("password", "last_name", null, null, null, null, 'required') ?>
+                                        <?= input("password", "confirmPassword", null, null, null, null, 'required') ?>
                                     </div>
                                 </div>
 
@@ -289,6 +289,17 @@
                             </div>
                         </div>
                     </form>
+                    <div id="responsePassword"></div>
+                    <script>
+                        $('#formPassword').submit(function(e) {
+                            e.preventDefault();
+                            $.post('api/profile/update_password.php', $('#formPassword').serialize(), function(res) {
+                                $('#responsePassword').html(res);
+                            }).fail(function() {
+                                $('#responsePassword').html('An error occurred. Please try again.');
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

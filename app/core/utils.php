@@ -37,7 +37,7 @@ function csrfProtect($action = 'generate')
         if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
             return true; // Valid CSRF token
         }
-        die('Invalid CSRF token.');
+        die(toast("error", "Invalid CSRF token"));
     }
 }
 
@@ -74,6 +74,63 @@ function Generate_Id($id = null, $prefix = '11')
     }
 }
 
+function VALID_STRONG_PASS($password)
+{
+    if (strlen($password) < 12) {
+        toast('error', 'Password should be at least 12 characters long.');
+        return false;
+    }
+
+    if (!preg_match('/[a-z]/', $password)) {
+        toast('error', 'Password must contain at least one lowercase letter.');
+        return false;
+    }
+
+    if (!preg_match('/[A-Z]/', $password)) {
+        toast('error', 'Password must contain at least one uppercase letter.');
+        return false;
+    }
+
+    if (!preg_match('/[0-9]/', $password)) {
+        toast('error', 'Password must contain at least one number.');
+        return false;
+    }
+
+    if (!preg_match('/[\W_]/', $password)) {
+        toast('error', 'Password must contain at least one special character (e.g., !@#$%^&*).');
+        return false;
+    }
+
+    $common_passwords = ['password', '123456', 'qwerty', 'letmein', '1234', 'welcome', 'admin', 'password1'];
+    if (in_array(strtolower($password), $common_passwords)) {
+        toast('error', 'Password is too common and easily guessable.');
+        return false;
+    }
+
+    // If all checks pass, the password is strong
+    return true;
+}
+
+/**
+ * Hashes a password using bcrypt
+ * @param string $password
+ * @return string Hashed password
+ */
+function HASH_PASSWORD($password)
+{
+    return password_hash($password, PASSWORD_BCRYPT);
+}
+
+/**
+ * Verifies a password against its hashed value
+ * @param string $password
+ * @param string $hashed_password
+ * @return bool
+ */
+function VERIFY_PASSWORD($password, $hashed_password)
+{
+    return password_verify($password, $hashed_password);
+}
 
 
 // CHARACTER FORMATING

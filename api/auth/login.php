@@ -1,39 +1,69 @@
 <?php require("../../app/init.php") ?>
 <?php require("jwt.php") ?>
+
 <?php
 
 csrfProtect('verify');
 
-// echo "Session Token: " . $_SESSION['csrf_token'] . "<br>";
-// echo "Request Token: " . $_POST['csrf_token'] . "<br>";
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-if (!isset($_POST['username']) or !isset($_POST['password'])) die(toast("error", "Invalid server request"));
+// Helper function to store old input
+function storeOldInput($key, $value)
+{
+    $_SESSION['old'][$key] = $value;
+}
 
+// Validate input
+if (!isset($_POST['username']) || !isset($_POST['password'])) {
+    die(toast("error", "Invalid server request"));
+}
+
+// Store old input
+storeOldInput('username', $_POST['username']);
+
+// Clean and validate input
 $username = $DB->ESCAPE(VALID_STRING($_POST['username']));
-$password = $DB->ESCAPE(VALID_PASS($_POST['password']));
+$password = VALID_PASS($_POST['password']); // No need to escape since password is hashed.
 
-if (empty($username) or empty($password)) die(toast("error", "Username or password cannot be empty."));
+if (empty($username) || empty($password)) {
+    die(toast("error", "Username or password cannot be empty."));
+}
 
+// Fetch user from the database
 $user = $DB->SELECT_ONE("users", "*", "WHERE username = '$username' OR email = '$username'");
-if (empty($user)) die(toast("error", "Invalid credentials"));
 
-if (!password_verify($password, $user['password'])) die(toast("error", message: "Password is invalid"));
+if (empty($user)) {
+    die(toast("error", "Invalid credentials")); // Generic message to prevent username enumeration.
+}
 
+// Verify password
+if (!password_verify($password, $user['password'])) {
+    die(toast("error", "Invalid credentials")); // Generic error message for security.
+}
+
+// Generate JWT
 $jwt = new JWT('this-is-secure-secret-key');
 $user_token = $jwt->createToken([
-    'user_id' => $user['user_id'],
+    'user_id'  => $user['user_id'],
     'username' => $user['username'],
-    'email' => $user['email']
+    'email'    => $user['email'],
+    'exp'      => strtotime('+1 hour') // Token expires in 1 hour
 ]);
 
-if(isset($_POST['remember'])){
-    $expiry = strtotime('+1 month');
-}else{
-    $expiry = 0;
-}
+// Handle "Remember Me" for cookie expiry
+$expiry = isset($_POST['remember']) ? strtotime('+1 month') : 0;
 
-if (setcookie("_xsrf-token", $user_token, $expiry, "/")){
-    redirect("/dashboard");
-}else{
+// Set cookie
+if (!setcookie("_xsrf-token", $user_token, $expiry, "/")) {
     die(toast("error", "Failed to set cookie"));
 }
+
+// Clear old input data after successful login
+unset($_SESSION['old']);
+
+// Login successful
+toast("success", "Login successful");
+redirect("/dashboard");

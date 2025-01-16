@@ -170,6 +170,65 @@ function input($type, $name, $value= null, $placeholder = null, $class = null, $
 	<?php
 }
 
+function passwordInput($name, $value = null, $placeholder = null, $class = null, $icon = true, $attributes = null)
+{
+    ?>
+    <div class="password-input-wrapper relative">
+        <input 
+            type="password" 
+            name="<?= $name ?>" 
+            id="<?= $name ?>" 
+            value="<?= $value ?>" 
+            placeholder="<?= $placeholder ?>" 
+            class="form-input <?= !empty($icon) ? 'ps-10' : 'ps-0' ?> placeholder:text-white-dark <?= $class ?>" 
+            <?= $attributes ?> 
+        />
+        <button 
+            type="button" 
+            class="toggle-password absolute inset-y-0 right-0 px-3 text-gray-500 hover:text-primary focus:outline-none" 
+            onmouseover="startCloseTimer('<?= $name ?>', this)"
+            onclick="togglePasswordVisibility('<?= $name ?>', this)"
+        >
+            <i class="fa-solid fa-eye"></i>
+        </button>
+    </div>
+    <script>
+        function togglePasswordVisibility(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function startCloseTimer(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            
+            // Change icon color on hover
+            button.classList.add('text-primary');
+
+            // Set timer to revert back after 2 seconds
+            setTimeout(() => {
+                if (input.type === 'text') {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+                button.classList.remove('text-primary');
+            }, 2000);
+        }
+    </script>
+    <?php
+}
+
+
 function button($type, $id, $text, $class = null, $width = null, $attributes= null)
 {
 	?>

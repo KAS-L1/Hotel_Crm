@@ -3,7 +3,7 @@
         <div class="relative flex w-full items-center bg-white px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex items-center justify-between ltr:mr-2 rtl:ml-2 lg:hidden">
                 <a href="index.html" class="main-logo flex shrink-0 items-center">
-                    <img class="inline w-8 ltr:-ml-1 rtl:-mr-1" src="<?= APP_LOGO_NAV ?>" alt="<?= APP_LOGO_NAV ?>">
+                    <img class="inline w-8 ltr:-ml-1 rtl:-mr-1 rounded-full" src="<?= APP_LOGO_NAV ?>" alt="<?= APP_LOGO_NAV ?>">
                     <span
                         class="hidden align-middle text-2xl font-semibold transition-all duration-300 ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light md:inline"><?= APP_NAME ?></span>
                 </a>

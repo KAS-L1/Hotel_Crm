@@ -31,7 +31,7 @@
                         <div>
                             <label for="Password">Password</label>
                             <div class="relative text-white-dark">
-                                <?= input("password", "password") ?>
+                                <?= passwordInput("password") ?>
                                 <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                     <svg width="18" height="18" viewbox="0 0 18 18" fill="none">
                                         <path opacity="0.5" d="M1.5 12C1.5 9.87868 1.5 8.81802 2.15901 8.15901C2.81802 7.5 3.87868 7.5 6 7.5H12C14.1213 7.5 15.182 7.5 15.841 8.15901C16.5 8.81802 16.5 9.87868 16.5 12C16.5 14.1213 16.5 15.182 15.841 15.841C15.182 16.5 14.1213 16.5 12 16.5H6C3.87868 16.5 2.81802 16.5 2.15901 15.841C1.5 15.182 1.5 14.1213 1.5 12Z" fill="currentColor"></path>

@@ -273,13 +273,13 @@
                                 <div>
                                     <label for="newPassword">New Password</label>
                                     <div class="relative text-white-dark mb-4">
-                                        <?= input("password", "newPassword", null, null, null, null, 'required') ?>
+                                        <?= passwordInput("newPassword", null, null, null, null, 'required') ?>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="confirmPassword">Confirm Password</label>
                                     <div class="relative text-white-dark mb-4">
-                                        <?= input("password", "confirmPassword", null, null, null, null, 'required') ?>
+                                        <?= passwordInput("confirmPassword", null, null, null, null, 'required') ?>
                                     </div>
                                 </div>
 

@@ -18,7 +18,7 @@
                         <div>
                             <label for="username">Email or Username</label>
                             <div class="relative text-white-dark mb-4">
-                                <?= input("text", "username", old('username'))?>
+                                <?= input("text", "username", old('username')) ?>
                                 <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                     <svg width="18" height="18" viewbox="0 0 18 18" fill="none">
                                         <path opacity="0.5" d="M10.65 2.25H7.35C4.23873 2.25 2.6831 2.25 1.71655 3.23851C0.75 4.22703 0.75 5.81802 0.75 9C0.75 12.182 0.75 13.773 1.71655 14.7615C2.6831 15.75 4.23873 15.75 7.35 15.75H10.65C13.7613 15.75 15.3169 15.75 16.2835 14.7615C17.25 13.773 17.25 12.182 17.25 9C17.25 5.81802 17.25 4.22703 16.2835 3.23851C15.3169 2.25 13.7613 2.25 10.65 2.25Z" fill="currentColor"></path>
@@ -56,6 +56,10 @@
                         </div>
                         <?= button("submit", "btnLogin", "Log In", null, true) ?>
                     </form>
+                    <div class="text-center py-2">
+                        <p>Are you applying as a vendor?</p>
+                        <a href="/register" class="btn btn-dark w-44 m-auto mt-2">Register as Vendor</a>
+                    </div>
                 </div>
             </div>
         </div>

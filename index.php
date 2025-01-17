@@ -10,7 +10,7 @@
 $PAGE = PAGE();
 
 // REDIRECT TO DEFAULT PAGE
-if($PAGE == "index") redirect("home");
+if($PAGE == "index") redirect("login");
 
 // PUBLIC ROUTE ****************************************
 

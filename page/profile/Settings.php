@@ -4,10 +4,10 @@
 <div>
 
     <?php
-    breadcrumb([
-        ['label' => 'Home', 'url' => '/dashboard'],
-        ['label' => 'Profile', 'url' => '/profile'],
-    ]);
+        breadcrumb([
+            ['label' => 'Home', 'url' => '/dashboard'],
+            ['label' => 'Profile', 'url' => '/profile'],
+        ]);
     ?>
 
     <div class="pt-5">

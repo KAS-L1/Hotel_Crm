@@ -1,11 +1,13 @@
+<?php if(AUTH_USER['status'] != "Active") redirect('/onboarding?action=dashboard') ?>
+
 <div x-data="sales">
     
     <?php
-    breadcrumb([
-        ['label' => 'Dashboard', 'url' => '/dashboard'],
-        ['label' => 'Data Analytics', 'url' => '#'],
-        ['label' => 'Predictive Analytics', 'url' => '#']
-    ]);
+        breadcrumb([
+            ['label' => 'Dashboard', 'url' => '/dashboard'],
+            ['label' => 'Data Analytics', 'url' => '#'],
+            ['label' => 'Predictive Analytics', 'url' => '#']
+        ]);
     ?>
 
     <div class="pt-5">

@@ -39,16 +39,15 @@
     <!-- Scroll to top button -->
     <?php include_once('page/_component/Scrolltop.php') ?>
 
-    <!-- Theme customizer section -->
-    <?php include_once('page/_component/Customizer.php') ?>
-
     <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
 
         <!-- Sidebar -->
-        <?php include_once('page/_component/Sidebar.php') ?>
-
-        <div class="main-content flex min-h-screen flex-col">
-
+        <?php if(AUTH_USER['status'] == "Active"){ ?>
+            <?php include_once('page/_component/Sidebar.php') ?>
+        <?php } ?>
+               
+        <div class="<?= AUTH_USER['status'] == "Active" ? 'main-content' : null?> flex min-h-screen flex-col">
+            
             <!-- Header -->
             <?php include_once('page/_component/Topbar.php') ?>
 

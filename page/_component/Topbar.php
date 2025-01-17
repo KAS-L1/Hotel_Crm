@@ -8,17 +8,20 @@
                         class="hidden align-middle text-2xl font-semibold transition-all duration-300 ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light md:inline"><?= APP_NAME ?></span>
                 </a>
 
-                <a href="javascript:;"
-                    class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
-                    @click="$store.app.toggleSidebar()">
-                    <svg width="20" height="20" viewbox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 7L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                        <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round"></path>
-                        <path d="M20 17L4 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                    </svg>
-                </a>
+                <?php if(AUTH_USER['status'] == "Active"){ ?>
+                    <a href="javascript:;"
+                        class="collapse-icon flex flex-none rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary ltr:ml-2 rtl:mr-2 dark:bg-dark/40 dark:text-[#d0d2d6] dark:hover:bg-dark/60 dark:hover:text-primary lg:hidden"
+                        @click="$store.app.toggleSidebar()">
+                        <svg width="20" height="20" viewbox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 7L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                            <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round"></path>
+                            <path d="M20 17L4 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                        </svg>
+                    </a>
+                <?php } ?>
+                
             </div>
             <!-- <div class="hidden ltr:mr-2 rtl:ml-2 sm:block">
                 <ul class="flex items-center space-x-2 rtl:space-x-reverse dark:text-[#d0d2d6]">

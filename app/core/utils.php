@@ -123,21 +123,13 @@ function RANDOM_STRING($length) {
     return $random_string;
 }
 
-function Generate_Id($id = null, $prefix = '11')
+function GENERATE_ID($prefix = null, $digits = 4)
 {
-    if ($id) {
-
-        if (preg_match('/^' . preg_quote($prefix, '/') . '\d{4}$/', $id)) {
-            return "Valid ID: " . $id;
-        } else {
-            return "Invalid ID format";
-        }
-    } else {
-
-        $random_digits = str_pad(rand(0, 9999), 4, "0", STR_PAD_LEFT);
-        return $prefix . $random_digits;
-    }
+    $digit = max(9999, pow(10, $digits) - 1);
+    $random_digits = str_pad(rand(1000, $digit), $digits, "0", STR_PAD_LEFT);
+    return $prefix . $random_digits;
 }
+
 
 function VALID_STRONG_PASS($password)
 {

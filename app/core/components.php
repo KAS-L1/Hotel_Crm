@@ -164,7 +164,6 @@ function toast($type, $message, $position = null, $timer = null)
 
 function input($type, $name, $value= null, $placeholder = null, $class = null, $icon = true, $attributes= null)
 {
-	$value = old($name, $value);
 	?>
 		<input type="<?=$type?>" name="<?=$name?>" id="<?= $name?>" value="<?= $value?>" placeholder="<?=$placeholder?>" class="form-input <?=!empty($icon) ? 'ps-10' : 'ps-0' ?> placeholder:text-white-dark <?=$class?>" <?= $attributes?>>
 	<?php

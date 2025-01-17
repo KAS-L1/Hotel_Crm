@@ -5,7 +5,14 @@
   --app-color-secondary: none;
 }
 
+
 /* CSS RESET */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 a {
   text-decoration: none !important;
 }

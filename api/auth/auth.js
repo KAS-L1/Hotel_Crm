@@ -9,6 +9,17 @@ $('#formLogin').submit(function(e) {
     });
 });
 
+$('#formRegister').submit(function(e) {
+    e.preventDefault();
+    btnLoading('#btnRegister');
+    $.post('api/auth/register.php', $('#formRegister').serialize(), function(res) {
+        $('#responseRegister').html(res);
+        btnLoadingReset('#btnRegister');
+    }).fail(function() {
+        $('#responseRegister').html('An error occurred. Please try again.');
+    });
+});
+
  $('#formForgot').submit(function(e) {
     e.preventDefault();
     btnLoading('#btnForgot');

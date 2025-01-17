@@ -18,7 +18,7 @@ if (!$payload) {
     die(toast("error", "Invalid or expired token. Please request a new password reset link."));
 }
 
-// Handle password validation
+// Handle strong password validation
 if (!VALID_STRONG_PASS($_POST['password'])) {
     die();
 }

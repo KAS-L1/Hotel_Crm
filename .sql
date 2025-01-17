@@ -1,0 +1,22 @@
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `user_id` int(11) NOT NULL,
+ `first_name` varchar(20) NOT NULL,
+ `last_name` varchar(20) NOT NULL,
+ `username` varchar(50) NOT NULL,
+ `password` varchar(255) NOT NULL,
+ `email` varchar(60) NOT NULL,
+ `email_verified_at` timestamp NULL DEFAULT NULL,
+ `address` varchar(255) DEFAULT NULL,
+ `contact` varchar(20) DEFAULT NULL,
+ `picture` varchar(50) DEFAULT 'default.png',
+ `role` enum('Admin','Manager','Vendor','Auditor') DEFAULT 'Vendor',
+ `status` enum('Active','Inactive','Pending') DEFAULT 'Pending',
+ `company` varchar(50) DEFAULT NULL,
+ `created_at` timestamp NULL DEFAULT current_timestamp(),
+ `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `user_id` (`user_id`),
+ UNIQUE KEY `username` (`username`),
+ UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

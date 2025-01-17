@@ -27,26 +27,13 @@
                                 </span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary !mt-6 w-full border-0 uppercase">
-                            RECOVER
-                        </button>
-
+                        <?= button("submit", "btnForgot", "Recover Password", null, true) ?>
                         <div class="mt-5 py-5 text-center dark:text-white">
                             Remember password?
                             <a href="/login?res=forgot" class="uppercase text-primary underline transition hover:text-black dark:hover:text-white">Login</a>
                         </div>
                     </form>
                     <div id="responseForgot"></div>
-                    <script>
-                        $('#formForgot').submit(function(e) {
-                            e.preventDefault();
-                            $.post('api/auth/forgot.php', $('#formForgot').serialize(), function(res) {
-                                $('#responseForgot').html(res);
-                            }).fail(function() {
-                                $('#responseForgot').html('An error occurred. Please try again.');
-                            });
-                        });
-                    </script>
                 </div>
             </div>
         </div>

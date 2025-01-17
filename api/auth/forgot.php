@@ -33,11 +33,12 @@ $jwt = new JWT("this-is-my-password-token-recovery");
 $payload = [
     "user_id" => $user['user_id'],
     "email" => $user['email'],
+    "time" => time(),
     "exp" => strtotime('+1 hour')
 ];
 $token = $jwt->createToken($payload);
 
-$resetLink = "http://" . $_SERVER['HTTP_HOST'] . "/reset?token=" . urlencode($token);
+$resetLink = $_SERVER['HTTP_HOST'] . "/recover?token=" . urlencode($token);
 
 try {
     $mail = new PHPMailer(true);
@@ -68,6 +69,7 @@ try {
 
     if ($mail->send()) {
         toast("success", "A password reset link has been sent to $email. Please check your inbox.");
+        refresh(1200);
     } else {
         toast("error", "Failed to send the password reset link. Please try again later.");
     }

@@ -250,8 +250,10 @@
                     <script>
                         $('#formPersonal').submit(function(e) {
                             e.preventDefault();
+                            btnLoading('#btnLogin');
                             $.post('api/profile/update_personal.php', $('#formPersonal').serialize(), function(res) {
                                 $('#responsePersonal').html(res);
+                                btnLoadingReset('#btnLogin');
                             })
                         })
                     </script>
@@ -284,7 +286,7 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <?= button("submit", "btnLogin", "Update", null) ?>
+                                    <?= button("submit", "btnUpdatePassword", "Update", null) ?>
                                 </div>
                             </div>
                         </div>
@@ -293,8 +295,10 @@
                     <script>
                         $('#formPassword').submit(function(e) {
                             e.preventDefault();
+                            btnLoading('#btnUpdatePassword');
                             $.post('api/profile/update_password.php', $('#formPassword').serialize(), function(res) {
                                 $('#responsePassword').html(res);
+                                btnLoadingReset('#btnUpdatePassword');
                             }).fail(function() {
                                 $('#responsePassword').html('An error occurred. Please try again.');
                             });

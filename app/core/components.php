@@ -215,14 +215,14 @@ function passwordInput($name, $value = null, $placeholder = null, $class = null,
             button.classList.add('text-primary');
 
             // Set timer to revert back after 2 seconds
-            setTimeout(() => {
-                if (input.type === 'text') {
-                    input.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                }
-                button.classList.remove('text-primary');
-            }, 2000);
+            
+            if (input.type === 'text') {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+            button.classList.remove('text-primary');
+            
         }
     </script>
     <?php

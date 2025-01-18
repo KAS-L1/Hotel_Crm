@@ -1,4 +1,5 @@
 <?php include_once("public/_template/Header.php") ?>
+<?php if (isset($_COOKIE['_xsrf-token'])) redirect("/dashboard?res=redirect-recover") ?>
 
 <div x-data="auth">
 
@@ -13,7 +14,7 @@
                         <p class="text-base font-bold leading-normal text-white-dark">Enter your New and Confirm password to reset</p>
                     </div>
                     <form id="formResetPassword" class="space-y-5 dark:text-white">
-                        <?= input("text", "token", $_GET['token'], null ,null, null, 'hidden') ?>
+                        <?= input("text", "token", $_GET['token'], null, null, null, 'hidden') ?>
                         <?= csrfProtect('generate'); ?>
                         <div>
                             <label for="password">New Password</label>

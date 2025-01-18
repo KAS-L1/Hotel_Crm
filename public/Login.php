@@ -1,4 +1,6 @@
 <?php include_once("public/_template/Header.php") ?>
+<?php if (isset($_COOKIE['_xsrf-token'])) redirect("/dashboard?res=redirect-login") ?>
+
 
 <div x-data="auth">
 

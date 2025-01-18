@@ -67,8 +67,8 @@ if(isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pas
 
     if ($insert_user['success']) {
 
-        unset($_SESSION['old']);
         toast("success", "Registration successful! Please check your email to verify your account.");
+        unset($_SESSION['old']);
         die(redirect("/login", 2000));
 
     } else {

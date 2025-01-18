@@ -1,4 +1,18 @@
 RewriteEngine On
+
+# Allow localhost access
+RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+RewriteCond %{REMOTE_ADDR} !^::1$
+
+# Allow static assets
+RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif)$ [NC]
+RewriteRule ^ - [L]
+
+# Redirect everything else to maintenance page
+RewriteCond %{REQUEST_URI} !^/maintenance.php$
+RewriteRule ^(.*)$ maintenance.php [L]
+
+# Original routing (only reached by localhost)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+RewriteRule ^(.*)$ index.php?url=down [L,QSA]

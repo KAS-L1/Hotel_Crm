@@ -162,25 +162,28 @@ function VALID_STRONG_PASS($password)
 function csrfProtect($action = 'generate')
 {
     if (session_status() == PHP_SESSION_NONE) {
-        session_start();
+        session_start(); // Start the session if not already started
     }
 
-    // Generate a CSRF token if action is 'generate'
     if ($action === 'generate') {
         if (!isset($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate a secure random token
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate CSRF token
         }
-        return '<input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">';
+        // Return hidden input for the CSRF token
+        return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($_SESSION['csrf_token']) . '">';
     }
 
-    // Verify the CSRF token if action is 'verify'
     if ($action === 'verify') {
-        if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-            return true; // Valid CSRF token
+        if (empty($_SESSION['csrf_token']) || empty($_POST['csrf_token'])) {
+            die(toast("error", "CSRF token not found"));
         }
-        die(toast("error", "Invalid CSRF token"));
+
+        if (hash_equals($_SESSION['csrf_token'], $_POST['csrf_token']) === false) {
+            die(toast("error", "Invalid CSRF token"));
+        }
     }
 }
+
 
 function HASH_PASSWORD($password)
 {

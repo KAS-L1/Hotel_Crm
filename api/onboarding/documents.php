@@ -1,12 +1,9 @@
 <?php require("../../app/init.php") ?>
 <?php require("../auth/auth.php") ?>
 
-<?php require("../../app/init.php") ?>
-<?php require("../auth/auth.php") ?>
-
 <?php
 
-// Function to check file size
+csrfProtect('verify');
 function is_valid_file_size($file, $max_size)
 {
     return $file['size'] <= $max_size;
@@ -16,6 +13,7 @@ function is_valid_file_size($file, $max_size)
 function get_file_extension($mime_type)
 {
     $mime_types = [
+
         'application/pdf' => 'pdf',
         'image/jpeg' => 'jpg',
         'image/png' => 'png',
@@ -92,6 +90,8 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
         "other_references" => $file_references ? $file_references['name'] : null,
         "created_at" => DATE_TIME,
     ];
+
+    pre($applicationData);
 
     // Insert application into database
     $insert_application = $DB->INSERT("vendors_application", $applicationData);

@@ -51,33 +51,33 @@
                                     <p class="text-center text-sm font-medium text-gray-700">Certifications</p>
                                 </div>
 
-                                <!-- Other References -->
                                 <div class="flex flex-col gap-3">
                                     <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
                                         <?php
                                         // Get the file path from the database
-                                        $file_path = DOMAIN . '/upload/document/' . $application['other_references'];
+                                        $file_path = !empty($application['other_references']) ? DOMAIN . '/upload/document/' . $application['other_references'] : null;
 
-                                        // Check if 'other_references' has content or not
                                         if (!empty($application['other_references'])) {
                                             $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                                             // Check if the file is an image (jpg, jpeg, png, gif)
                                             if (in_array(strtolower($file_extension), ['jpg', 'jpeg', 'png', 'gif'])) {
                                                 // Render as an image
-                                                echo '<img src="' . $file_path . '" class="w-full h-full object-contain rounded-lg" alt="Other References" />';
+                                                echo '<img src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain rounded-lg" alt="Other References" />';
                                             } else {
                                                 // Render as an embedded document (e.g., PDF)
-                                                echo '<embed src="' . $file_path . '" class="w-full h-full object-contain bg-white/60 p-2" type="application/pdf" />';
+                                                echo '<embed src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain bg-white/60 p-2" type="application/pdf" />';
                                             }
+
+                                            // Add the view link
+                                            echo '<a href="' . htmlspecialchars($file_path) . '" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
+                                                <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
+                                            </a>';
                                         } else {
                                             // Display a placeholder message if no file exists
                                             echo '<div class="w-full h-full flex items-center justify-center text-gray-400">No document available</div>';
                                         }
                                         ?>
-                                        <a href="<?= $file_path ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
-                                            <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
-                                        </a>
                                     </div>
                                     <p class="text-center text-sm font-medium text-gray-700">Other References</p>
                                 </div>
@@ -88,20 +88,51 @@
                                 <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Onboarding</h1>
                                 <p class="text-base font-bold leading-normal text-white-dark">Complete the requirement to approve your account.</p>
                             </div>
-                            <form id="formDocuments">
-                                <label for="business-license">Upload Business License:</label>
-                                <input type="file" id="business_license" name="business_license" required>
+                            <form id="formDocuments" class="space-y-6">
+                                
+                                <?php csrfProtect('generate') ?>
 
-                                <label for="tin_certificate">Upload Tax Identification Number (TIN):</label>
-                                <input type="file" id="tin_certificate" name="tin_certificate" required>
+                                <div>
+                                    <label for=" business_license" class="block text-sm font-medium text-gray-700 mb-1">Business License</label>
+                                    <input
+                                        type="file"
+                                        id="business_license"
+                                        name="business_license"
+                                        required
+                                        class="block w-full border border-gray-300 rounded-lg shadow-sm text-sm focus:ring-primary focus:border-primary file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-gray-100 file:text-sm file:font-semibold file:text-gray-700">
+                                </div>
 
-                                <label for="certificate">Upload Certifications (e.g., ISO, FDA):</label>
-                                <input type="file" id="certificate" name="certificate" required>
+                                <div>
+                                    <label for="tin_certificate" class="block text-sm font-medium text-gray-700 mb-1">Tax Identification Number (TIN)</label>
+                                    <input
+                                        type="file"
+                                        id="tin_certificate"
+                                        name="tin_certificate"
+                                        required
+                                        class="block w-full border border-gray-300 rounded-lg shadow-sm text-sm focus:ring-primary focus:border-primary file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-gray-100 file:text-sm file:font-semibold file:text-gray-700">
+                                </div>
 
-                                <label for="other_references">Upload Previous Work References (if applicable):</label>
-                                <input type="file" id="other_references" name="other_references">
+                                <div>
+                                    <label for="certificate" class="block text-sm font-medium text-gray-700 mb-1">Certifications (e.g., ISO, FDA)</label>
+                                    <input
+                                        type="file"
+                                        id="certificate"
+                                        name="certificate"
+                                        required
+                                        class="block w-full border border-gray-300 rounded-lg shadow-sm text-sm focus:ring-primary focus:border-primary file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-gray-100 file:text-sm file:font-semibold file:text-gray-700">
+                                </div>
 
-                                <div id="responseDocuments"></div>
+                                <div>
+                                    <label for="other_references" class="block text-sm font-medium text-gray-700 mb-1">Previous Work References (if applicable)</label>
+                                    <input
+                                        type="file"
+                                        id="other_references"
+                                        name="other_references"
+                                        class="block w-full border border-gray-300 rounded-lg shadow-sm text-sm focus:ring-primary focus:border-primary file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded file:bg-gray-100 file:text-sm file:font-semibold file:text-gray-700">
+                                </div>
+
+                                <div id="responseDocuments" class="text-sm text-red-500"></div>
+
                                 <?= button("submit", "btnSubmitDocuments", "Submit Documents", null, true) ?>
                             </form>
                         <?php endif; ?>

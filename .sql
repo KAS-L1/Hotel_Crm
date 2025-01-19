@@ -20,3 +20,17 @@ CREATE TABLE `users` (
  UNIQUE KEY `username` (`username`),
  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `vendors_application` (
+ `id` int NOT NULL AUTO_INCREMENT,
+ `vendor_id` int NOT NULL,
+ `business_license` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+ `tin_certificate` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+ `certificate` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+ `other_references` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ `status` enum('Pending','Approved','Declined') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `vendor_id` (`vendor_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

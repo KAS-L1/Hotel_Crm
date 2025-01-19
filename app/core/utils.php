@@ -100,7 +100,7 @@ function DATE_TIME_UPDATED($date){
 
 
 // FILE UPLOAD SERVER
-function UPLOAD_FILE($file_data, $file_path, $file_name, $file_extension = 'jpg'){
+function UPLOAD_FILE($file_data, $file_path, $file_name, $file_extension){
     $file_name = $file_name.'.'.$file_extension;
     $source_path = $file_data['tmp_name'];
     $target_path = $file_path.'/'.$file_name;

@@ -177,7 +177,7 @@
                     <a href="javascript:;"
                         class="block rounded-full bg-white-light/40 p-2 hover:bg-white-light/90 hover:text-primary dark:bg-dark/40 dark:hover:bg-dark/60"
                         @click="toggle">
-                        <img :src="`assets/images/flags/${$store.app.locale.toUpperCase()}.svg`" alt="image"
+                        <img :src="`<?=DOMAIN?>/assets/images/flags/${$store.app.locale.toUpperCase()}.svg`" alt="image"
                             class="h-5 w-5 rounded-full object-cover">
                     </a>
                     <ul x-cloak="" x-show="open" x-transition="" x-transition.duration.300ms=""
@@ -188,7 +188,7 @@
                                     @click="$store.app.toggleLocale(item.value),toggle()"
                                     :class="{ 'bg-primary/10 text-primary': $store.app.locale == item.value }">
                                     <img class="h-5 w-5 rounded-full object-cover"
-                                        :src="`assets/images/flags/${item.value.toUpperCase()}.svg`" alt="image">
+                                        :src="`<?=DOMAIN?>/assets/images/flags/${item.value.toUpperCase()}.svg`" alt="image">
                                     <span class="ltr:ml-3 rtl:mr-3" x-text="item.key"></span>
                                 </a>
                             </li>
@@ -323,7 +323,7 @@
                                     <div class="grid place-content-center rounded">
                                         <div class="relative h-12 w-12">
                                             <img class="h-12 w-12 rounded-full object-cover"
-                                                :src="`assets/images/${notification.profile}`" alt="image">
+                                                :src="`<?=DOMAIN?>/assets/images/${notification.profile}`" alt="image">
                                             <span
                                                 class="absolute bottom-0 right-[6px] block h-2 w-2 rounded-full bg-success"></span>
                                         </div>
@@ -385,7 +385,7 @@
                 <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                     <a href="javascript:;" class="group relative" @click="toggle()">
                         <span><img class="h-9 w-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                                src="/upload/profile/<?= AUTH_USER['picture'] ?>"
+                                src="<?= DOMAIN ?>/upload/profile/<?= AUTH_USER['picture'] ?>"
                                 alt="image"></span>
                     </a>
                     <ul x-cloak="" x-show="open" x-transition="" x-transition.duration.300ms=""
@@ -394,7 +394,7 @@
                             <div class="flex items-center px-4 py-4">
                                 <div class="flex-none">
                                     <img class="h-10 w-10 rounded-md object-cover"
-                                        src="/upload/profile/<?= AUTH_USER['picture'] ?>"
+                                        src="<?= DOMAIN ?>/upload/profile/<?= AUTH_USER['picture'] ?>"
                                         alt="image">
                                 </div>
                                 <div class="truncate ltr:pl-4 rtl:pr-4">

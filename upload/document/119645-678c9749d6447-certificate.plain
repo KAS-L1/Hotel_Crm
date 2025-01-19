@@ -1,0 +1,148 @@
+
+Deprecated: Slim\Psr7\Stream::__construct(): Implicitly marking parameter $cache as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\slim\psr7\src\Stream.php on line 97
+
+Deprecated: Slim\Psr7\Factory\StreamFactory::createStreamFromFile(): Implicitly marking parameter $cache as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\slim\psr7\src\Factory\StreamFactory.php on line 51
+
+Deprecated: Slim\Psr7\Factory\StreamFactory::createStreamFromResource(): Implicitly marking parameter $cache as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\slim\psr7\src\Factory\StreamFactory.php on line 85
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::__construct(): Implicitly marking parameter $parameterBag as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 166
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::loadFromExtension(): Implicitly marking parameter $values as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 443
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::doGet(): Implicitly marking parameter $inlineServices as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 556
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::register(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 903
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::autowire(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 916
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::createService(): Implicitly marking parameter $id as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 1040
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::registerAliasForArgument(): Implicitly marking parameter $name as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 1352
+
+Deprecated: Symfony\Component\DependencyInjection\ContainerBuilder::resolveEnvPlaceholders(): Implicitly marking parameter $usedEnvs as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ContainerBuilder.php on line 1392
+
+Deprecated: Symfony\Component\DependencyInjection\Container::__construct(): Implicitly marking parameter $parameterBag as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Container.php on line 65
+
+Deprecated: Symfony\Component\DependencyInjection\Argument\ServiceLocator::__construct(): Implicitly marking parameter $serviceTypes as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Argument\ServiceLocator.php on line 27
+
+Deprecated: Symfony\Component\DependencyInjection\ServiceLocator::formatAlternatives(): Implicitly marking parameter $alternatives as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\ServiceLocator.php on line 137
+
+Deprecated: Symfony\Component\DependencyInjection\Definition::__construct(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Definition.php on line 64
+
+Deprecated: Symfony\Component\DependencyInjection\Definition::setDecoratedService(): Implicitly marking parameter $renamedId as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Definition.php on line 138
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\PhpFileLoader::__construct(): Implicitly marking parameter $env as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\PhpFileLoader.php on line 39
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\PhpFileLoader::__construct(): Implicitly marking parameter $generator as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\PhpFileLoader.php on line 39
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\PhpFileLoader::load(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\PhpFileLoader.php on line 48
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\PhpFileLoader::supports(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\PhpFileLoader.php on line 80
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\FileLoader::__construct(): Implicitly marking parameter $env as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\FileLoader.php on line 43
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\FileLoader::import(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\FileLoader.php on line 55
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\FileLoader::import(): Implicitly marking parameter $sourceResource as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\FileLoader.php on line 55
+
+Deprecated: Symfony\Component\Config\Loader\FileLoader::__construct(): Implicitly marking parameter $env as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\FileLoader.php on line 34
+
+Deprecated: Symfony\Component\Config\Loader\FileLoader::import(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\FileLoader.php on line 73
+
+Deprecated: Symfony\Component\Config\Loader\FileLoader::import(): Implicitly marking parameter $sourceResource as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\FileLoader.php on line 73
+
+Deprecated: Symfony\Component\Config\Loader\FileLoader::doImport(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\FileLoader.php on line 136
+
+Deprecated: Symfony\Component\Config\Loader\FileLoader::doImport(): Implicitly marking parameter $sourceResource as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\FileLoader.php on line 136
+
+Deprecated: Symfony\Component\Config\Loader\Loader::__construct(): Implicitly marking parameter $env as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\Loader.php on line 26
+
+Deprecated: Symfony\Component\Config\Loader\Loader::import(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\Loader.php on line 55
+
+Deprecated: Symfony\Component\Config\Loader\Loader::resolve(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\Loader.php on line 70
+
+Deprecated: Symfony\Component\Config\Loader\LoaderInterface::load(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\LoaderInterface.php on line 30
+
+Deprecated: Symfony\Component\Config\Loader\LoaderInterface::supports(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\Loader\LoaderInterface.php on line 39
+
+Deprecated: Symfony\Component\Config\FileLocator::locate(): Implicitly marking parameter $currentPath as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\FileLocator.php on line 36
+
+Deprecated: Symfony\Component\Config\FileLocatorInterface::locate(): Implicitly marking parameter $currentPath as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\config\FileLocatorInterface.php on line 33
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator::__construct(): Implicitly marking parameter $env as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 41
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator::import(): Implicitly marking parameter $type as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 61
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\inline(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 131
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\inline_service(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 141
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator(): Implicitly marking parameter $indexAttribute as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 169
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator(): Implicitly marking parameter $defaultIndexMethod as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 169
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator(): Implicitly marking parameter $defaultPriorityMethod as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 169
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator(): Implicitly marking parameter $indexAttribute as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 177
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator(): Implicitly marking parameter $defaultIndexMethod as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 177
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\tagged_locator(): Implicitly marking parameter $defaultPriorityMethod as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ContainerConfigurator.php on line 177
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator::__construct(): Implicitly marking parameter $path as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ServicesConfigurator.php on line 37
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator::set(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ServicesConfigurator.php on line 73
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ServicesConfigurator::__invoke(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ServicesConfigurator.php on line 183
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\ServiceConfigurator::__construct(): Implicitly marking parameter $path as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\ServiceConfigurator.php on line 50
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\AbstractServiceConfigurator::__construct(): Implicitly marking parameter $id as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\AbstractServiceConfigurator.php on line 23
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\AbstractServiceConfigurator::set(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\AbstractServiceConfigurator.php on line 45
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\AbstractServiceConfigurator::__invoke(): Implicitly marking parameter $class as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\AbstractServiceConfigurator.php on line 109
+
+Deprecated: Symfony\Component\DependencyInjection\Loader\Configurator\Traits\DecorateTrait::decorate(): Implicitly marking parameter $renamedId as nullable is deprecated, the explicit nullable type must be used instead in C:\laragon\etc\apps\phpMyAdmin\vendor\symfony\dependency-injection\Loader\Configurator\Traits\DecorateTrait.php on line 28
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\Error.php on line 72
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\Error.php on line 96
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282
+
+Deprecated: Constant E_STRICT is deprecated in C:\laragon\etc\apps\phpMyAdmin\libraries\classes\ErrorHandler.php on line 282

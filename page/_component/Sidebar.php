@@ -214,6 +214,17 @@
                     </svg>
                     <span>SETTINGS</span>
                 </h2>
+                <li class="nav-item">
+                    <a href="/application" class="group">
+                        <div class="flex items-center">
+                            <i
+                                class="fa fa-file-contract shrink-0 group-hover:text-primary text-current opacity-50"></i>
+
+                            <span
+                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Vendor Application</span>
+                        </div>
+                    </a>
+                </li>
 
                 <li class="menu nav-item">
                     <button type="button" class="nav-link group"

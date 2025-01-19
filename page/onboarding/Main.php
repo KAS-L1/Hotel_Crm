@@ -86,10 +86,10 @@
                                 <input type="file" id="business_license" name="business_license" required>
 
                                 <label for="tin_certificate">Upload Tax Identification Number (TIN):</label>
-                                <input type="file" id="tin_certificate" name="tin_certificate">
+                                <input type="file" id="tin_certificate" name="tin_certificate" required>
 
                                 <label for="certificate">Upload Certifications (e.g., ISO, FDA):</label>
-                                <input type="file" id="certificate" name="certificate">
+                                <input type="file" id="certificate" name="certificate" required>
 
                                 <label for="other_references">Upload Previous Work References (if applicable):</label>
                                 <input type="file" id="other_references" name="other_references">

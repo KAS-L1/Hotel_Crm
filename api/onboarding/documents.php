@@ -91,8 +91,6 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
         "created_at" => DATE_TIME,
     ];
 
-    pre($applicationData);
-
     // Insert application into database
     $insert_application = $DB->INSERT("vendors_application", $applicationData);
     if (!$insert_application == "success") die(toast("error", "Failed to insert application"));

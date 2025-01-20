@@ -21,7 +21,7 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
 
     <div class="pt-5">
         <div class="panel">
-            <h6 class="mb-5 text-lg font-bold">General Information</h6>
+            <h6 class="mb-5 text-lg font-bold">Vendor Application Details</h6>
             <div class="flex flex-col sm:flex-row">
                 <div class="mb-5 w-full sm:w-2/12 ltr:sm:mr-4 rtl:sm:ml-4">
                     <img src="<?= DOMAIN ?>/upload/profile/<?= $user['picture'] ?>" alt="image" class="mx-auto h-20 w-20 rounded-full object-cover md:h-32 md:w-32">
@@ -94,12 +94,35 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
                     </div>
                     <p class="text-center text-sm font-medium text-gray-700">Other References</p>
                 </div>
+            </div>
+            <div class="mt-8 flex justify-end space-x-4">
+                <div class="flex items-center">
+                    <!-- <i class="fa-solid fa-times mr-2"></i> -->
+                    <?= button("submit", "btnDecline", "Decline", "btn-danger", false) ?>
+                </div>
 
-
+                <div class="flex items-center">
+                    <!-- <i class="fa-solid fa-check mr-2"></i> -->
+                    <?= button("submit", "btnApprove", "Approve", null, false) ?>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="reponseApprove"></div>
+<script>
+    $('.btnApprove').click(function() {
+        const application_id = $(this).data('application_id');
+        $.post('api/onboarding/approve.php', {
+            application_id: application_id
+        }, function(res) {
+            $('#reponseApprove').html(res);
+        }).fail(function() {
+            $('#reponseApprove').html('An error occurred. Please try again.');
+        });
+    });
+</script>
 
 <style>
     /* CSS to ensure responsive behavior */

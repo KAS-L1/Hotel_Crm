@@ -89,8 +89,8 @@
                                 <p class="text-base font-bold leading-normal text-white-dark">Complete the requirement to approve your account.</p>
                             </div>
                             <form id="formDocuments" class="space-y-6">
-                                
-                                <?php csrfProtect('generate') ?>
+
+                                <?= csrfProtect('generate'); ?>
 
                                 <div>
                                     <label for=" business_license" class="block text-sm font-medium text-gray-700 mb-1">Business License</label>
@@ -164,6 +164,7 @@
             });
         });
     </script>
+
     <style>
         /* CSS to ensure responsive behavior */
         .custom-card {

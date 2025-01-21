@@ -28,9 +28,10 @@ CREATE TABLE `vendors_application` (
  `tin_certificate` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
  `certificate` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
  `other_references` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ `remarks` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
  `status` enum('Pending','Approved','Declined') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
  `created_at` datetime NOT NULL,
  `updated_at` datetime DEFAULT NULL,
  PRIMARY KEY (`id`),
  UNIQUE KEY `vendor_id` (`vendor_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

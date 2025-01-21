@@ -1,1 +1,9 @@
-/vendor
+# Ignore vendor directory (for PHP packages)
+vendor/
+
+# Ignore all files in the upload document and profile directories
+/upload/document/
+/upload/profile/
+
+# Ignore storage directory
+storage/

@@ -24,7 +24,17 @@ if(isset($_POST['application_id'])){
         ["status" => "Active"],
         ["user_id" => $application_id]
     );
+
     if (!$update_user == "success") die(toast("error", "Failed to update user"));
+
+    $notification_data = [
+        "user_id" => $application_id,
+        "message" => "Congratulations application has been approved.",
+        "action" => "Application",
+        "created_at" => DATE_TIME
+    ];
+
+    $DB->INSERT("notifications", $notification_data);
 
     toast("success", "Application approved successfully");
     die(refresh(2000));

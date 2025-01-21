@@ -10,10 +10,29 @@
                 <div class="relative flex flex-col justify-center rounded-md bg-white/60 dark:bg-black/50 px-6 lg:min-h-[758px] py-20 shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
                     <div class="mx-auto w-full max-w-[870px]">
                         <?php if (!empty($application)): ?>
-                            <div class="text-center mb-8">
-                                <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Processing</h1>
-                                <p class="text-base font-bold leading-normal text-white-dark">Please wait for admin approval.</p>
-                            </div>
+                            <?php if ($application['status'] != "Declined"): ?>
+                                <div class="text-center mb-8">
+                                    <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Processing</h1>
+                                    <p class="text-base font-bold leading-normal text-white-dark">Please wait for admin approval.</p>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($application['status'] == "Declined"): ?>
+                                <div class="text-center mb-8">
+                                    <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Application has been declined</h1>
+                                    <p class="text-base font-bold leading-normal text-white-dark">Please read the remarks.</p>
+
+                                    <!-- Display Remarks if Available -->
+                                    <?php if (!empty($application['remarks'])): ?>
+                                        <div class="mt-4 p-4 bg-gray-100 rounded-md text-sm text-gray-700">
+                                            <h3 class="font-semibold">Remarks:</h3>
+                                            <p><?= nl2br(htmlspecialchars(strip_tags($application['remarks']))) ?></p>
+                                        </div>
+                                    <?php else: ?>
+                                        <p class="mt-4 text-sm">No remarks available.</p>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
 
                             <!-- Document Grid -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -65,6 +84,8 @@
                                 <?php } ?>
 
                             </div>
+
+
                         <?php else: ?>
                             <div class="text-center">
                                 <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Onboarding</h1>

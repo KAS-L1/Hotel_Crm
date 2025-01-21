@@ -35,3 +35,15 @@ CREATE TABLE `vendors_application` (
  PRIMARY KEY (`id`),
  UNIQUE KEY `vendor_id` (`vendor_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `notifications` (
+ `id` int NOT NULL AUTO_INCREMENT,
+ `user_id` int NOT NULL,
+ `message` text COLLATE utf8mb4_general_ci NOT NULL,
+ `action` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+ `status` enum('Unread','Read','Archived') COLLATE utf8mb4_general_ci DEFAULT 'Unread',
+ `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+ `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ PRIMARY KEY (`id`),
+ KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

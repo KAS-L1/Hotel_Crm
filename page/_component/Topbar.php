@@ -1,5 +1,5 @@
 <?php
-    $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID]); // Get user details by vendor_id
+$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID]); // Get user details by vendor_id
 ?>
 
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">
@@ -209,7 +209,7 @@
                             </div>
                         </li>
 
-                        <?php foreach($notifications as $notification): ?>
+                        <?php foreach ($notifications as $notification): ?>
                             <li class="dark:text-white-light/90">
                                 <div class="group flex items-center px-4 py-2" @click.self="toggle">
                                     <div class="grid place-content-center rounded">
@@ -229,12 +229,12 @@
                                 </div>
                             </li>
                         <?php endforeach; ?>
-                            <li>
-                                <div class="p-4">
-                                    <button class="btn btn-primary btn-small block w-full" @click="toggle">Read All
-                                        Notifications</button>
-                                </div>
-                            </li>
+                        <li>
+                            <div class="p-4">
+                                <button class="btn btn-primary btn-small block w-full" @click="toggle">Read All
+                                    Notifications</button>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
@@ -439,6 +439,18 @@
                         <a href="#">Help & Support</a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="nav-item relative">
+                <a href="/application" class="nav-link group">
+                    <div class="flex items-center">
+                        <i
+                            class="fa fa-file-contract shrink-0 group-hover:text-primary text-current opacity-50"></i>
+
+                        <span
+                            class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Vendor Application</span>
+                    </div>
+                </a>
             </li>
 
             <!-- User Management -->

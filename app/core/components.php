@@ -315,7 +315,46 @@ function badge($status, $outline = false) {
 }
 
 
-
+function renderMenuItem($menuItem)
+{
+    $isActive = $menuItem['route'] === $_SERVER['REQUEST_URI']; // Example for active route detection
+    $hasChildren = !empty($menuItem['children']);
+    ?>
+    <li class="menu nav-item">
+        <?php if ($hasChildren): ?>
+            <button type="button" class="nav-link group <?= $isActive ? 'active' : '' ?>"
+                :class="{ 'active': activeDropdown === '<?= $menuItem['id'] ?>' }"
+                @click="activeDropdown === '<?= $menuItem['id'] ?>' ? activeDropdown = null : activeDropdown = '<?= $menuItem['id'] ?>'">
+                <div class="flex items-center">
+                    <i class="<?= $menuItem['icon'] ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                        <?= $menuItem['label'] ?>
+                    </span>
+                </div>
+                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === '<?= $menuItem['id'] ?>' }">
+                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </button>
+            <ul x-cloak="" x-show="activeDropdown === '<?= $menuItem['id'] ?>'" x-collapse="" class="sub-menu text-gray-500">
+                <?php foreach ($menuItem['children'] as $child): ?>
+                    <li><a href="<?= $child['route'] ?>" class="<?= $child['route'] === $_SERVER['REQUEST_URI'] ? 'active' : '' ?>"><?= $child['label'] ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <a href="<?= $menuItem['route'] ?>" class="nav-link group <?= $isActive ? 'active' : '' ?>">
+                <div class="flex items-center">
+                    <i class="<?= $menuItem['icon'] ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
+                        <?= $menuItem['label'] ?>
+                    </span>
+                </div>
+            </a>
+        <?php endif; ?>
+    </li>
+    <?php
+}
 
 
 

@@ -43,6 +43,7 @@
     <!-- Scroll to top button -->
     <?php include_once('page/_component/Scrolltop.php') ?>
 
+
     <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
 
         <!-- Sidebar -->

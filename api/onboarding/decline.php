@@ -36,7 +36,7 @@ if(isset($_POST['application_id'])){
 
     $DB->INSERT("notifications", $notification_data);
     toast("success", "Application declined successfully");
-    die(refresh());
+    die(refresh(2000));
 
 }
 

@@ -30,34 +30,44 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-                <!-- Profile Image -->
-                <div class="mb-5 w-full sm:w-2/12">
-                    <img src="<?= DOMAIN ?>/upload/profile/<?= $user['picture'] ?>" alt="image" class="mx-auto h-20 w-20 rounded-full object-cover md:h-32 md:w-32">
-                </div>
-
-                <!-- User Name (below the image on smaller screens, beside on larger screens) -->
-                <div class="flex flex-col sm:flex-row sm:items-start sm:ml-4 mt-4 sm:mt-0 mb-1">
-                    <div class="text-lg text-center font-semibold">
-                        <?= $user['first_name'] ?> <?= $user['last_name'] ?>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Profile Column -->
+                <div class="w-full">
+                    <div class="flex flex-col items-center p-4 border border-primary rounded-lg h-full">
+                        <img
+                            src="<?= DOMAIN ?>/upload/profile/<?= $user['picture'] ?>"
+                            alt="Profile picture"
+                            class="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover mt-5">
+                        <div class="mt-6 text-center space-y-3">
+                            <div class="text-xl font-semibold">
+                                <?= $user['first_name'] ?> <?= $user['last_name'] ?>
+                            </div>
+                            <div class="text-base text-gray-600">@<?= $user['username'] ?></div>
+                            <div class="text-sm">
+                                <span class="px-2 py-1 bg-primary-100 rounded-full"><?= $user['role'] ?> - <?= $user['user_id'] ?></span>
+                            </div>
+                            <div class="text-base text-gray-600"><?= $user['contact'] ?></div>
+                            <div class="text-base text-gray-600"><?= $user['address'] ?? 'No address provided' ?></div>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Remarks Section -->
                 <?php if (in_array($application['status'], ["Pending", "Declined"])) { ?>
-                    <div class="mt-4 w-full sm:w-3/4 md:w-1/2 sm:ml-4 px-6 py-4">
-                        <label for="remarks" class="block text-sm font-medium">Remarks</label>
-                        <div id="remarksEditor" class="mt-1 block w-full p-2 border rounded-md h-40"></div>
+                    <div class="w-full">
+                        <div class="border border-primary rounded-lg p-4 h-full">
+                            <h6 class="text-lg mb-4">Remarks</h6>
+                            <div id="remarksEditor" class="w-full h-[300px] border rounded"></div>
+                        </div>
                     </div>
                 <?php } ?>
-
             </div>
 
             <!-- Document Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
                 <!-- Business License -->
                 <div class="flex flex-col gap-3">
-                    <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                    <div class="relative w-full h-64 bg-white rounded-lg border border-primary shadow-sm group overflow-hidden">
                         <embed src="<?= DOMAIN . '/upload/document/' . $application['business_license'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
                         <a href="<?= DOMAIN . '/upload/document/' . $application['business_license'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
                             <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
@@ -68,7 +78,7 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
 
                 <!-- TIN Certificate -->
                 <div class="flex flex-col gap-3">
-                    <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                    <div class="relative w-full h-64 bg-white rounded-lg border border-primary shadow-sm group overflow-hidden">
                         <embed src="<?= DOMAIN . '/upload/document/' . $application['tin_certificate'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
                         <a href="<?= DOMAIN . '/upload/document/' . $application['tin_certificate'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
                             <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
@@ -79,7 +89,7 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
 
                 <!-- Certifications -->
                 <div class="flex flex-col gap-3">
-                    <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                    <div class="relative w-full h-64 bg-white rounded-lg border border-primary shadow-sm group overflow-hidden">
                         <embed src="<?= DOMAIN . '/upload/document/' . $application['certificate'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
                         <a href="<?= DOMAIN . '/upload/document/' . $application['certificate'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
                             <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
@@ -91,7 +101,7 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
                 <!-- Other References -->
                 <?php if (!empty($application['other_references'])) { ?>
                     <div class="flex flex-col gap-3">
-                        <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                        <div class="relative w-full h-64 bg-white rounded-lg border border-primary shadow-sm group overflow-hidden">
                             <embed src="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
                             <a href="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
                                 <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
@@ -259,5 +269,30 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
         justify-content: center;
         align-items: center;
         height: 100%;
+    }
+</style>
+
+<style>
+    /* Fix the remarks editor overflow */
+    #remarksEditor {
+        height: 300px;
+        /* Fixed height */
+        overflow-y: auto;
+        /* Allow scrolling if the content exceeds the height */
+    }
+
+    /* Responsive behavior for the remarks editor */
+    @media (max-width: 768px) {
+        #remarksEditor {
+            height: 200px;
+            /* Smaller height for smaller screens */
+        }
+    }
+
+    @media (min-width: 768px) {
+        #remarksEditor {
+            height: 300px;
+            /* Larger height for medium and large screens */
+        }
     }
 </style>

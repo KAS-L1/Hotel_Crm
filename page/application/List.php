@@ -43,12 +43,17 @@ $applications = $DB->SELECT_JOIN(
                         <?php foreach ($applications as $application): ?>
                             <tr>
                                 <td><?= $application['id'] ?></td>
-                                <td class="whitespace-nowrap py-2 px-3">
-                                    <div class="flex flex-col sm:flex-row items-center sm:items-start whitespace-normal">
-                                        <img class="h-12 w-12 rounded-md object-cover sm:mr-2 mb-2 sm:mb-0 mr-1"
-                                            src="<?= DOMAIN ?>/upload/profile/<?= $application['picture'] ?>"
-                                            alt="image">
-                                        <span class="text-center sm:text-left"><?= $application['first_name'] . ' ' . $application['last_name'] ?></span>
+                                <td class="p-2 lg:p-4">
+                                    <div class="flex flex-col sm:flex-row items-center gap-3">
+                                        <div class="w-12 h-12 min-w-12 shrink-0">
+                                            <img
+                                                class="w-full h-full rounded-md object-cover"
+                                                src="<?= DOMAIN ?>/upload/profile/<?= $application['picture'] ?>"
+                                                alt="Profile picture" />
+                                        </div>
+                                        <div class="text-sm sm:text-base text-center sm:text-left break-words max-w-[200px]">
+                                            <?= $application['first_name'] . ' ' . $application['last_name'] ?>
+                                        </div>
                                     </div>
                                 </td>
                                 <td><?= $application['email'] ?></td>

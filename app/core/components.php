@@ -298,6 +298,9 @@ function badge($status, $outline = false) {
         case 'Rejected':
             $classes = $baseClass . 'danger';
             break;
+        case 'Declined':
+            $classes = $baseClass . 'danger';
+            break;
         case 'Low':
             $classes = $baseClass . 'warning';
             break;

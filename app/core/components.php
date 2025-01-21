@@ -227,7 +227,6 @@ function passwordInput($name, $value = null, $placeholder = null, $class = null,
     <?php
 }
 
-
 function button($type, $id, $text, $class = null, $width = null, $attributes= null)
 {
 	?>
@@ -244,7 +243,6 @@ function old($key, $default = null)
 	}
 	return isset($_SESSION['old'][$key]) ? htmlspecialchars($_SESSION['old'][$key]) : $default;
 }
-
 
 function breadcrumb($items) {
     // Get current route (you would need some custom routing logic for this)
@@ -314,7 +312,6 @@ function badge($status, $outline = false) {
     echo '<span class="badge ' . $classes . ' rounded-full">' . htmlspecialchars($status) . '</span>';
 }
 
-
 function renderMenuItem($menuItem)
 {
     $isActive = $menuItem['route'] === $_SERVER['REQUEST_URI']; // Example for active route detection
@@ -355,8 +352,6 @@ function renderMenuItem($menuItem)
     </li>
     <?php
 }
-
-
 
 
 

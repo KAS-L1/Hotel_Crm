@@ -31,6 +31,14 @@ $update_user = $DB->UPDATE("users", $data, $where);
 
 if (!$update_user['success']) die(toast('error', 'Failed to update Personal Information'));
 
+$notification_data = [
+    "user_id" => AUTH_USER_ID,
+    "message" => "You personal information has been updated",
+    "action" => "PersonalInformation",
+    "created_at" => DATE_TIME
+];
+
+$DB->INSERT("notifications", $notification_data);
 
 toast('success', 'Personal information successfully updated');
 die(refresh(2000));

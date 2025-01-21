@@ -33,6 +33,15 @@ $update_password = $DB->UPDATE("users", $data, $where);
 
 if (!$update_password['success']) die(toast("error", "Failed to update password"));
 
+$notification_data = [
+    "user_id" => AUTH_USER_ID,
+    "message" => "You account password has been updated",
+    "action" => "AccountPasswordUpdated",
+    "created_at" => DATE_TIME
+];
+
+$DB->INSERT("notifications", $notification_data);
+
 toast("success", "Password updated successfully");
 die(refresh(2000));  
 

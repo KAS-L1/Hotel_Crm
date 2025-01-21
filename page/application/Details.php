@@ -23,16 +23,10 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
         <div class="panel">
             <div class="flex justify-between">
                 <div>
-                    <h6 class="mb-5 text-lg font-bold">Vendor Application Details</h6>
+                    <h6 class="mb-5 text-lg font-bold">Application Details</h6>
                 </div>
-                <div>
-                    <?php if ($application['status'] == "Approved") { ?>
-                        <div>Approve</div>
-                    <?php } else if ($application['status'] == "Declined") { ?>
-                        <div>Declined</div>
-                    <?php } else { ?>
-                        <div>Pending</div>
-                    <?php } ?>
+                <div class="sm:ml-2 sm:mt-2">
+                    <?php badge($application['status']); ?>
                 </div>
             </div>
 

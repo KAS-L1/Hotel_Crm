@@ -19,7 +19,7 @@
 
                             <?php if ($application['status'] == "Declined"): ?>
                                 <div class="text-center mb-8">
-                                    <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Application has been declined</h1>
+                                    <h1 class="text-3xl font-extrabold uppercase !leading-snug text-danger md:text-4xl">Application has been declined</h1>
                                     <p class="text-base font-bold leading-normal text-white-dark">Please read the remarks.</p>
 
                                     <!-- Display Remarks if Available -->

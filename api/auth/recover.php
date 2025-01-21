@@ -35,7 +35,7 @@ if ($password !== $confirm_password) {
 }
 
 // Hash and update password
-$hashed_password = password_hash($password, PASSWORD_BCRYPT);
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $user_id = $payload['user_id'];
 
 $update_data = ["password" => $hashed_password];

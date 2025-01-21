@@ -7,7 +7,7 @@ if(isset($_POST['application_id'])){
     $remarks = $_POST['remarks'];
  
     $data = [
-        "status" => "Approved",
+        "status" => "Declined",
         "remarks" => $remarks,
         "updated_at" => date('Y-m-d H:i:s')
     ];
@@ -17,17 +17,17 @@ if(isset($_POST['application_id'])){
         $data,
         ["vendor_id" => $application_id]
     );
-    if (!$update_application == "success") die(toast("error", "Failed to approve application"));
+    if (!$update_application == "success") die(toast("error", "Failed to decline application"));
 
     $update_user = $DB->UPDATE(
         "users",
-        ["status" => "Active"],
+        ["status" => "pending"],
         ["user_id" => $application_id]
     );
     if (!$update_user == "success") die(toast("error", "Failed to update user"));
 
-    toast("success", "Application approved successfully");
-    die(refresh(2000));
+    toast("success", "Application declined successfully");
+    die(refresh());
 
 }
 

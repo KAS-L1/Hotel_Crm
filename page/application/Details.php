@@ -1,7 +1,7 @@
 <?php
 
 $application_id = $_GET['application_id']; // Get application ID
-$application = $DB->SELECT_ONE_WHERE('vendors_application', '*', ["id" => $application_id]);
+$application = $DB->SELECT_ONE_WHERE('vendors_application', '*', ["vendor_id" => $application_id]);
 
 if (empty($application)) die(toast("error", "Application not found"));
 
@@ -21,12 +21,43 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
 
     <div class="pt-5">
         <div class="panel">
-            <h6 class="mb-5 text-lg font-bold">Vendor Application Details</h6>
-            <div class="flex flex-col sm:flex-row">
-                <div class="mb-5 w-full sm:w-2/12 ltr:sm:mr-4 rtl:sm:ml-4">
-                    <img src="<?= DOMAIN ?>/upload/profile/<?= $user['picture'] ?>" alt="image" class="mx-auto h-20 w-20 rounded-full object-cover md:h-32 md:w-32">
+            <div class="flex justify-between">
+                <div>
+                    <h6 class="mb-5 text-lg font-bold">Vendor Application Details</h6>
+                </div>
+                <div>
+                    <?php if ($application['status'] == "Approved") { ?>
+                        <div>Approve</div>
+                    <?php } else if ($application['status'] == "Declined") { ?>
+                        <div>Declined</div>
+                    <?php } else { ?>
+                        <div>Pending</div>
+                    <?php } ?>
                 </div>
             </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                <!-- Profile Image -->
+                <div class="mb-5 w-full sm:w-2/12">
+                    <img src="<?= DOMAIN ?>/upload/profile/<?= $user['picture'] ?>" alt="image" class="mx-auto h-20 w-20 rounded-full object-cover md:h-32 md:w-32">
+                </div>
+
+                <!-- User Name (below the image on smaller screens, beside on larger screens) -->
+                <div class="flex flex-col sm:flex-row sm:items-start sm:ml-4 mt-4 sm:mt-0 mb-1">
+                    <div class="text-lg text-center font-semibold">
+                        <?= $user['first_name'] ?> <?= $user['last_name'] ?>
+                    </div>
+                </div>
+
+                <?php if (in_array($application['status'], ["Pending", "Declined"])) { ?>
+                    <div class="mt-4 w-full sm:w-3/4 md:w-1/2 sm:ml-4 px-6 py-4">
+                        <label for="remarks" class="block text-sm font-medium">Remarks</label>
+                        <div id="remarksEditor" class="mt-1 block w-full p-2 border rounded-md h-40"></div>
+                    </div>
+                <?php } ?>
+
+            </div>
+
             <!-- Document Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
@@ -64,63 +95,96 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
                 </div>
 
                 <!-- Other References -->
-                <div class="flex flex-col gap-3">
-                    <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
-                        <?php
-                        // Get the file path from the database
-                        $file_path = !empty($application['other_references']) ? DOMAIN . '/upload/document/' . $application['other_references'] : null;
-
-                        if (!empty($application['other_references'])) {
-                            $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-                            // Check if the file is an image (jpg, jpeg, png, gif)
-                            if (in_array(strtolower($file_extension), ['jpg', 'jpeg', 'png', 'gif'])) {
-                                // Render as an image
-                                echo '<img src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain rounded-lg" alt="Other References" />';
-                            } else {
-                                // Render as an embedded document (e.g., PDF)
-                                echo '<embed src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain bg-white/60 p-2" type="application/pdf" />';
-                            }
-
-                            // Add the view link
-                            echo '<a href="' . htmlspecialchars($file_path) . '" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
-                    <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
-                  </a>';
-                        } else {
-                            // Display a placeholder message if no file exists
-                            echo '<div class="w-full h-full flex items-center justify-center text-gray-400">No document available</div>';
-                        }
-                        ?>
+                <?php if (!empty($application['other_references'])) { ?>
+                    <div class="flex flex-col gap-3">
+                        <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                            <embed src="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
+                            <a href="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
+                                <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
+                            </a>
+                        </div>
+                        <p class="text-center text-sm font-medium text-gray-700">Other References</p>
                     </div>
-                    <p class="text-center text-sm font-medium text-gray-700">Other References</p>
-                </div>
+                <?php } ?>
             </div>
-            <div class="mt-8 flex justify-end space-x-4">
-                <div class="flex items-center">
-                    <!-- <i class="fa-solid fa-times mr-2"></i> -->
-                    <?= button("submit", "btnDecline", "Decline", "btn-danger", false) ?>
-                </div>
 
-                <div class="flex items-center">
-                    <!-- <i class="fa-solid fa-check mr-2"></i> -->
-                    <?= button("submit", "btnApprove", "Approve", null, false) ?>
+            <?php if ($application['status'] == "Pending") { ?>
+                <div class="mt-8 flex justify-end space-x-4">
+                    <div class="flex items-center">
+                        <!-- <i class="fa-solid fa-times mr-2"></i> -->
+                        <?= button("button", "btnDecline", "Decline", "btn-danger", false,) ?>
+                    </div>
+                    <div class="flex items-center">
+                        <!-- <i class="fa-solid fa-check mr-2"></i> -->
+                        <?= button("button", "btnApprove", "Approve", "btn-primary", false,) ?>
+                    </div>
                 </div>
-            </div>
+            <?php } else if ($application['status'] == "Declined") { ?>
+                <div class="mt-8 flex justify-end space-x-4">
+                    <div class="flex items-center">
+                        <!-- <i class="fa-solid fa-check mr-2"></i> -->
+                        <?= button("button", "btnApprove", "Approve", "btn-primary", false,) ?>
+                    </div>
+                </div>
+            <?php } ?>
+
         </div>
     </div>
 </div>
 
-<div id="reponseApprove"></div>
+<div id="response"></div>
+
 <script>
-    $('.btnApprove').click(function() {
-        const application_id = $(this).data('application_id');
-        $.post('api/onboarding/approve.php', {
-            application_id: application_id
+    $('#btnApprove').click(function() {
+        const application_id = '<?= $application_id ?>';
+        const remarks = quill.root.innerHTML;
+        btnLoading('#btnApprove');
+        $.post('../api/onboarding/approve.php', {
+            application_id: application_id,
+            remarks: remarks
         }, function(res) {
-            $('#reponseApprove').html(res);
+            $('#response').html(res);
+            btnLoadingReset('#btnApprove');
         }).fail(function() {
-            $('#reponseApprove').html('An error occurred. Please try again.');
+            $('#response').html('An error occurred. Please try again.');
         });
+    });
+
+    $('#btnDecline').click(function() {
+        const application_id = '<?= $application_id ?>';
+        const remarks = quill.root.innerHTML;
+        btnLoading('#btnDecline');
+        $.post('../api/onboarding/decline.php', {
+            application_id: application_id,
+            remarks: remarks
+        }, function(res) {
+            $('#response').html(res);
+            btnLoadingReset('#btnDecline');
+        }).fail(function() {
+            $('#response').html('An error occurred. Please try again.');
+        });
+    });
+</script>
+
+<script>
+    // Initialize Quill editor for remarks
+    var quill = new Quill('#remarksEditor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['link', 'blockquote'],
+                [{
+                    'list': 'ordered'
+                }, {
+                    'list': 'bullet'
+                }],
+                [{
+                    'align': []
+                }],
+                ['clean']
+            ]
+        }
     });
 </script>
 

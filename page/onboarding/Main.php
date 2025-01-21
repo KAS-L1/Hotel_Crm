@@ -51,36 +51,18 @@
                                     <p class="text-center text-sm font-medium text-gray-700">Certifications</p>
                                 </div>
 
-                                <div class="flex flex-col gap-3">
-                                    <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
-                                        <?php
-                                        // Get the file path from the database
-                                        $file_path = !empty($application['other_references']) ? DOMAIN . '/upload/document/' . $application['other_references'] : null;
-
-                                        if (!empty($application['other_references'])) {
-                                            $file_extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-                                            // Check if the file is an image (jpg, jpeg, png, gif)
-                                            if (in_array(strtolower($file_extension), ['jpg', 'jpeg', 'png', 'gif'])) {
-                                                // Render as an image
-                                                echo '<img src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain rounded-lg" alt="Other References" />';
-                                            } else {
-                                                // Render as an embedded document (e.g., PDF)
-                                                echo '<embed src="' . htmlspecialchars($file_path) . '" class="w-full h-full object-contain bg-white/60 p-2" type="application/pdf" />';
-                                            }
-
-                                            // Add the view link
-                                            echo '<a href="' . htmlspecialchars($file_path) . '" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
+                                <!-- Other References -->
+                                <?php if (!empty($application['other_references'])) { ?>
+                                    <div class="flex flex-col gap-3">
+                                        <div class="relative w-full h-64 bg-white rounded-lg border border-gray-200 shadow-sm group overflow-hidden">
+                                            <embed src="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" class="w-full h-full object-contain bg-white/60 p-2" />
+                                            <a href="<?= DOMAIN . '/upload/document/' . $application['other_references'] ?>" target="_blank" class="absolute inset-0 flex items-center justify-center bg-gray-900/0 group-hover:bg-gray-900/20 transition-all duration-200">
                                                 <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
-                                            </a>';
-                                        } else {
-                                            // Display a placeholder message if no file exists
-                                            echo '<div class="w-full h-full flex items-center justify-center text-gray-400">No document available</div>';
-                                        }
-                                        ?>
+                                            </a>
+                                        </div>
+                                        <p class="text-center text-sm font-medium text-gray-700">Other References</p>
                                     </div>
-                                    <p class="text-center text-sm font-medium text-gray-700">Other References</p>
-                                </div>
+                                <?php } ?>
 
                             </div>
                         <?php else: ?>

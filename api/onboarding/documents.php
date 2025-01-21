@@ -1,34 +1,27 @@
-<?php require("../../app/init.php") ?>
-<?php require("../auth/auth.php") ?>
-
 <?php
+require("../../app/init.php");
+require("../auth/auth.php");
 
 csrfProtect('verify');
+
 function is_valid_file_size($file, $max_size)
 {
     return $file['size'] <= $max_size;
 }
 
-// Function to get file extension based on MIME type
+// Function to get file extension based on allowed MIME types
 function get_file_extension($mime_type)
 {
-    $mime_types = [
-
+    $allowed_mime_types = [
         'application/pdf' => 'pdf',
-        'image/jpeg' => 'jpg',
-        'image/png' => 'png',
-        'image/gif' => 'gif',
         'application/msword' => 'doc',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
         'application/vnd.ms-excel' => 'xls',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'xlsx',
-        'application/vnd.ms-powerpoint' => 'ppt',
-        'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'pptx',
-        
-        // Add other MIME types as needed
+        // Add more allowed MIME types here
     ];
 
-    return isset($mime_types[$mime_type]) ? $mime_types[$mime_type] : null;
+    return isset($allowed_mime_types[$mime_type]) ? $allowed_mime_types[$mime_type] : null;
 }
 
 // Max file size (10MB)
@@ -50,7 +43,7 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
     $file_license = UPLOAD_FILE($_FILES['business_license'], '../../upload/document', AUTH_USER_ID . '-' . uniqid() . '-business', $file_license_extension);
     if ($file_license['status'] != 'success') die(toast("error", "Failed to upload business license"));
 
-    // Upload tin certificate file
+    // Upload TIN certificate file
     $file_tin_extension = get_file_extension($_FILES['tin_certificate']['type']);
     if (!$file_tin_extension) die(toast("error", "Unsupported TIN certificate file type"));
     if (!is_valid_file_size($_FILES['tin_certificate'], $max_file_size)) {
@@ -99,5 +92,3 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
     toast("success", "Application has been submitted.");
     die(refresh(2000));
 }
-
-

@@ -30,7 +30,7 @@ $applications = $DB->SELECT_JOIN(
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Vendor Name</th>
+                            <th class="whitespacce-nowrap">Vendor Name</th>
                             <th>Email</th>
                             <th>Vendor Company</th>
                             <th>Status</th>
@@ -43,12 +43,12 @@ $applications = $DB->SELECT_JOIN(
                         <?php foreach ($applications as $application): ?>
                             <tr>
                                 <td><?= $application['id'] ?></td>
-                                <td>
-                                    <div class="flex items-center">
-                                        <img class="h-10 w-10 rounded-md object-cover mr-2"
+                                <td class="whitespace-nowrap py-2 px-3">
+                                    <div class="flex flex-col sm:flex-row items-center sm:items-start whitespace-normal">
+                                        <img class="h-12 w-12 rounded-md object-cover sm:mr-2 mb-2 sm:mb-0 mr-1"
                                             src="<?= DOMAIN ?>/upload/profile/<?= $application['picture'] ?>"
                                             alt="image">
-                                        <span><?= $application['first_name'] . ' ' . $application['last_name'] ?></span>
+                                        <span class="text-center sm:text-left"><?= $application['first_name'] . ' ' . $application['last_name'] ?></span>
                                     </div>
                                 </td>
                                 <td><?= $application['email'] ?></td>
@@ -56,15 +56,14 @@ $applications = $DB->SELECT_JOIN(
                                 <td><?= $application['status'] ?></td>
                                 <td><?= $application['created_at'] ?></td>
                                 <td><?= $application['updated_at'] ?></td>
-                                <td class="text-right">
-                                    <a href="/application/details?application_id=<?= $application['id'] ?>" title="Details" class="text-primary">
+                                <td class="py-2 px-3 text-center">
+                                    <a href="/application/details?application_id=<?= $application['user_id'] ?>" x-tooltip="Details" class="text-primary inline-flex justify-center items-center">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
-
                 </table>
             </div>
         </div>

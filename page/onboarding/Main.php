@@ -79,7 +79,7 @@
                                                 <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
                                             </a>
                                         </div>
-                                        <p class="text-center text-sm font-medium text-gray-700">Other References</p>
+                                        <p class="text-center text-sm font-medium text-gray-700">Product Catalog</p>
                                     </div>
                                 <?php } ?>
 
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="other_references" class="block text-sm font-medium text-gray-700 mb-1">Previous Work References (if applicable)</label>
+                                    <label for="other_references" class="block text-sm font-medium text-gray-700 mb-1">Product (Prices, Quantity & Quality)</label>
                                     <input
                                         type="file"
                                         id="other_references"

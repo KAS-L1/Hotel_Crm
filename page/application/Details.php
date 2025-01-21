@@ -107,7 +107,7 @@ $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_i
                                 <i class="fa-solid fa-eye text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xl"></i>
                             </a>
                         </div>
-                        <p class="text-center text-sm font-medium text-gray-700">Other References</p>
+                        <p class="text-center text-sm font-medium text-gray-700">Product Catalog</p>
                     </div>
                 <?php } ?>
             </div>

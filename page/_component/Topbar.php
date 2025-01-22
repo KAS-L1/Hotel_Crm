@@ -1,43 +1,36 @@
 <?php
 // Get notifications with unread count
-$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID],"ORDER BY created_at DESC");
+$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC");
 $unread_count = count(array_filter($notifications, function ($n) {
     return $n['status'] === 'Unread';
 }));
 
-// Handle mark as read action
-if (isset($_POST['mark_read'])) {
-    $notification_id = $_POST['notification_id'];
-    $DB->UPDATE('notifications', ['status' => 'Read'], ['id' => $notification_id]);
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = key($_POST);
+    $notification_id = $_POST['notification_id'] ?? null;
+
+    switch ($action) {
+        case 'mark_read':
+            if ($notification_id) {
+                $DB->UPDATE('notifications', ['status' => 'Read'], ['id' => $notification_id]);
+            }
+            break;
+        case 'mark_all_read':
+            $DB->UPDATE('notifications', ['status' => 'Read'], ['user_id' => AUTH_USER_ID, 'status' => 'Unread']);
+            break;
+        case 'delete_notification':
+            if ($notification_id) {
+                $DB->DELETE('notifications', ['id' => $notification_id]);
+            }
+            break;
+        case 'delete_all':
+            $DB->DELETE('notifications', ['user_id' => AUTH_USER_ID]);
+            break;
+    }
+
+    die(redirect($_SERVER['REQUEST_URI']));
 }
 
-// Handle mark all as read action
-if (isset($_POST['mark_all_read'])) {
-    $DB->UPDATE(
-        'notifications',
-        ['status' => 'Read'],
-        ['user_id' => AUTH_USER_ID, 'status' => 'Unread']
-    );
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
-}
-
-// Handle delete notification action
-if (isset($_POST['delete_notification'])) {
-    $notification_id = $_POST['notification_id'];
-    $DB->DELETE('notifications', ['id' => $notification_id]);
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
-}
-
-// Handle delete all notifications action
-if (isset($_POST['delete_all'])) {
-    $DB->DELETE('notifications', ['user_id' => AUTH_USER_ID]);
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
-}
 ?>
 
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">

@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<?= DOMAIN ?>/assets/css/style.css">
     <link defer="" rel="stylesheet" type="text/css" media="screen" href="<?= DOMAIN ?>/assets/css/animate.css">
     <link rel="stylesheet" href="<?= DOMAIN ?>/assets/css/app.css">
+    <link rel="stylesheet" href="<?= DOMAIN ?>/page/_component/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.tailwindcss.css">

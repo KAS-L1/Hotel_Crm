@@ -24,4 +24,12 @@
 }
 
 
-/* Application */
+/* APPLICATION */
+
+.notif__list-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.notif__list-wrapper::-webkit-scrollbar {
+  display: none;
+}

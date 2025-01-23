@@ -48,9 +48,12 @@
     <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
 
         <!-- Sidebar -->
-        <?php if (AUTH_USER['status'] == "Active") { ?>
-            <?php include_once('page/_component/Sidebar.php') ?>
-        <?php } ?>
+
+        <?php if (AUTH_USER['role'] === 'Admin'): ?>
+            <?php include_once('page/_component/Sidebar.php'); ?>
+        <?php elseif (AUTH_USER['role'] === 'Vendor' && AUTH_USER['status'] === 'Active'): ?>
+            <?php include_once('page/_component/VendorSidebar.php'); ?>
+        <?php endif; ?>
 
         <div class="<?= AUTH_USER['status'] == "Active" ? 'main-content' : null ?> flex min-h-screen flex-col">
 

@@ -80,7 +80,7 @@ $unread_count = count(array_filter($notifications, function ($n) {
 
         <li>
             <div class="p-4">
-                <a href="/notifications" class="btn btn-primary btn-small block w-full">
+                <a href="/notifications" class="btn btn-primary btn-small block w-full text-center">
                     View All Notifications
                 </a>
             </div>

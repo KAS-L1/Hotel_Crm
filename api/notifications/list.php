@@ -3,7 +3,7 @@
 
 <?php
 
-$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC");
+$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC LIMIT 10");
 
 ?>
 
@@ -15,7 +15,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
     </li>
 <?php else: ?>
     <?php foreach ($notifications as $notification): ?>
-        <li class="dark:text-white-light/90">
+        <li class="dark:text-white-light/90 border <?= $notification['status'] === 'Unread' ? 'bg-[#eee]' : '' ?>">
             <div class="group flex items-center px-4 py-2 <?= $notification['status'] === 'Unread' ? 'bg-blue-50/50 dark:bg-blue-900/20' : '' ?>">
                 <div class="grid place-content-center rounded">
                     <div class="relative h-12 w-12">
@@ -24,7 +24,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
                 </div>
                 <div class="flex flex-auto items-center justify-between ltr:pl-3 rtl:pr-3">
                     <div class="ltr:pr-3 rtl:pl-3">
-                        <h6 class="<?= $notification['status'] === 'Unread' ? 'font-semibold' : '' ?>">
+                        <h6>
                             <?= $notification['message'] ?>
                         </h6>
                         <span class="block text-xs font-normal dark:text-gray-500">

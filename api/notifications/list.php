@@ -3,7 +3,11 @@
 
 <?php
 
-$notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC LIMIT 10");
+    if(isset($_POST['action']) AND $_POST['action'] == "all_list"){
+        $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC");
+    }else{
+        $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER_ID], "ORDER BY created_at DESC LIMIT 10");
+    }
 
 ?>
 
@@ -15,7 +19,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
     </li>
 <?php else: ?>
     <?php foreach ($notifications as $notification): ?>
-        <li class="dark:text-white-dark  <?= $notification['status'] === 'Unread' ? 'font-semibold bg-[#eee] dark:bg-dark' : '' ?>">
+        <li class="dark:text-white-dark border <?= $notification['status'] === 'Unread' ? 'font-semibold bg-[#eee] dark:bg-opacity-[0.08]' : '' ?>">
             <div class="group flex items-center px-4 py-2 <?= $notification['status'] === 'Unread' ? 'bg-blue-50/50 dark:bg-blue-900/20' : '' ?>">
                 <div class="grid place-content-center rounded">
                     <div class="relative h-12 w-12">
@@ -66,6 +70,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
             $('#responseNotif').html(res);
             loadNotifCount();
             loadNotifList();
+            loadNotifListAll();
         });
     });
 
@@ -78,6 +83,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
             $('#responseNotif').html(res);
             loadNotifCount();
             loadNotifList();
+            loadNotifListAll();
         });
     });
 </script>

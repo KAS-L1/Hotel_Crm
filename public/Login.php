@@ -69,7 +69,8 @@
                             <img src="assets/images/auth/register.svg" width="200">
                         </div>
                         <h2 class="text-lg font-bold">Apply as a Vendor</h2>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum, doloremque veniam alias excepturi quas vero. Quia temporibus ab eaque enim suscipit expedita reprehenderit explicabo repellat facilis, minus non eius harum!</p>
+                        <p>Join us today and take the first step toward a successful collaboration. Ready to get started?
+                            Click Register as Vendor and join us today!</p>
                         <a href="/register" class="btn btn-dark w-full m-auto mt-2">Register as Vendor</a>
                     </div>
                 </div>

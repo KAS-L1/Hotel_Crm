@@ -16,9 +16,9 @@ if (isset($_COOKIE['_xsrf-token'])) {
         define('AUTH_USER', $user);
 
     }else{
-        redirect("/login");
+        redirect("/403?res=2");
     }
 
 }else{
-    redirect("/403");
+    redirect("/403?res=1");
 }

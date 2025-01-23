@@ -24,8 +24,8 @@ $applications = $DB->SELECT_JOIN(
     ?>
 
     <div class="pt-5">
-        <div class="panel">
-            <div class="table-responsive">
+        <div class="panel h-full flex-col">
+            <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
                     <thead>
                         <tr>

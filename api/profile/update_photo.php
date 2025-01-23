@@ -33,6 +33,15 @@ if (isset($_POST['image'])) {
      );
         $where = array("user_id" => AUTH_USER_ID);
         $UPDATE = $DB->UPDATE("users", $data, $where);
+
+        $notification_data = [
+            "user_id" => AUTH_USER_ID,
+            "message" => "You profile picture has been updated",
+            "action" => "ProfilePicture",
+            "created_at" => DATE_TIME
+        ];
+
+        $DB->INSERT("notifications", $notification_data);
         // If the image was successfully saved, return the file path
         toast("success", "Successfully Updated");
         die(refresh(2000));

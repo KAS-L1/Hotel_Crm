@@ -15,7 +15,7 @@ $notifications = $DB->SELECT_WHERE('notifications', '*', ["user_id" => AUTH_USER
     </li>
 <?php else: ?>
     <?php foreach ($notifications as $notification): ?>
-        <li class="dark:text-white-light/90 border <?= $notification['status'] === 'Unread' ? 'bg-[#eee]' : '' ?>">
+        <li class="dark:text-white-dark  <?= $notification['status'] === 'Unread' ? 'font-semibold bg-[#eee] dark:bg-dark' : '' ?>">
             <div class="group flex items-center px-4 py-2 <?= $notification['status'] === 'Unread' ? 'bg-blue-50/50 dark:bg-blue-900/20' : '' ?>">
                 <div class="grid place-content-center rounded">
                     <div class="relative h-12 w-12">

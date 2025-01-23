@@ -28,7 +28,7 @@ function get_file_extension($mime_type)
 $max_file_size = 10 * 1024 * 1024; // 10MB
 
 // Validate Data
-if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['certificate'])) {
+if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['certificate'], $_FILES['file_references'])) {
 
     // Check if application already exists
     $application_exist = $DB->SELECT_ONE_WHERE("vendors_application", "*", ["vendor_id" => AUTH_USER_ID]);
@@ -61,17 +61,13 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
     $file_certificate = UPLOAD_FILE($_FILES['certificate'], '../../upload/document', AUTH_USER_ID . '-' . uniqid() . '-certificate', $file_certificate_extension);
     if ($file_certificate['status'] != 'success') die(toast("error", "Failed to upload certificate"));
 
-    $file_references = null;
-    if (isset($_FILES['other_references']) && $_FILES['other_references']['error'] == 0) {
         // Validate other references file size and extension
-        $file_references_extension = get_file_extension($_FILES['other_references']['type']);
-        if (!$file_references_extension) die(toast("error", "Unsupported other references file type"));
-        if (!is_valid_file_size($_FILES['other_references'], $max_file_size)) {
-            die(toast("error", "Other references file is too large"));
-        }
-
-        $file_references = UPLOAD_FILE($_FILES['other_references'], '../../upload/document', AUTH_USER_ID . '-' . uniqid() . '-references', $file_references_extension);
-        if ($file_references['status'] != 'success') die(toast("error", "Failed to upload other references"));
+    $file_references_extension = get_file_extension($_FILES['other_references']['type']);
+    if (!$file_references_extension) die(toast("error", "Unsupported other references file type"));
+    if (!is_valid_file_size($_FILES['other_references'], $max_file_size)) {
+        die(toast("error", "Other references file is too large"));
+    $file_references = UPLOAD_FILE($_FILES['other_references'], '../../upload/document', AUTH_USER_ID . '-' . uniqid() . '-references', $file_references_extension);
+    if ($file_references['status'] != 'success') die(toast("error", "Failed to upload other references"));
     }
 
     // Prepare the application data
@@ -80,7 +76,7 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
         "business_license" => $file_license['name'],
         "tin_certificate" => $file_tin['name'],
         "certificate" => $file_certificate['name'],
-        "other_references" => $file_references ? $file_references['name'] : null,
+        "other_references" =>$file_references['name'],
         "created_at" => DATE_TIME,
     ];
 

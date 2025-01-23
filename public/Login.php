@@ -64,7 +64,7 @@
                         <span class="relative bg-white px-2 font-bold uppercase text-white-dark dark:bg-dark dark:text-white-light">or</span>
                     </div>
 
-                    <div class="panel text-center py-3">
+                    <div class="text-center py-3">
                         <div class="flex justify-center w-full">
                             <img src="assets/images/auth/register.svg" width="200">
                         </div>

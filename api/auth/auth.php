@@ -20,5 +20,5 @@ if (isset($_COOKIE['_xsrf-token'])) {
     }
 
 }else{
-    die("403 Forbidden Access");
+    redirect("/403");
 }

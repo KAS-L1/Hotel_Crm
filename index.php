@@ -17,19 +17,22 @@ if($PAGE == "index") redirect("login");
 switch ($PAGE) {
     case "home":
         die(include_once("public/Home.php"));
-        break;
+    break;
     case "login":
         die(include_once("public/Login.php"));
-        break;
+    break;
     case "register":
         die(include_once("public/Register.php"));
-        break;
+    break;
     case "forgot":
         die(include_once("public/Forgot.php"));
-        break;
+    break;
     case "recover":
         die(include_once("public/Recover.php"));
-        break;
+    break;
+    case "403":
+        die(include_once("public/403.php"));
+    break;
 }
 
 // PROTECTED ROUTE ****************************************

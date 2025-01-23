@@ -1,5 +1,5 @@
 <?php include_once("public/_template/Header.php") ?>
-<?php if(isset($_COOKIE['_xsrf-token'])) redirect("/dashboard?res=redirect-login") ?>
+<?php if (isset($_COOKIE['_xsrf-token'])) redirect("/dashboard?res=redirect-login") ?>
 
 
 <div x-data="auth">
@@ -58,9 +58,19 @@
                         </div>
                         <?= button("submit", "btnLogin", "Log In", null, true) ?>
                     </form>
-                    <div class="text-center py-2">
-                        <p>Are you applying as a vendor?</p>
-                        <a href="/register" class="btn btn-dark w-44 m-auto mt-2">Register as Vendor</a>
+
+                    <div class="relative my-7 text-center md:mb-9">
+                        <span class="absolute inset-x-0 top-1/2 h-px w-full -translate-y-1/2 bg-white-light dark:bg-white-dark"></span>
+                        <span class="relative bg-white px-2 font-bold uppercase text-white-dark dark:bg-dark dark:text-white-light">or</span>
+                    </div>
+
+                    <div class="panel text-center py-3">
+                        <div class="flex justify-center w-full">
+                            <img src="assets/images/auth/register.svg" width="200">
+                        </div>
+                        <h2 class="text-lg font-bold">Apply as a Vendor</h2>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum, doloremque veniam alias excepturi quas vero. Quia temporibus ab eaque enim suscipit expedita reprehenderit explicabo repellat facilis, minus non eius harum!</p>
+                        <a href="/register" class="btn btn-dark w-full m-auto mt-2">Register as Vendor</a>
                     </div>
                 </div>
             </div>

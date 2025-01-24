@@ -315,39 +315,66 @@ function badge($status, $outline = false) {
     echo '<span class="badge ' . $classes . ' rounded-full">' . htmlspecialchars($status) . '</span>';
 }
 
-function renderMenuItem($menuItem)
-{
-    $isActive = $menuItem['route'] === $_SERVER['REQUEST_URI']; // Example for active route detection
-    $hasChildren = !empty($menuItem['children']);
+
+function renderNavItem($icon, $title, $route = '#', $dropdownKey = null, $subItems = [], $currentRoute = null) {
+    // Determine if the current route matches
+    $isActive = $currentRoute && $route === $currentRoute;
+    $subItemActive = false;
+    
+    if ($dropdownKey && !empty($subItems)) {
+        // Check if any sub-item is active
+        foreach ($subItems as $subItem) {
+            if (isset($subItem['route']) && $subItem['route'] === $currentRoute) {
+                $subItemActive = true;
+                break;
+            }
+        }
+    }
+    
     ?>
     <li class="menu nav-item">
-        <?php if ($hasChildren): ?>
-            <button type="button" class="nav-link group <?= $isActive ? 'active' : '' ?>"
-                :class="{ 'active': activeDropdown === '<?= $menuItem['id'] ?>' }"
-                @click="activeDropdown === '<?= $menuItem['id'] ?>' ? activeDropdown = null : activeDropdown = '<?= $menuItem['id'] ?>'">
+        <?php if ($dropdownKey && !empty($subItems)): ?>
+            <button 
+                type="button" 
+                class="nav-link group <?= $subItemActive ? 'active' : '' ?>" 
+                :class="{ 'active': activeDropdown === '<?= $dropdownKey ?>' }"
+                @click="activeDropdown === '<?= $dropdownKey ?>' ? activeDropdown = null : activeDropdown = '<?= $dropdownKey ?>'"
+            >
                 <div class="flex items-center">
-                    <i class="<?= $menuItem['icon'] ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <i class="<?= $icon ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
                     <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
-                        <?= $menuItem['label'] ?>
+                        <?= htmlspecialchars($title) ?>
                     </span>
                 </div>
-                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === '<?= $menuItem['id'] ?>' }">
+                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === '<?= $dropdownKey ?>' }">
                     <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" 
+                              stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </div>
             </button>
-            <ul x-cloak="" x-show="activeDropdown === '<?= $menuItem['id'] ?>'" x-collapse="" class="sub-menu text-gray-500">
-                <?php foreach ($menuItem['children'] as $child): ?>
-                    <li><a href="<?= $child['route'] ?>" class="<?= $child['route'] === $_SERVER['REQUEST_URI'] ? 'active' : '' ?>"><?= $child['label'] ?></a></li>
+            <ul 
+                x-cloak 
+                x-show="activeDropdown === '<?= $dropdownKey ?>'" 
+                x-collapse="" 
+                class="sub-menu text-gray-500"
+            >
+                <?php foreach ($subItems as $subItem): ?>
+                    <li>
+                        <a href="<?= $subItem['route'] ?>" 
+                           class="<?= ($currentRoute === $subItem['route']) ? 'active' : '' ?>">
+                            <?= htmlspecialchars($subItem['title']) ?>
+                        </a>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <a href="<?= $menuItem['route'] ?>" class="nav-link group <?= $isActive ? 'active' : '' ?>">
+            <a href="<?= htmlspecialchars($route) ?>" 
+               class="nav-link group <?= $isActive ? 'active' : '' ?>">
                 <div class="flex items-center">
-                    <i class="<?= $menuItem['icon'] ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <i class="<?= $icon ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
                     <span class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">
-                        <?= $menuItem['label'] ?>
+                        <?= htmlspecialchars($title) ?>
                     </span>
                 </div>
             </a>
@@ -356,7 +383,70 @@ function renderMenuItem($menuItem)
     <?php
 }
 
-
-
-
+function renderVerticalNavItem($icon, $title, $route = '#', $dropdownKey = null, $subItems = [], $currentRoute = null) {
+    $isActive = $currentRoute && $route === $currentRoute;
+    $subItemActive = false;
+    
+    if ($dropdownKey && !empty($subItems)) {
+        foreach ($subItems as $subItem) {
+            if (isset($subItem['route']) && $subItem['route'] === $currentRoute) {
+                $subItemActive = true;
+                break;
+            }
+        }
+    }
+    
+    ?>
+    <li class="menu nav-item relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <?php if ($dropdownKey && !empty($subItems)): ?>
+            <div class="nav-link group <?= $subItemActive ? 'active' : '' ?>" >
+                <div class="flex items-center">
+                    <i class="<?= $icon ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <span class="px-1"><?= htmlspecialchars($title) ?></span>
+                </div>
+                <div class="right_arrow">
+                    <svg class="h-4 w-4 rotate-90" width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+            <ul 
+                x-show="open" 
+                x-collapse 
+                class="sub-menu"
+            >
+                <?php foreach ($subItems as $subItem): ?>
+                    <li>
+                        <a href="<?= $subItem['route'] ?>" 
+                           class="<?= ($currentRoute === $subItem['route']) ? 'active' : '' ?>">
+                            <?= htmlspecialchars($subItem['title']) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <a href="<?= htmlspecialchars($route) ?>" 
+               class="nav-link group <?= $isActive ? 'active' : '' ?>">
+                <div class="flex items-center">
+                    <i class="<?= $icon ?> shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    <span class="px-1"><?= htmlspecialchars($title) ?></span>
+                </div>
+            </a>
+        <?php endif; ?>
+    </li>
+    <?php
+}
+    function renderSectionHeader($title, $icon = null) {
+    ?>
+    <h2 class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+        <?php if ($icon): ?>
+            <svg class="hidden h-5 w-4 flex-none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+        <?php endif; ?>
+        <span><?= htmlspecialchars($title) ?></span>
+    </h2>
+    <?php
+}
 

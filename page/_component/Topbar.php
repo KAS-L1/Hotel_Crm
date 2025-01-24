@@ -1,4 +1,3 @@
-
 <header class="z-40" :class="{ 'dark': $store.app.semidark && $store.app.menu === 'horizontal' }">
     <div class="shadow-sm">
         <div class="relative flex w-full items-center bg-white px-5 py-2.5 dark:bg-[#0e1726]">
@@ -191,29 +190,30 @@
 
         <!-- horizontal menu -->
         <ul class="horizontal-menu hidden border-t border-[#ebedf2] bg-white px-6 py-1.5 font-semibold text-black rtl:space-x-reverse dark:border-[#191e3a] dark:bg-[#0e1726] dark:text-white-dark lg:space-x-1.5 xl:space-x-8">
-            <!-- Dashboard -->
-            <li class="menu nav-item relative">
-                <a href="javascript:;" class="nav-link active">
-                    <div class="flex items-center">
-                        <i class="fa-solid fa-home shrink-0 group-hover:text-primary text-current opacity-50"></i>
-                        <span class="px-1">Dashboard</span>
-                    </div>
-                    <div class="right_arrow">
-                        <svg class="h-4 w-4 rotate-90" width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="{{ route('data-analytics') }}" class="active">Data Analytics</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('predictive-analytics') }}">Predictive Analytics</a>
-                    </li>
-                </ul>
-            </li>
+            <?php
+            $currentRoute = $_SERVER['REQUEST_URI'];
 
+            renderVerticalNavItem(
+                'fa-solid fa-home',
+                'Dashboard',
+                '#',
+                'dashboard',
+                [
+                    ['title' => 'Data Analytics', 'route' => '/data-analytics'],
+                    ['title' => 'Predictive Analytics', 'route' => '/predictive-analytics']
+                ],
+                $currentRoute
+            );
+
+            renderNavItem(
+                'fa fa-file-contract',
+                'Document Tracking',
+                'apps-calendar.html',
+                null,
+                [],
+                $currentRoute
+            );
+            ?>
             <!-- Apps Menu -->
             <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">

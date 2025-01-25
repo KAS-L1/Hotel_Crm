@@ -9,7 +9,7 @@ Class JWT
         $this->secret = $secret;
     }
 
-    public function createToken(array $payload, int $expirySeconds = 3600): string
+    public function createToken(array $payload, int $expirySeconds = null): string
     {
         // Create header
         $header = json_encode([
@@ -18,7 +18,10 @@ Class JWT
         ]);
 
         // Add expiration to payload
-        $payload['exp'] = time() + $expirySeconds;
+        if ($expirySeconds !== null) {
+            $payload['exp'] = time() + $expirySeconds;
+        }
+
         $payload = json_encode($payload);
 
         // Base64Url encode header and payload

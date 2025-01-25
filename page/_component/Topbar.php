@@ -181,12 +181,12 @@
                                 </svg>
                                 Sign Out
                             </a>
-                            <button type="button" class="btn" :class="[$store.app.menu === 'horizontal' ? 'btn-primary' :'btn-outline-primary']" @click="$store.app.toggleMenu('horizontal')">
+                            <!-- <button type="button" class="btn" :class="[$store.app.menu === 'horizontal' ? 'btn-primary' :'btn-outline-primary']" @click="$store.app.toggleMenu('horizontal')">
                                 Horizontal
                             </button>
                             <button type="button" class="btn" :class="[$store.app.menu === 'vertical' ? 'btn-primary' :'btn-outline-primary']" @click="$store.app.toggleMenu('vertical')">
                                 Vertical
-                            </button>
+                            </button> -->
                         </li>
                     </ul>
                 </div>

@@ -16,6 +16,8 @@ if (isset($_COOKIE['_xsrf-token'])) {
         define('AUTH_USER', $user);
 
     }else{
+        setcookie("_xsrf-token", "", time() - 1, "/");
+        session_destroy();
         redirect("/403?res=2");
     }
 

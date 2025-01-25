@@ -52,7 +52,7 @@
                             ['title' => 'Pruchase Order', 'route' => '#'],
                             ['title' => 'Request For Qoute', 'route' => '#'],
                             ['title' => 'Contract Management', 'route' => '#'],
-                            ['title' => '', 'route' => '#']
+                            ['title' => 'Invoice', 'route' => '#']
                         ],
                         $currentRoute
                     );

@@ -70,7 +70,7 @@
                 $('#responseNotif').html(res);
                 loadNotifCount();
                 loadNotifList();
-                loadNotifListAll();
+                loadNotifListAll()      ;
             });
         });
 

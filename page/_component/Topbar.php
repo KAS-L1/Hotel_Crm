@@ -181,7 +181,12 @@
                                 </svg>
                                 Sign Out
                             </a>
-
+                            <button type="button" class="btn" :class="[$store.app.menu === 'horizontal' ? 'btn-primary' :'btn-outline-primary']" @click="$store.app.toggleMenu('horizontal')">
+                                Horizontal
+                            </button>
+                            <button type="button" class="btn" :class="[$store.app.menu === 'vertical' ? 'btn-primary' :'btn-outline-primary']" @click="$store.app.toggleMenu('vertical')">
+                                Vertical
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -190,8 +195,8 @@
 
         <?php if (AUTH_USER['role'] === 'Admin'): ?>
             <?php include_once('page/_component/TopNav.php'); ?>
-            <?php elseif (AUTH_USER['role'] === 'Vendor' && AUTH_USER['status'] === 'Active'): ?>
-                <?php include_once('page/_component/VendorTopNav.php'); ?>
+        <?php elseif (AUTH_USER['role'] === 'Vendor' && AUTH_USER['status'] === 'Active'): ?>
+            <?php include_once('page/_component/VendorTopNav.php'); ?>
         <?php endif; ?>
 
     </div>

@@ -21,239 +21,108 @@
                 </a>
             </div>
             <ul class="perfect-scrollbar relative h-[calc(100vh-80px)] space-y-0.5 overflow-y-auto overflow-x-hidden p-4 py-0 font-semibold"
-                x-data="{ activeDropdown: 'dashboard' }">
-
-                <li class="menu nav-item">
-                    <button type="button" class="nav-link group" :class="{ 'active': activeDropdown === 'dashboard' }"
-                        @click="activeDropdown === 'dashboard' ? activeDropdown = null : activeDropdown = 'dashboard'">
-                        <div class="flex items-center">
-                            <i class="fa-solid fa-home shrink-0 group-hover:text-primary text-current opacity-50"></i>
-
-
-                            <span
-                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Dashboard</span>
-                        </div>
-                        <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'dashboard' }">
-                            <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </button>
-                    <ul x-cloak="" x-show="activeDropdown === 'dashboard'" x-collapse=""
-                        class="sub-menu text-gray-500">
-                        <li>
-                            <a href="{{ route('data-analytics') }}" class="active">Data Analytics</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('predictive-analytics') }}">Predictive Analytics</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <h2
-                    class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
-                    <svg class="hidden h-5 w-4 flex-none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
-                        fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    <span>LOGISTICS</span>
-                </h2>
+                x-data="{ activeDropdown: '' }">
 
                 <li class="nav-item">
-                    <ul>
-                        <li class="menu nav-item">
-                            <button type="button" class="nav-link group"
-                                :class="{ 'active': activeDropdown === 'procurement' }"
-                                @click="activeDropdown === 'procurement' ? activeDropdown = null : activeDropdown = 'procurement'">
-                                <div class="flex items-center">
+                    <?php
+                    $currentRoute = $_SERVER['REQUEST_URI'];
 
-                                    <i
-                                        class="fa fa-cart-shopping shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    renderNavItem(
+                        'fa-solid fa-home',
+                        'Dashboard',
+                        '#',
+                        'dashboard',
+                        [
+                            ['title' => 'Data Analytics', 'route' => '/data-analytics'],
+                            ['title' => 'Predictive Analytics', 'route' => '/predictive-analytics']
+                        ],
+                        $currentRoute
+                    );
 
+                    renderSectionHeader('LOGISTICS');
 
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Procurement</span>
-                                </div>
-                                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'procurement' }">
-                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul x-cloak="" x-show="activeDropdown === 'procurement'" x-collapse=""
-                                class="sub-menu text-gray-500">
-                                <li>
-                                    <a href="{{ route('requisitions.index') }}">Purchase Requisition</a>
-                                </li>
-                                <li>
-                                    <a href="#">Budget Approval</a>
-                                </li>
-                                <li>
-                                    <a href="#">Purchase Order</a>
-                                </li>
-                                <li>
-                                    <a href="#">Request For Qoute</a>
-                                </li>
-                                <li>
-                                    <a href="#">Contract Management</a>
-                                </li>
-                                <li>
-                                    <a href="#">Invoice</a>
-                                </li>
-                            </ul>
-                        </li>
+                    renderNavItem(
+                        'fa fa-cart-shopping',
+                        'Procurement',
+                        '#',
+                        'procurement',
+                        [
+                            ['title' => 'Purchase Requisition', 'route' => '#'],
+                            ['title' => 'Budget Approval', 'route' => '#'],
+                            ['title' => 'Pruchase Order', 'route' => '#'],
+                            ['title' => 'Request For Qoute', 'route' => '#'],
+                            ['title' => 'Contract Management', 'route' => '#'],
+                            ['title' => '', 'route' => '#']
+                        ],
+                        $currentRoute
+                    );
 
-                        <li class="menu nav-item">
-                            <button type="button" class="nav-link group"
-                                :class="{ 'active': activeDropdown === 'audit' }"
-                                @click="activeDropdown === 'audit' ? activeDropdown = null : activeDropdown = 'audit'">
-                                <div class="flex items-center">
-                                    <i
-                                        class="fa fa-clipboard-list shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    renderNavItem(
+                        'fa fa-clipboard-list',
+                        'Audit Management',
+                        '#',
+                        'auditManagement',
+                        [
+                            ['title' => 'Audit Schedule', 'route' => '#'],
+                            ['title' => 'Audit Findings', 'route' => '#'],
+                            ['title' => 'Audit Logs', 'route' => '#'],
+                            ['title' => 'Audit History', 'route' => '#'],
+                            ['title' => 'Reports', 'route' => '#'],
 
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Audit
-                                        Management</span>
-                                </div>
-                                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'audit' }">
-                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul x-cloak="" x-show="activeDropdown === 'audit'" x-collapse=""
-                                class="sub-menu text-gray-500">
-                                <li>
-                                    <a href="#">Audit Schedule</a>
-                                </li>
-                                <li>
-                                    <a href="#">Audit Findings</a>
-                                </li>
-                                <li>
-                                    <a href="#">Audit Logs</a>
-                                </li>
-                                <li>
-                                    <a href="#">Audit History</a>
-                                </li>
-                                <li>
-                                    <a href="#">Reports</a>
-                                </li>
-                            </ul>
-                        </li>
+                        ],
+                        $currentRoute
+                    );
 
-                        <li class="nav-item">
-                            <a href="apps-calendar.html" class="group">
-                                <div class="flex items-center">
-                                    <i
-                                        class="fa fa-file-contract shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    renderNavItem(
+                        'fa fa-file-contract',
+                        'Document Tracking',
+                        '#',
+                        null,
+                        [],
+                        $currentRoute
+                    );
 
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Document
-                                        Tracking</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="menu nav-item">
-                            <button type="button" class="nav-link group"
-                                :class="{ 'active': activeDropdown === 'vendor' }"
-                                @click="activeDropdown === 'vendor' ? activeDropdown = null : activeDropdown = 'vendor'">
-                                <div class="flex items-center">
-                                    <i
-                                        class="fa fa-building shrink-0 group-hover:text-primary text-current opacity-50"></i>
-                                    <span
-                                        class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Vendor
-                                        Portal</span>
-                                </div>
-                                <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'vendor' }">
-                                    <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <ul x-cloak="" x-show="activeDropdown === 'vendor'" x-collapse=""
-                                class="sub-menu text-gray-500">
-                                <li>
-                                    <a href="#">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#">Purchase Order</a>
-                                </li>
-                                <li>
-                                    <a href="#">Request For Qoute</a>
-                                </li>
-                                <li>
-                                    <a href="#">Product Catalog</a>
-                                </li>
-                                <li>
-                                    <a href="#">Invoice</a>
-                                </li>
-                                <li>
-                                    <a href="#">Delivery & Shipment Updates</a>
-                                </li>
-                                <li>
-                                    <a href="#">Help & Support</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                    renderNavItem(
+                        'fa fa-building',
+                        'Vendor Portal',
+                        '#',
+                        'vendorPortal',
+                        [
+                            ['title' => 'Dashboard', 'route' => '#'],
+                            ['title' => 'Purchase Order', 'route' => '#'],
+                            ['title' => 'Request For Qoute', 'route' => '#'],
+                            ['title' => 'Product Catalog', 'route' => '#'],
+                            ['title' => 'Invoice', 'route' => '#'],
+                            ['title' => 'Delivery & Shipment Updates', 'route' => '#'],
+                            ['title' => 'Help & Support', 'route' => '#']
+                        ],
+                    );
 
-                <h2
-                    class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
-                    <svg class="hidden h-5 w-4 flex-none" viewbox="0 0 24 24" stroke="currentColor"
-                        stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    <span>SETTINGS</span>
-                </h2>
-                <li class="nav-item">
-                    <a href="/application" class="group">
-                        <div class="flex items-center">
-                            <i
-                                class="fa fa-file-contract shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    renderSectionHeader('SETTINGS');
 
-                            <span
-                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">Vendor Application</span>
-                        </div>
-                    </a>
-                </li>
+                    renderNavItem(
+                        'fa fa-file-contract',
+                        'Vendor Application',
+                        '/application',
+                        null,
+                        [],
+                        $currentRoute
+                    );
 
-                <li class="menu nav-item">
-                    <button type="button" class="nav-link group"
-                        :class="{ 'active': activeDropdown === 'users' }"
-                        @click="activeDropdown === 'users' ? activeDropdown = null : activeDropdown = 'users'">
-                        <div class="flex items-center">
-                            <i class="fa fa-users shrink-0 group-hover:text-primary text-current opacity-50"></i>
+                    renderNavItem(
+                        'fa fa-users',
+                        'UserManagement',
+                        '#',
+                        'userManagement',
+                        [
+                            ['title' => 'Role', 'route' => '#'],
+                            ['title' => 'Permission', 'route' => '#'],
+                          
+                        ],
+                        $currentRoute
+                    );
 
-                            <span
-                                class="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">User
-                                Management</span>
-                        </div>
-                        <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'users' }">
-                            <svg width="16" height="16" viewbox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </button>
-                    <ul x-cloak="" x-show="activeDropdown === 'users'" x-collapse=""
-                        class="sub-menu text-gray-500">
-                        <li>
-                            <a href="#">Role</a>
-                        </li>
-                        <li>
-                            <a href="#">Permission</a>
-                        </li>
-                    </ul>
+                    ?>
                 </li>
             </ul>
         </div>

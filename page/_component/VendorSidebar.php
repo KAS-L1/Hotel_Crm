@@ -30,26 +30,67 @@
                     'fa-solid fa-home',
                     'Dashboard',
                     '#',
-                    'dashboard',
-                    [
-                        ['title' => 'Data Analytics', 'route' => '/data-analytics'],
-                        ['title' => 'Predictive Analytics', 'route' => '/predictive-analytics']
-                    ],
-                    $currentRoute
-                );
-                ?>
-
-                <?php renderSectionHeader('LOGISTICS'); ?>
-
-                <?php
-                renderNavItem(
-                    'fa fa-file-contract',
-                    'Document Tracking',
-                    'apps-calendar.html',
                     null,
                     [],
                     $currentRoute
                 );
+
+                renderSectionHeader('LOGISTICS');
+
+                renderNavItem(
+                    'fas fa-file-invoice-dollar',
+                    'Purchase Order',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
+                    'fas fa-file-signature',
+                    'Request For Qoute',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
+                    'fas fa-book-open',
+                    'Product Catalog',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
+                    'fas fa-receipt',
+                    'Invoice',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
+                    'fas fa-shipping-fast',
+                    'Delivery & Shipment Updates',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
+                    'fas fa-question-circle',
+                    'Help & Support',
+                    '#',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
                 ?>
 
             </ul>

@@ -22,7 +22,7 @@ function GetVendorProducts($vendor, $order_by = 'ASC')
         ['products', 'product_categories', 'users'],
         't1.*, t2.category, t3.username, t3.company, t3.first_name, t3.last_name, t3.email, t3.picture',
         [
-            [['t1.category_id', 't2.category_id']],
+            [['t1.category_id', 't2.id']],
             [['t1.vendor_id', 't3.user_id']]
         ],
         ['INNER JOIN', 'INNER JOIN'],

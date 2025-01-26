@@ -28,8 +28,7 @@ function get_file_extension($mime_type)
 $max_file_size = 10 * 1024 * 1024; // 10MB
 
 // Validate Data
-if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['certificate'], $_FILES['file_references'])) {
-
+if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['certificate'], $_FILES['other_references'])) {
     // Check if application already exists
     $application_exist = $DB->SELECT_ONE_WHERE("vendors_application", "*", ["vendor_id" => AUTH_USER_ID]);
     if (!empty($application_exist)) die(toast("error", "Application already submitted"));
@@ -66,10 +65,10 @@ if (isset($_FILES['business_license'], $_FILES['tin_certificate'], $_FILES['cert
     if (!$file_references_extension) die(toast("error", "Unsupported other references file type"));
     if (!is_valid_file_size($_FILES['other_references'], $max_file_size)) {
         die(toast("error", "Other references file is too large"));
+    }
     $file_references = UPLOAD_FILE($_FILES['other_references'], '../../upload/document', AUTH_USER_ID . '-' . uniqid() . '-references', $file_references_extension);
     if ($file_references['status'] != 'success') die(toast("error", "Failed to upload other references"));
-    }
-
+    
     // Prepare the application data
     $applicationData = [
         "vendor_id" => AUTH_USER_ID,

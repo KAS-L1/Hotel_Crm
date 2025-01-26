@@ -24,6 +24,7 @@
                 ['title' => 'Budget Approval', 'route' => '#'],
                 ['title' => 'Pruchase Order', 'route' => '#'],
                 ['title' => 'Request For Qoute', 'route' => '#'],
+                ['title' => 'Vendor Management', 'route' => '/VendorManagement'],
                 ['title' => 'Contract Management', 'route' => '#'],
                 ['title' => '', 'route' => '#']
             ],

@@ -68,7 +68,7 @@ function NUMBER($int, $decimal = 0){
     }
 }
 
-function PRIZE($int, $decimal = 0){
+function PESO($int, $decimal = 0){
     if($decimal == 0){
         return '₱'.number_format($int);
     }else{

@@ -38,7 +38,7 @@ switch ($PAGE) {
 // PROTECTED ROUTE ****************************************
 
 require_once("api/auth/auth.php"); // AUTHENTICATED USER
-// require_once("api/app/app.php"); // APPLICATION FUNCTIONS
+require_once("page/_utils/app.php"); // APPLICATION UTILITIY FUNCTIONS
 require_once("page/_component/app.php"); // APPLICATION COMPONENTS
 
 include_once("page/_template/Header.php");

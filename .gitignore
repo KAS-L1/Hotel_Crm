@@ -2,8 +2,13 @@
 vendor/
 
 # Ignore all files in the upload document and profile directories
-/upload/document/
-/upload/profile/
+/upload/document/*
+/upload/profile/*
+/upload/product/*
 
 # Ignore storage directory
 storage/
+
+# Allow a specific file inside ignored directories
+!upload/profile/default.png
+!upload/product/default.png

@@ -12,9 +12,10 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
     <?php
         breadcrumb([
             ['label' => 'Home', 'url' => '/dashboard'],
-            ['label' => 'Product List', 'url' => '/product'],
+            ['label' => 'Vendor Management', 'url' => '/vendor-management'],
+            ['label' => 'Product List', 'url' => '/vendor-management/details'],
         ]);
-    ?>
+    ?>  
 
     <div class="pt-5">
         <div class="panel h-full flex-col">
@@ -53,7 +54,7 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                 </td>
                                 <td><?= $product['category'] ?></td>
                                 <td><?= $product['description'] ?></td>
-                                <td><?= $product['status'] ?></td>
+                                <td><?= badge($product['status']); ?></td>
                                 <td><?= PESO($product['unit_price']); ?></td>
                                 <td><?= $product['stock'] ?></td>
                             </tr>

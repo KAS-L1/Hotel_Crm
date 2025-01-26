@@ -5,7 +5,6 @@ $products = GetVendorProducts($vendor_id);
 if (empty($products)) die(toast("error", "Product not found on this vendor"));
 
 $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get user details by product_id
-pre($products);
 ?>
 
 <div class="page-content">

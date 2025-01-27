@@ -2,7 +2,7 @@
 
 $vendor_id = $_GET['vendor_id']; // Get vendor ID
 $products = GetVendorProducts($vendor_id);
-if (empty($products)) die(toast("error", "Product not found on this vendor"));
+if (empty($products)) toast("error", "Product not found on this vendor");
 
 $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get user details by product_id
 ?>

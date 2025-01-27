@@ -11,7 +11,6 @@
     ?>
 
     <div class="pt-5">
-
         <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">
             <div class="panel">
                 <div class="mb-5 flex items-center justify-between">

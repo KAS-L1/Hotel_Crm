@@ -59,12 +59,16 @@ $applications = $DB->SELECT_JOIN(
                                 <td><?= $application['email'] ?></td>
                                 <td><?= $application['company'] ?></td>
                                 <td><?= $application['status'] ?></td>
-                                <td><?= $application['created_at'] ?></td>
-                                <td><?= $application['updated_at'] ?></td>
+                                <td><?= DATE_TIME_SHORT($application['created_at']) ?></td>
+                                <td><?= DATE_TIME_SHORT($application['updated_at']) ?? '' ?></td>
                                 <td class="py-2 px-3 text-center">
-                                    <a href="/application/details?application_id=<?= $application['user_id'] ?>" x-tooltip="Details" class="text-primary inline-flex justify-center items-center">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
+                                    <div class="flex justify-center items-center">
+                                        <a href="/application/details?application_id=<?= $application['user_id'] ?>"
+                                            x-tooltip="Details"
+                                            class="text-primary">
+                                            <i class="fa fa-eye text-lg"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

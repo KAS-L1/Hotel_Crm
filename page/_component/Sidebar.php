@@ -50,8 +50,9 @@
                             ['title' => 'Purchase Requisition', 'route' => '#'],
                             ['title' => 'Budget Approval', 'route' => '#'],
                             ['title' => 'Pruchase Order', 'route' => '#'],
-                            ['title' => 'Request For Qoute', 'route' => '#'],
+                            ['title' => 'Category Management', 'route' => '/category'],
                             ['title' => 'Vendor Management', 'route' => '/vendor-management'],
+                            ['title' => 'Request For Qoute', 'route' => '#'],
                             ['title' => 'Contract Management', 'route' => '#'],
                             ['title' => 'Invoice', 'route' => '#']
                         ],

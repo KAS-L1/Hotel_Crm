@@ -50,9 +50,11 @@ $vendors = $DB->SELECT_WHERE('users', '*', ['status' => 'Active', 'role' => 'Ven
                                 <td><?= $vendor['email'] ?></td>
                                 <td><?= $vendor['contact'] ?></td>
                                 <td class="py-2 px-3 text-center">
-                                    <a href="<?=DOMAIN?>/vendor-management/details?vendor_id=<?= $vendor['user_id'] ?>" x-tooltip="Details" class="text-primary inline-flex justify-center items-center">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
+                                    <div class="flex justify-center items-center">
+                                        <a href="/vendor-management/details?vendor_id=<?= $vendor['user_id'] ?>" x-tooltip="Details" class="text-primary">
+                                            <i class="fa fa-eye text-lg"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

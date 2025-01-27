@@ -36,13 +36,15 @@ $categories = $DB->SELECT('product_categories', '*', 'Order by id Desc');
                                 <td><?= $category['category'] ?></td>
                                 <td><?= DATE_TIME_SHORT($category['created_at']) ?></td>
                                 <td><?= DATE_TIME_SHORT($category['updated_at'] ?? '') ?></td>
-                                <td class="py-2 px-3 text-center flex justify-center items-center gap-2 text-lg">
-                                    <button type="button" class="text-dark hover:text-danger-dark btnEdit" x-tooltip="Edit" data-category_id="<?= $category['id'] ?>" title="Edit">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button type="button" class="text-danger hover:text-danger-dark btnDelete" x-tooltip="Delete" data-category_id="<?= $category['id'] ?>" title="Delete">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                <td class="py-2 px-3 text-center">
+                                    <div class="flex justify-center items-center gap-2 text-lg">
+                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" x-tooltip="Edit" data-category_id="<?= $category['id'] ?>" title="Edit">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" x-tooltip="Delete" data-category_id="<?= $category['id'] ?>" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

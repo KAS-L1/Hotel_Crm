@@ -1,6 +1,8 @@
 <?php require("../../app/init.php") ?>
 
-<?php 
+<?php
+
+csrfProtect('verify');
 
 if(isset($_POST['category'])){
 

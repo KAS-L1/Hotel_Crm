@@ -18,7 +18,7 @@ if (isset($_COOKIE['_xsrf-token'])) {
     }else{
         setcookie("_xsrf-token", "", time() - 1, "/");
         session_destroy();
-        redirect("/403?res=2");
+        redirect("/login");
     }
 
 }else{

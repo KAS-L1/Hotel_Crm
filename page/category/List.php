@@ -1,5 +1,5 @@
 <?php
-$categories = $DB->SELECT('product_categories', '*', 'Order by id Desc');
+$categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
 ?>
 
 <div class="page-content">
@@ -11,8 +11,9 @@ $categories = $DB->SELECT('product_categories', '*', 'Order by id Desc');
     <div class="pt-5">
         <div class="panel h-full flex-col">
             <!-- Modal Trigger Button -->
-            <button type="button" class="btn btn-primary mb-4" onclick="toggleModal()">+ Create Category</button>
-
+            <div class="flex justify-end">
+                <button type="button" class="btn btn-primary mb-4" data-toggle-modal>+ Create Category</button>
+            </div>
             <div class="table-responsive overflow-y-auto mt-4">
                 <table id="dataTable" class="table-bordered table-hover w-full text-sm">
                     <thead>
@@ -52,29 +53,52 @@ $categories = $DB->SELECT('product_categories', '*', 'Order by id Desc');
     </div>
 </div>
 
-<!-- Modal -->
-<div id="categoryModal" class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto">
-    <div class="flex items-start justify-center min-h-screen px-4" onclick="closeModalOnBackdrop(event)">
-        <div class="panel border-0 py-1 px-4 rounded-lg overflow-hidden w-full max-w-sm my-8">
-            <div class="flex items-center justify-between p-5 font-semibold text-lg dark:text-white">
-                Create Category
-                <button type="button" onclick="toggleModal()" class="text-white-dark hover:text-dark">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-            </div>
-            <div class="p-5">
-                <div id="responseCategory"></div>
-                <form id="formCategory" class="space-y-4">
-                    <?= csrfProtect('generate') ?>
-                    <div class="relative mb-4">
-                        <?= input("text", "category", null, "Category Name", "form-input w-full", false) ?>
-                    </div>
-                    <div class="flex justify-end gap-2">
-                        <?= button("button", "btnCancel", "Cancel", "btn btn-danger", false, 'onclick="toggleModal()"') ?>
-                        <?= button("submit", "btnCreate", "Create", "btn btn-primary", false) ?>
-                    </div>
-                </form>
-            </div>
+<!-- Create Category Modal -->
+<div id="createCategoryModal" class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto flex items-start justify-center min-h-screen px-4">
+    <div class="panel border-0 py-1 px-4 rounded-lg overflow-hidden w-full max-w-sm my-8">
+        <div class="flex items-center justify-between p-5 font-semibold text-lg dark:text-white">
+            Create Category
+            <button type="button" data-toggle-modal class="text-white-dark hover:text-dark">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="p-5">
+            <div id="responseCreateCategory"></div>
+            <form id="formCreateCategory" class="space-y-4">
+                <?= csrfProtect('generate') ?>
+                <div class="relative mb-4">
+                    <?= input("text", "category", null, "Category Name", "form-input w-full", false) ?>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <?= button("button", "btnCancel", "Cancel", "btn btn-danger", false, 'data-toggle-modal') ?>
+                    <?= button("submit", "btnCreate", "Create", "btn btn-primary", false) ?>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Category Modal -->
+<div id="editCategoryModal" class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto flex items-start justify-center min-h-screen px-4">
+    <div class="panel border-0 py-1 px-4 rounded-lg overflow-hidden w-full max-w-sm my-8">
+        <div class="flex items-center justify-between p-5 font-semibold text-lg dark:text-white">
+            Edit Category
+            <button type="button" data-toggle-modal class="text-white-dark hover:text-dark">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="p-5">
+            <div id="responseEditCategory"></div>
+            <form id="formEditCategory" class="space-y-4">
+                <?= csrfProtect('generate') ?>
+                <div class="relative mb-4">
+                    <?= input("text", "category", null, "Category Name", "form-input w-full", false) ?>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <?= button("button", "btnCancel", "Cancel", "btn btn-danger", false, 'data-toggle-modal') ?>
+                    <?= button("submit", "btnCreate", "Edit", "btn btn-primary", false) ?>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -82,25 +106,26 @@ $categories = $DB->SELECT('product_categories', '*', 'Order by id Desc');
 <script>
     let table = new DataTable('#dataTable');
 
-    function toggleModal() {
-        const modal = document.getElementById('categoryModal');
-        modal.classList.toggle('hidden');
-    }
+    document.addEventListener("click", (event) => {
+        const createModal = document.getElementById("createCategoryModal");
 
-    function closeModalOnBackdrop(event) {
-        if (event.target === event.currentTarget) {
-            toggleModal();
+        if (event.target.closest("[data-toggle-modal]")) {
+            createModal.classList.toggle("hidden");
         }
-    }
 
-    $('#formCategory').submit(function(e) {
+        if (event.target === createModal) {
+            createModal.classList.add("hidden");
+        }
+    });
+
+    $('#formCreateCategory').submit(function(e) {
         e.preventDefault();
         btnLoading('#btnCreate');
-        $.post('api/category/create.php', $('#formCategory').serialize(), function(res) {
-            $('#responseCategory').html(res);
+        $.post('api/category/create.php', $('#formCreateCategory').serialize(), function(res) {
+            $('#responseCreateCategory').html(res);
             btnLoadingReset('#btnCreate');
         }).fail(function() {
-            $('#responseCategory').html('An error occurred. Please try again.');
+            $('#responseCreateCategory').html('An error occurred. Please try again.');
         });
     });
 </script>

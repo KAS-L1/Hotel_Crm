@@ -27,23 +27,13 @@ if (isset($_POST['image'])) {
 
     // Save the image to the server
     if (file_put_contents($file_path, $image_data)) {
-        $data = array(
-            "image" => $file_name,
-     );
-        $where = array("vendor_id" => AUTH_USER_ID);
-        $UPDATE = $DB->UPDATE("products", $data, $where);
+        
+        $_SESSION['PRODUCT_THUMBNAIL'] = $file_name;
 
-        $notification_data = [
-            "user_id" => AUTH_USER_ID,
-            "message" => "You profile picture has been uploaded",
-            "action" => "ProductImage",
-            "created_at" => DATE_TIME
-        ];
-
-        $DB->INSERT("notifications", $notification_data);
+        // Update the product image in the database
         // If the image was successfully saved, return the file path
         toast("success", "Successfully Uploaded");
-        die(refresh(2000));
+        
     } else {
         // If there was an error saving the image
         die(toast("error", "Failed to save image"));

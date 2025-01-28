@@ -17,6 +17,7 @@ if (
         "unit_price"  => $DB->ESCAPE(VALID_NUMBER($_POST['unit_price'])),
         "stock"       => $DB->ESCAPE(VALID_NUMBER($_POST['stock'])),
         "description" => $DB->ESCAPE(VALID_STRING(trim($_POST['description']))),
+        'image' => $_SESSION['PRODUCT_THUMBNAIL'],
         "vendor_id"   => AUTH_USER_ID
     ];
 
@@ -24,6 +25,8 @@ if (
 
     if (!$insert_product === "success") die(toast('error', 'Failed to create product'));
     
+
+
     $notification_data = [
         "user_id" => AUTH_USER_ID,
         "message" => "A new product has been added: " . $data['name'],
@@ -34,6 +37,7 @@ if (
     $notification_result = $DB->INSERT("notifications", $notification_data);
 
     toast('success', 'Product successfully created.');
+    unset($_SESSION['PRODUCT_THUMBNAIL']);
     die(refresh(2000));
 } else {
     die(toast('error', 'Invalid server request: Missing required fields.'));

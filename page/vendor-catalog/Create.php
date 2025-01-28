@@ -12,6 +12,7 @@
         ?>
 
         <div class="pt-5">
+
             <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3 xl:grid-cols-4">
                 <div class="panel">
                     <div class="mb-5 flex items-center justify-between">
@@ -21,7 +22,7 @@
                         <div class="flex flex-col items-center justify-center">
                             <div class="flex flex-col items-center justify-center">
                                 <div class="w-[100px] mb-3" id="previewPicture">
-                                    <img src="upload/product/default.png" alt="image" id="profileImage" class="mb-4 h-24 w-24 rounded-full object-cover">
+                                    <img src="<?= DOMAIN ?>/upload/product/<?= isset($_SESSION['PRODUCT_THUMBNAIL']) ? $_SESSION['PRODUCT_THUMBNAIL'] : 'default.png' ?>" alt="image" id="profileImage" class="mb-4 h-24 w-24 rounded-full object-cover">
                                     <div class="w-[100px] mb-3">
                                         <!-- Minimalist upload button -->
                                         <label for="image" class="btn btn-primary flex items-center justify-center cursor-pointer">
@@ -130,6 +131,7 @@
                                                     // hideModal();
                                                     btn.text(originalText).prop('disabled', false);
                                                     $('#responseUploadImage').html(res);
+                                                    hideModal();
                                                 },
                                                 error: function() {
                                                     alert("An error occurred while saving the image.");

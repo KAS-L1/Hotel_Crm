@@ -120,7 +120,7 @@
 
                                             // Send cropped image to the server
                                             $.ajax({
-                                                url: "api/product/upload_image.php",
+                                                url: "../api/vendor-catalog/upload_image.php",
                                                 type: "POST",
                                                 data: {
                                                     image: croppedImage

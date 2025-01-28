@@ -456,3 +456,27 @@ function renderVerticalNavItem($icon, $title, $route = '#', $dropdownKey = null,
     <?php
 }
 
+function select($name, $options, $selected = null, $placeholder = null, $attributes = '')
+{
+    $html = "<select name='{$name}' class='form-select' {$attributes}>";
+
+    if ($placeholder) {
+        $html .= "<option value=''>{$placeholder}</option>";
+    }
+
+    foreach ($options as $value => $label) {
+        $isSelected = ($selected == $value) ? 'selected' : '';
+        $html .= "<option value='{$value}' {$isSelected}>{$label}</option>";
+    }
+
+    $html .= "</select>";
+    return $html;
+}
+
+function textarea($name, $value = null, $placeholder = null, $class = null, $icon = true, $rows = 4, $cols = 50, $attributes = null)
+{
+    ?>
+    <textarea name="<?= $name ?>" id="<?= $name ?>" placeholder="<?= $placeholder ?>" rows="<?= $rows ?>" cols="<?= $cols ?>" class="form-input <?= !empty($icon) ? 'ps-10' : 'ps-0' ?> placeholder:text-white-dark <?= $class ?>" <?= $attributes ?>><?= $value ?></textarea>
+    <?php
+}
+

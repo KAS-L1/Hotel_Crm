@@ -31,3 +31,21 @@ function GetVendorProducts($vendor, $order_by = 'ASC')
     );
     return $products;
 }
+
+function getCategoryOptions()
+{
+    global $DB;
+
+    $categories = $DB->SELECT(
+        'product_categories',
+        'category_id, category', 
+        'ORDER BY category ASC' 
+    );
+
+    $options = [];
+    foreach ($categories as $category) {
+        $options[$category['category_id']] = $category['category'];
+    }
+
+    return $options;
+}

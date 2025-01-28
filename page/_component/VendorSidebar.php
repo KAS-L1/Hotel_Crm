@@ -58,7 +58,7 @@
                 renderNavItem(
                     'fas fa-book-open',
                     'Product Catalog',
-                    '#',
+                    '/vendor-catalog',
                     null,
                     [],
                     $currentRoute

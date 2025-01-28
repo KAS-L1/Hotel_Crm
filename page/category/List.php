@@ -10,7 +10,6 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
 
     <div class="pt-5">
         <div class="panel h-full flex-col">
-            <!-- Modal Trigger Button -->
             <div class="flex justify-end">
                 <button type="button" class="btn btn-primary mb-4" data-toggle-modal="createModal">+ Create Category</button>
             </div>

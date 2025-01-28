@@ -197,16 +197,15 @@
                             </div>
                         </form>
                         <div id="responseProduct"></div>
-                        <div id="responsePersonal"></div>
                         <script>
-                            $('#formPersonal').submit(function(e) {
+                            $('#formProduct').submit(function(e) {
                                 e.preventDefault();
-                                btnLoading('#btnLogin');
-                                $.post('api/profile/update_personal.php', $('#formPersonal').serialize(), function(res) {
-                                    $('#responsePersonal').html(res);
-                                    btnLoadingReset('#btnLogin');
+                                btnLoading('#btnSubmit');
+                                $.post('../api/vendor-catalog/create.php', $('#formProduct').serialize(), function(res) {
+                                    $('#responseProduct').html(res);
+                                    btnLoadingReset('#btnSubmit');
                                 })
-                            })
+                            });
                         </script>
                     </div>
                 </div>

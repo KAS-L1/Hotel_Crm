@@ -129,6 +129,7 @@
                                                 // hideModal();
                                                 btn.text(originalText).prop('disabled', false);
                                                 $('#responseUploadPhoto').html(res);
+                                                hideModal();
                                             },
                                             error: function() {
                                                 alert("An error occurred while saving the image.");
@@ -157,7 +158,7 @@
                                     <path d="M4.99994 7.5L5.11605 7.38388C5.62322 6.87671 5.68028 6.0738 5.24994 5.5C4.81959 4.9262 4.87665 4.12329 5.38382 3.61612L5.49994 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     <path d="M14.4999 7.5L14.6161 7.38388C15.1232 6.87671 15.1803 6.0738 14.7499 5.5C14.3196 4.9262 14.3767 4.12329 14.8838 3.61612L14.9999 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                                <?= AUTH_USER['role'] ." - ". AUTH_USER['user_id'] ?>
+                                <?= AUTH_USER['role'] . " - " . AUTH_USER['user_id'] ?>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0">

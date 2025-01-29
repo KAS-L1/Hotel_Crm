@@ -154,7 +154,7 @@
                 </div>
                 <div class="panel lg:col-span-2 xl:col-span-3">
                     <div class="mb-5">
-                        <form id="formCreateProduct">
+                        <form id="formEditProduct">
                             <?= csrfProtect('generate'); ?>
                             <div class="mb-5">
                                 <h5 class="text-lg font-semibold dark:text-white-light">Product Details</h5>
@@ -188,7 +188,7 @@
                                     <div class="sm:col-span-2">
                                         <label for="description">Description</label>
                                         <div class="relative text-white-dark mb-4">
-                                            <?= textarea("description", null, null, null, null,null, null, 'required') ?>
+                                            <?= textarea("description", null, null, null, 'required') ?>
                                         </div>
                                     </div>
                                     <input type="hidden" name="image" id="productImageInput">
@@ -198,13 +198,13 @@
                                 </div>
                             </div>
                         </form>
-                        <div id="responseCreateProduct"></div>
+                        <div id="responseEditProduct"></div>
                         <script>
-                            $('#formCreateProduct').submit(function(e) {
+                            $('#formEditProduct').submit(function(e) {
                                 e.preventDefault();
                                 btnLoading('#btnSubmit');
-                                $.post('../api/vendor-catalog/create.php', $('#formCreateProduct').serialize(), function(res) {
-                                    $('#responseCreateProduct').html(res);
+                                $.post('../api/vendor-catalog/edit.php', $('#formEditProduct').serialize(), function(res) {
+                                    $('#responseEditProduct').html(res);
                                     btnLoadingReset('#btnSubmit');
                                 })
                             });

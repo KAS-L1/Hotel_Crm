@@ -13,9 +13,8 @@ $categoryId = $DB->ESCAPE($_POST['category_id']);
 $where = ['id' => $categoryId];
 
 $category = $DB->SELECT_ONE_WHERE('product_categories', 'id', $where);
-if (!$category) {
-    die(toast("error", "Category not found"));
-}
+if (!$category) die(toast("error", "Category not found"));
+
 
 $delete_result = $DB->DELETE('product_categories', $where);
 if (!$delete_result === 'success') die(toast("error", "Failed to delete category"));

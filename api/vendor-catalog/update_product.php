@@ -12,19 +12,20 @@ foreach ($requiredFields as $field) {
         die(toast('error', 'Invalid server request'));
     }
 }
-if(!$_SESSION['PRODUCT_THUMBNAIL']){
+if (!isset($_SESSION['PRODUCT_THUMBNAIL']) || empty($_SESSION['PRODUCT_THUMBNAIL'])) {
     $data = [
         "name"        => $DB->ESCAPE(VALID_STRING(trim($_POST['name']))),
         "category_id" => $DB->ESCAPE(VALID_NUMBER($_POST['category_id'])),
+        "status"  => $DB->ESCAPE(VALID_STRING($_POST['status'])),
         "unit_price"  => $DB->ESCAPE(VALID_NUMBER($_POST['unit_price'])),
         "stock"       => $DB->ESCAPE(VALID_NUMBER($_POST['stock'])),
         "description" => $DB->ESCAPE(VALID_STRING(trim($_POST['description']))),
-
     ];
 } else {
     $data = [
         "name"        => $DB->ESCAPE(VALID_STRING(trim($_POST['name']))),
         "category_id" => $DB->ESCAPE(VALID_NUMBER($_POST['category_id'])),
+        "status"  => $DB->ESCAPE(VALID_STRING($_POST['status'])),
         "unit_price"  => $DB->ESCAPE(VALID_NUMBER($_POST['unit_price'])),
         "stock"       => $DB->ESCAPE(VALID_NUMBER($_POST['stock'])),
         "description" => $DB->ESCAPE(VALID_STRING(trim($_POST['description']))),

@@ -67,3 +67,16 @@ function getCategoryOptions()
 
     return array_column($categories, 'category', 'category_id');
 }
+
+function getProductStatus()
+{
+    global $DB;
+    $statuses = $DB->SELECT('products', 'DISTINCT status', 'ORDER BY status ASC');
+
+    $statusList = array_column($statuses, 'status');
+
+    $defaultStatuses = ['Active' => 'Active', 'Inactive' => 'Inactive'];
+
+    return array_merge($defaultStatuses, array_combine($statusList, $statusList));
+}
+

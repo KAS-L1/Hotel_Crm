@@ -38,7 +38,6 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                         </tr>
                     </thead>
                     <tbody>
-
                         <?php foreach ($products as $product): ?>
                             <tr>
                                 <td><?= $product['id'] ?></td>
@@ -81,10 +80,25 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
     </div>
 </div>
 
+<div class="responseProductDelete"></div>
 <script>
     let table = new DataTable('#dataTable', {
         order: [
             [0, 'desc']
         ]
+    });
+
+    // Delete Product
+    $('.btnDelete').click(function() {
+        if (confirm('Are you sure you want to delete this product?')) {
+            const product_id = $(this).data('product_id');
+            $.post("../api/vendor-catalog/delete.php", {
+                product_id: product_id,
+            }, function(res) {
+                $('.responseProductDelete').html(res);
+            }).fail(function(xhr) {
+                $('.responseProductDelete').html('An error occurred. Please try again.');
+            });
+        }
     });
 </script>

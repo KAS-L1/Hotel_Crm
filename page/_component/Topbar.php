@@ -167,8 +167,7 @@
                                 @csrf
                             </form>
 
-                            <a href="#" class="!py-3 text-danger"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="../api/auth/logout.php" class="!py-3 text-danger">
                                 <svg class="h-4.5 w-4.5 shrink-0 rotate-90 ltr:mr-2 rtl:ml-2" width="18"
                                     height="18" viewbox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

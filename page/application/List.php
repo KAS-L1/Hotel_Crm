@@ -59,8 +59,8 @@ $applications = $DB->SELECT_JOIN(
                                 <td><?= $application['email'] ?></td>
                                 <td><?= $application['company'] ?></td>
                                 <td><?= $application['status'] ?></td>
-                                <td><?= DATE_TIME_SHORT($application['created_at']) ?></td>
-                                <td><?= DATE_TIME_SHORT($application['updated_at']) ?? '' ?></td>
+                                <td><?= $application['created_at'] ?></td>
+                                <td><?= $application['updated_at'] ?></td>
                                 <td class="py-2 px-3 text-center">
                                     <div class="flex justify-center items-center">
                                         <a href="/application/details?application_id=<?= $application['user_id'] ?>"

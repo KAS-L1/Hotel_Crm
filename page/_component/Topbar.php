@@ -196,6 +196,10 @@
             <?php include_once('page/_component/TopNav.php'); ?>
         <?php elseif (AUTH_USER['role'] === 'Vendor' && AUTH_USER['status'] === 'Active'): ?>
             <?php include_once('page/_component/VendorTopNav.php'); ?>
+        <?php elseif (AUTH_USER['role'] === 'Procurement Manager'): ?>
+            <?php include_once('page/_component/ProcurementNav.php'); ?>
+        <?php elseif (AUTH_USER['role'] === 'Vendor Manager'): ?>
+            <?php include_once('page/_component/VendorManageNav.php'); ?>
         <?php endif; ?>
 
     </div>

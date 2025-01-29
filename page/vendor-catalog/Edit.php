@@ -12,7 +12,7 @@ $product = GetSingleProduct($product_id);
     breadcrumb([
         ['label' => 'Home', 'url' => '/dashboard'],
         ['label' => 'Product Catalog', 'url' => '/vendor-catalog'],
-        ['label' => 'Create', 'url' => '/vendor-catalog/create'],
+        ['label' => 'Edit', 'url' => '/vendor-catalog/edit'],
     ]);
     ?>
 

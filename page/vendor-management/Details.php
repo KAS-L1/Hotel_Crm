@@ -10,16 +10,16 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
 <div class="page-content">
 
     <?php
-        breadcrumb([
-            ['label' => 'Home', 'url' => '/dashboard'],
-            ['label' => 'Vendor Management', 'url' => '/vendor-management'],
-            ['label' => 'Product List', 'url' => '/vendor-management/details'],
-        ]);
-    ?>  
+    breadcrumb([
+        ['label' => 'Home', 'url' => '/dashboard'],
+        ['label' => 'Vendor Management', 'url' => '/vendor-management'],
+        ['label' => 'Product List', 'url' => '/vendor-management/details'],
+    ]);
+    ?>
 
     <div class="pt-5">
         <div class="panel h-full flex-col">
-            <div class="text-lg font-bold">Vendor Name: <?=$vendor['company']?></div>
+            <div class="text-lg font-bold">Vendor Name: <?= $vendor['company'] ?></div>
             <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
                     <thead>
@@ -67,8 +67,8 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
 </div>
 
 <script>
-    let table = new DataTable('#dataTable');
+    //let table = new DataTable('#dataTable');
+    let table = new DataTable('#dataTable', {
+        order:[[0,'desc']]
+    });
 </script>
-
-
-

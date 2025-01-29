@@ -44,17 +44,18 @@ if (!password_verify($password, $user['password'])) {
     die(toast("error", "Invalid credentials")); // Generic error message for security.
 }
 
+$expiry = isset($_POST['remember'])? strtotime('+1 month'): strtotime('+1 hour');
 // Generate JWT
 $jwt = new JWT('this-is-secure-secret-key');
 $user_token = $jwt->createToken([
     'user_id'  => $user['user_id'],
     'username' => $user['username'],
     'email'    => $user['email'],
-    'exp'      => strtotime('+1 hour') // Token expires in 1 hour
+    'exp'      => $expiry  // Token expires in 1 hour
 ]);
 
 // Handle "Remember Me" for cookie expiry
-$expiry = isset($_POST['remember']) ? strtotime('+1 month') : 0;
+//$expiry = isset($_POST['remember']) ? strtotime('+1 month') : 0;
 
 // Set cookie
 if (!setcookie("_xsrf-token", $user_token, $expiry, "/")) {

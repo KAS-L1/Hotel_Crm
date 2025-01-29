@@ -80,5 +80,10 @@ $applications = $DB->SELECT_JOIN(
 </div>
 
 <script>
-    let table = new DataTable('#dataTable');
+    let table = new DataTable('#dataTable', {
+            order: [
+                [0, 'desc']
+            ]
+        }
+    );
 </script>

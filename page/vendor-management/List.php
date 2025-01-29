@@ -66,5 +66,9 @@ $vendors = $DB->SELECT_WHERE('users', '*', ['status' => 'Active', 'role' => 'Ven
 </div>
 
 <script>
-    let table = new DataTable('#dataTable');
+    let table = new DataTable('#dataTable', {
+        order: [
+            [0, 'desc']
+        ]
+    });
 </script>

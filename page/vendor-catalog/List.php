@@ -1,7 +1,7 @@
 <?php
 
 $vendor_id = AUTH_USER_ID; // Get vendor ID
-$products = GetVendorProducts($vendor_id, 'DESC');
+$products = GetVendorProducts($vendor_id);
 if (empty($products)) toast("error", "Product not found on this vendor");
 
 $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get user details by product_id
@@ -82,5 +82,9 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
 </div>
 
 <script>
-    let table = new DataTable('#dataTable');
+    let table = new DataTable('#dataTable', {
+        order: [
+            [0, 'desc']
+        ]
+    });
 </script>

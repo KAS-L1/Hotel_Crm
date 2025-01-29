@@ -187,7 +187,7 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
             const categoryId = $(this).data('category_id');
             $.post("api/category/delete.php", {
                 category_id: categoryId,
-                csrf_token: $('[name="csrf_token"]').val() 
+                csrf_token: $('[name="csrf_token"]').val()
             }, function(res) {
                 $('.responseCategoryDelete').html(res);
             }).fail(function(xhr) {
@@ -198,5 +198,9 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
 
 
     // Initialize DataTable
-    let table = new DataTable('#dataTable');
+    let table = new DataTable('#dataTable', {
+        order: [
+            [0, 'desc']
+        ]
+    });
 </script>

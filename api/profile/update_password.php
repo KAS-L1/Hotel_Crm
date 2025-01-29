@@ -31,7 +31,7 @@ $data = array(
 $where = array("user_id" => AUTH_USER_ID);
 $update_password = $DB->UPDATE("users", $data, $where);
 
-if (!$update_password['success']) die(toast("error", "Failed to update password"));
+if (!$update_password === "success") die(toast("error", "Failed to update password"));
 
 $notification_data = [
     "user_id" => AUTH_USER_ID,

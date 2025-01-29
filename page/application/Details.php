@@ -3,7 +3,7 @@
 $application_id = $_GET['application_id']; // Get application ID
 $application = $DB->SELECT_ONE_WHERE('vendors_application', '*', ["vendor_id" => $application_id]);
 
-if (empty($application)) die(toast("error", "Application not found"));
+if (empty($application)) toast("error", "Application not found");
 
 $user = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $application['vendor_id']]); // Get user details by vendor_id
 

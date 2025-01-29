@@ -29,7 +29,7 @@ $where = ["user_id" => AUTH_USER_ID];
 
 $update_user = $DB->UPDATE("users", $data, $where);
 
-if (!$update_user['success']) die(toast('error', 'Failed to update Personal Information'));
+if (!$update_user === "success") die(toast('error', 'Failed to update Personal Information'));
 
 $notification_data = [
     "user_id" => AUTH_USER_ID,

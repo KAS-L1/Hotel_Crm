@@ -12,7 +12,7 @@ if (
 
     $data = [
         "product_id" => GENERATE_ID('22', 4),
-        "name"        => $DB->ESCAPE(VALID_STRING($_POST['name'])),
+        "name"        => $DB->ESCAPE(VALID_STRING(trim($_POST['name']))),
         "category_id" => $DB->ESCAPE(VALID_NUMBER($_POST['category_id'])),
         "unit_price"  => $DB->ESCAPE(VALID_NUMBER($_POST['unit_price'])),
         "stock"       => $DB->ESCAPE(VALID_NUMBER($_POST['stock'])),
@@ -38,7 +38,7 @@ if (
 
     toast('success', 'Product successfully created.');
     unset($_SESSION['PRODUCT_THUMBNAIL']);
-    die(refresh(2000));
+    die(redirect('/vendor-catalog',2000));
 } else {
     die(toast('error', 'Invalid server request: Missing required fields.'));
 }

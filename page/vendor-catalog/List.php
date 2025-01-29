@@ -1,7 +1,7 @@
 <?php
 
 $vendor_id = AUTH_USER_ID; // Get vendor ID
-$products = GetVendorProducts($vendor_id);
+$products = GetVendorProducts($vendor_id, 'DESC');
 if (empty($products)) toast("error", "Product not found on this vendor");
 
 $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get user details by product_id
@@ -38,6 +38,7 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                         </tr>
                     </thead>
                     <tbody>
+
                         <?php foreach ($products as $product): ?>
                             <tr>
                                 <td><?= $product['id'] ?></td>
@@ -48,8 +49,9 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                             <img
                                                 class="w-full h-full rounded-md object-cover"
                                                 src="<?= DOMAIN ?>/upload/product/<?= $product['image'] ?>"
-                                                alt="Profile picture" />
+                                                alt="Product Image" />
                                         </div>
+
                                         <div class="text-sm sm:text-base text-center sm:text-left break-words max-w-[200px]">
                                             <?= $product['name'] ?>
                                         </div>
@@ -62,9 +64,9 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                 <td><?= $product['stock'] ?></td>
                                 <td class="py-2 text-center">
                                     <div class="flex justify-center items-center gap-2 text-lg">
-                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" data-product_id="<?= $product['id'] ?>">
+                                        <a href="/vendor-catalog/edit?product_id=<?= $product['product_id'] ?>" class="text-dark hover:text-danger-dark">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
+                                        </a>
                                         <button type="button" class="text-danger hover:text-danger-dark btnDelete" data-product_id="<?= $product['id'] ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>

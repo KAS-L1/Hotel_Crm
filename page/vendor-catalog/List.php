@@ -66,7 +66,7 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                         <a href="/vendor-catalog/edit?product_id=<?= $product['product_id'] ?>" class="text-dark hover:text-danger-dark">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" data-product_id="<?= $product['id'] ?>">
+                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" data-product_id="<?= $product['product_id'] ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
@@ -92,12 +92,13 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
     $('.btnDelete').click(function() {
         if (confirm('Are you sure you want to delete this product?')) {
             const product_id = $(this).data('product_id');
+
             $.post("../api/vendor-catalog/delete.php", {
                 product_id: product_id,
             }, function(res) {
                 $('.responseProductDelete').html(res);
             }).fail(function(xhr) {
-                $('.responseProductDelete').html('An error occurred. Please try again.');
+                $('.responseProductDelete').html('<div class="alert alert-danger">An error occurred. Please try again.</div>');
             });
         }
     });

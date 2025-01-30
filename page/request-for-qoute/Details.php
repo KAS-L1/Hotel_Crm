@@ -128,15 +128,13 @@ $responses = $DB->SELECT_JOIN(
                                         <p><?= nl2br($response['vendor_terms']) ?></p>
                                     </div>
                                 <?php endif; ?>
-
-                                <?php if ($rfq['status'] === 'Open' && $response['status'] === 'Pending'): ?>
+                                <!-- <input type="hidden" name="action" value="accept"> -->
+                                <?php if ($rfq['status'] === 'Open' && ($response['status'] === 'Pending' || $response['status'] === 'Submitted')): ?>
                                     <div class="flex gap-2 mt-4">
-                                        <button class="btn btn-success btn-sm btnAcceptResponse"
-                                            data-response-id="<?= $response['response_id'] ?>">
+                                        <button class="btn btn-success btn-sm btnAcceptResponse" data-response-id="<?= $response['response_id'] ?>">
                                             Accept
                                         </button>
-                                        <button class="btn btn-danger btn-sm btnRejectResponse"
-                                            data-response-id="<?= $response['response_id'] ?>">
+                                        <button class="btn btn-danger btn-sm btnRejectResponse" data-response-id="<?= $response['response_id'] ?>">
                                             Reject
                                         </button>
                                     </div>
@@ -155,13 +153,11 @@ $responses = $DB->SELECT_JOIN(
 
 <script>
     $(document).ready(function() {
-        // Handle response acceptance
         $('.btnAcceptResponse').click(function() {
             const responseId = $(this).data('response-id');
             updateResponseStatus(responseId, 'Accepted');
         });
 
-        // Handle response rejection
         $('.btnRejectResponse').click(function() {
             const responseId = $(this).data('response-id');
             updateResponseStatus(responseId, 'Rejected');

@@ -319,6 +319,12 @@ function badge($status, $outline = false) {
         case 'Open':
             $classes = $baseClass . 'primary';
             break;
+        case 'Awarded':
+            $classes = $baseClass . 'primary';
+            break;
+        case 'Accepted':
+            $classes = $baseClass . 'primary';
+            break;
         default:
             $classes = $baseClass . 'secondary';
     }

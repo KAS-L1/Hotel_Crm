@@ -25,8 +25,8 @@ $rfqs = $DB->SELECT_JOIN(
     <div class="pt-5">
         <div class="panel">
             <div class="text-xl font-bold mb-4">Active RFQs</div>
-            <div class="table-responsive">
-                <table class="table-bordered">
+            <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
+                <table id="dataTable" class="table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>RFQ ID</th>
@@ -56,3 +56,11 @@ $rfqs = $DB->SELECT_JOIN(
         </div>
     </div>
 </div>
+
+<script>
+    let table = new DataTable('#dataTable', {
+        order: [
+            [4, 'desc']
+        ]
+    });
+</script>

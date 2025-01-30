@@ -113,11 +113,16 @@ class Database
 		foreach ($data as $key => $value) {
 			$statement .= $key . " = '" . $value . "', ";
 		}
-		$statement = substr($statement, 0, -2);
+		$statement = substr($statement, 0, -2); // Remove the last comma and space
 		foreach ($where as $key => $value) {
-			$condition .= $key . " = '" . $value . "' AND ";
+			// Check for != condition and handle separately
+			if (strpos($key, '!=') !== false) {
+				$condition .= $key . " '" . $value . "' AND ";
+			} else {
+				$condition .= $key . " = '" . $value . "' AND ";
+			}
 		}
-		$condition = substr($condition, 0, -5);
+		$condition = substr($condition, 0, -5); // Remove the last ' AND '
 		$query = "UPDATE {$table} SET {$statement} WHERE {$condition} ";
 		if ($this->DB->query($query)) {
 			return array("success" => true, "message" => "Data updated successfully");
@@ -125,6 +130,7 @@ class Database
 			return array("success" => false, "message" => 'Failed to update data in ' . $table . ' table: ' . $this->DB->error);
 		}
 	}
+
 
 	// DELETE DATA
 	public function DELETE($table, $where)

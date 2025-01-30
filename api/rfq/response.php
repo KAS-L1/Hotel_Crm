@@ -75,7 +75,7 @@ foreach ($requiredFields as $field => $label) {
         if ($result['success']) {
             // Create notification
             $DB->INSERT('notifications', [
-                'user_id' => AUTH_USER_ID, //created by
+                'user_id' => $rfq['created_by'], //created by
                 'message' => "Vendor has submitted a response for RFQ {$rfqId}",
                 'action' => "/request-for-qoute/details?id={$rfqId}",
                 'status' => 'Unread',

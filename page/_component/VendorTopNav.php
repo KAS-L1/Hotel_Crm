@@ -23,7 +23,7 @@
     renderNavItem(
         'fas fa-file-signature',
         'Request For Qoute',
-        '/request-for-qoute',
+        '/vendor-rfq',
         null,
         [],
         $currentRoute

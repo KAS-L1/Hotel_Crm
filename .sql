@@ -117,7 +117,7 @@ CREATE TABLE `purchase_items` (
   PRIMARY KEY (`id`),
   KEY `requisition_id` (`requisition_id`),
   KEY `product_id` (`product_id`),
-  CONSTRAINT `purchase_items_ibfk_1` FOREIGN KEY (`requisition_id`) REFERENCES `purchase_requisitions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `purchase_items_ibfk_1` FOREIGN KEY (`requisition_id`) REFERENCES `purchase_requisitions` (`requisition_id`) ON DELETE CASCADE,
   CONSTRAINT `purchase_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -135,7 +135,7 @@ CREATE TABLE `budget_approvals` (
   PRIMARY KEY (`id`),
   KEY `requisition_id` (`requisition_id`),
   KEY `approved_by` (`approved_by`),
-  CONSTRAINT `budget_approvals_ibfk_1` FOREIGN KEY (`requisition_id`) REFERENCES `purchase_requisitions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `budget_approvals_ibfk_1` FOREIGN KEY (`requisition_id`) REFERENCES `purchase_requisitions` (`requisition_id`) ON DELETE CASCADE,
   CONSTRAINT `budget_approvals_ibfk_2` FOREIGN KEY (`approved_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

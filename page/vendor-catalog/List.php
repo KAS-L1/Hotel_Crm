@@ -18,9 +18,9 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
 
     <div class="pt-5">
         <div class="panel h-full flex-col">
-            <div class="text-lg font-bold">Vendor Name: <?= $vendor['company'] ?></div>
-            <div class="flex justify-end">
-                <a href="/vendor-catalog/create" class="btn btn-primary mb-4">+ Create Product</a>
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Vendor Name: <?= $vendor['company'] ?></h3>
+                <a href="/vendor-catalog/create" class="btn btn-primary">+ Create Product</a>
             </div>
             <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">

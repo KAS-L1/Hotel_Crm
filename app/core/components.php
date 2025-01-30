@@ -310,7 +310,13 @@ function badge($status, $outline = false) {
         case 'Inactive':
             $classes = $baseClass . 'danger';
             break;
+        case 'Closed':
+            $classes = $baseClass . 'danger';
+            break;
         case 'Active':
+            $classes = $baseClass . 'primary';
+            break;
+        case 'Open':
             $classes = $baseClass . 'primary';
             break;
         default:

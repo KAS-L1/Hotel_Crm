@@ -1,5 +1,4 @@
 <?php
-// Get all RFQs
 $rfqs = $DB->SELECT_JOIN(
     ['rfq_requests', 'users'],
     't1.*, t2.company',
@@ -55,10 +54,14 @@ $rfqs = $DB->SELECT_JOIN(
                                     echo $responses[0]['count'];
                                     ?>
                                 </td>
-                                <td>
-                                    <a href="/request-for-qoute/details?id=<?= $rfq['rfq_id'] ?>" class="btn btn-sm btn-info">
-                                        View Details
-                                    </a>
+                                <td class="py-2 px-3 text-center">
+                                    <div class="flex justify-center items-center">
+                                        <a href="/request-for-qoute/details?id=<?= $rfq['rfq_id'] ?>" 
+                                            x-tooltip="Details"
+                                            class="text-primary">
+                                            <i class="fa fa-eye text-lg"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -72,7 +75,7 @@ $rfqs = $DB->SELECT_JOIN(
 <script>
     let table = new DataTable('#dataTable', {
         order: [
-            [0, 'desc']
+            [4, 'desc']
         ]
     });
 </script>

@@ -52,7 +52,7 @@ $categories = $DB->SELECT('product_categories');
                                 </div>
                             </div>
                             <div>
-                                <label for="contact">Preferred Terms</label>
+                                <label for="preferred_terms">Preferred Terms</label>
                                 <div class="relative text-white-dark mb-4">
                                     <?= textarea("preferred_terms", null, null, null, null, "2", null) ?>
                                 </div>
@@ -87,14 +87,14 @@ $categories = $DB->SELECT('product_categories');
                         </div>
                     </div>
                 </form>
-                <div id="responsePersonal"></div>
+                <div id="responseCreateRfq"></div>
                 <script>
-                    $('#formPersonal').submit(function(e) {
+                    $('#formCreateRFQ').submit(function(e) {
                         e.preventDefault();
-                        btnLoading('#btnLogin');
-                        $.post('api/profile/update_personal.php', $('#formPersonal').serialize(), function(res) {
-                            $('#responsePersonal').html(res);
-                            btnLoadingReset('#btnLogin');
+                        btnLoading('#btnCreate');
+                        $.post('../api/rfq/create.php', $('#formCreateRFQ').serialize(), function(res) {
+                            $('#responseCreateRfq').html(res);
+                            btnLoadingReset('#btnCreate');
                         })
                     })
                 </script>
@@ -104,7 +104,6 @@ $categories = $DB->SELECT('product_categories');
 </div>
 
 <script>
-    
     // JavaScript to handle "Select All" functionality
     document.getElementById('selectAll').addEventListener('change', function() {
         const vendorCheckboxes = document.querySelectorAll('.vendor-checkbox');

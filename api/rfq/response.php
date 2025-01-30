@@ -25,7 +25,7 @@ foreach ($requiredFields as $field => $label) {
     }
 }
 
-try {
+
     // Check if RFQ exists and is open
     $rfq = $DB->SELECT_ONE_WHERE('rfq_requests', '*', [
         'rfq_id' => $rfqId,
@@ -75,26 +75,23 @@ try {
             // Create notification
             $DB->INSERT('notifications', [
                 'user_id' => $rfq['created_by'],
-                'title' => 'New RFQ Response',
                 'message' => "Vendor has submitted a response for RFQ {$rfqId}",
                 'action' => "/request-for-qoute/details?id={$rfqId}",
                 'status' => 'Unread',
                 'created_at' => date('Y-m-d H:i:s')
             ]);
 
+        $DB->UPDATE('notifications', ['status' => 'Read'], [
+            'user_id' => AUTH_USER_ID,
+            'action' => "/vendor-rfq/details?id={$rfqId}",
+            'status' => 'Unread'
+        ]);
             toast('success', 'Response submitted successfully');
+            die(redirect('/vendor-rfq', 2000));
         } else {
-            throw new Exception('Failed to submit response');
+            die(toast('error', 'Failed to submit response'));
         }
     }
 
-    // Mark notifications as read
-    $DB->UPDATE('notifications', ['status' => 'Read'], [
-        'user_id' => AUTH_USER_ID,
-        'action' => "/vendor-rfq/details?id={$rfqId}",
-        'status' => 'Unread'
-    ]);
-} catch (Exception $e) {
-    error_log("RFQ Response Error: " . $e->getMessage());
-    toast('error', 'An error occurred while processing your request');
-}
+   
+

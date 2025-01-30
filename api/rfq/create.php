@@ -27,7 +27,7 @@ foreach ($required as $field) {
     // Save RFQ
     $result = $DB->INSERT('rfq_requests', $rfqData);
 
-    if ($result['success']) {
+    if ($result["success"]) {
         // Notify selected vendors if any
         if (isset($_POST['vendors']) && is_array($_POST['vendors'])) {
             foreach ($_POST['vendors'] as $vendorId) {

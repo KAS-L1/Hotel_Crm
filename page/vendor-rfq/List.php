@@ -5,7 +5,7 @@ $rfqs = $DB->SELECT_JOIN(
     ['notifications', 'rfq_requests'],
     't2.*',
     [
-        [['t1.action', 'CONCAT("/vendor_rfq_details?id=", t2.rfq_id)']]
+        [['t1.action', 'CONCAT("/vendor-rfq/details?id=", t2.rfq_id)']]
     ],
     ['INNER JOIN'],
     [
@@ -44,7 +44,7 @@ $rfqs = $DB->SELECT_JOIN(
                                 <td><?= $rfq['quantity'] ?></td>
                                 <td><?= date('M d, Y', strtotime($rfq['delivery_date'])) ?></td>
                                 <td>
-                                    <a href="/vendor_rfq_details?id=<?= $rfq['rfq_id'] ?>" class="btn btn-sm btn-primary">
+                                    <a href="/vendor-rfq/details?id=<?= $rfq['rfq_id'] ?>" class="btn btn-sm btn-primary">
                                         View & Respond
                                     </a>
                                 </td>

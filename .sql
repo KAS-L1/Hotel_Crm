@@ -11,7 +11,7 @@ CREATE TABLE `users` (
   `address` varchar(255) DEFAULT NULL,
   `contact` varchar(20) DEFAULT NULL,
   `picture` varchar(50) DEFAULT 'default.png',
-  `role` enum('Admin','Manager','Vendor','Auditor') DEFAULT 'Vendor',
+  `role` enum('Admin','Manager','Vendor','Auditor','Procurement Manager','Vendor Manager') DEFAULT 'Vendor',
   `status` enum('Active','Inactive','Pending') DEFAULT 'Pending',
   `company` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -81,7 +81,7 @@ CREATE TABLE `products` (
   KEY `vendor_id` (`vendor_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`)
+  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Purchase Requisitions Table
@@ -118,7 +118,7 @@ CREATE TABLE `purchase_items` (
   KEY `requisition_id` (`requisition_id`),
   KEY `product_id` (`product_id`),
   CONSTRAINT `purchase_items_ibfk_1` FOREIGN KEY (`requisition_id`) REFERENCES `purchase_requisitions` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `purchase_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+  CONSTRAINT `purchase_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Budget Approvals Table
@@ -153,6 +153,6 @@ CREATE TABLE `request_quotations` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `vendor_id` (`vendor_id`),
-  CONSTRAINT `request_quotations_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `request_quotations_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
   CONSTRAINT `request_quotations_ibfk_2` FOREIGN KEY (`vendor_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

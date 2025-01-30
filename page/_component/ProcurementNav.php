@@ -59,7 +59,7 @@
         renderNavItem(
             'fas fa-clipboard-list',
             'Request For Qoute',
-            '#',
+            'request-for-qoute',
             null,
             [],
             $currentRoute

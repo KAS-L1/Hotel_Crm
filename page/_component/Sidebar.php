@@ -52,7 +52,7 @@
                             ['title' => 'Pruchase Order', 'route' => '#'],
                             ['title' => 'Category Management', 'route' => '/category'],
                             ['title' => 'Vendor Management', 'route' => '/vendor-management'],
-                            ['title' => 'Request For Qoute', 'route' => '#'],
+                            ['title' => 'Request For Qoute', 'route' => '/request-for-qoute'],
                             ['title' => 'Contract Management', 'route' => '#'],
                             ['title' => 'Invoice', 'route' => '#']
                         ],
@@ -82,22 +82,6 @@
                         null,
                         [],
                         $currentRoute
-                    );
-
-                    renderNavItem(
-                        'fa fa-building',
-                        'Vendor Portal',
-                        '#',
-                        'vendorPortal',
-                        [
-                            ['title' => 'Dashboard', 'route' => '#'],
-                            ['title' => 'Purchase Order', 'route' => '#'],
-                            ['title' => 'Request For Qoute', 'route' => '#'],
-                            ['title' => 'Product Catalog', 'route' => '#'],
-                            ['title' => 'Invoice', 'route' => '#'],
-                            ['title' => 'Delivery & Shipment Updates', 'route' => '#'],
-                            ['title' => 'Help & Support', 'route' => '#']
-                        ],
                     );
 
                     renderSectionHeader('SETTINGS');

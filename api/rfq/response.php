@@ -61,9 +61,10 @@ foreach ($requiredFields as $field => $label) {
             'response_id' => $existingResponse['response_id']
         ]);
         if ($result['success']) {
-            echo toast('success', 'Response updated successfully');
+            toast('success', 'Response updated successfully');
+            die(redirect('/vendor-rfq', 2000));
         } else {
-            throw new Exception('Failed to update response');
+            die(toast('error', 'Response failed to be updated successfully'));
         }
     } else {
         // Create new response
@@ -74,7 +75,7 @@ foreach ($requiredFields as $field => $label) {
         if ($result['success']) {
             // Create notification
             $DB->INSERT('notifications', [
-                'user_id' => $rfq['created_by'],
+                'user_id' => AUTH_USER_ID, //created by
                 'message' => "Vendor has submitted a response for RFQ {$rfqId}",
                 'action' => "/request-for-qoute/details?id={$rfqId}",
                 'status' => 'Unread',

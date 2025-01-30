@@ -36,12 +36,22 @@ foreach ($required as $field) {
                     $DB->INSERT('notifications', [
                         'user_id' => $vendorId,
                         'message' => "New RFQ: {$rfqData['product_name']}",
-                        'action' => "/vendor-rfq/details?id={$rfqId}",
+                        'action' => "/vendor-rfq/details?id={$rfqData['rfq_id']}",
                         'status' => 'Unread'
                     ]);
                 }
             }
         }
+
+    $notification_data = [
+        "user_id" => AUTH_USER_ID,
+        "message" => "RFQ has been created successfully",
+        "action" => "RFQCreation",
+        "created_at" => DATE_TIME
+    ];
+
+
+    $DB->INSERT("notifications", $notification_data);
         
         toast('success', 'RFQ created successfully');
         die(redirect('/request-for-qoute', 2000));

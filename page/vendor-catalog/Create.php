@@ -188,7 +188,7 @@
                                     <div class="sm:col-span-2">
                                         <label for="description">Description</label>
                                         <div class="relative text-white-dark mb-4">
-                                            <?= textarea("description", null, null, null, null,null, null, 'required') ?>
+                                            <?= textarea("description", null, null, null, null,"4", null, 'required') ?>
                                         </div>
                                     </div>
                                     <input type="hidden" name="image" id="productImageInput">

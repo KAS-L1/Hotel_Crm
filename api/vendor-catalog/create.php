@@ -17,7 +17,7 @@ if (
         "unit_price"  => $DB->ESCAPE(VALID_NUMBER($_POST['unit_price'])),
         "stock"       => $DB->ESCAPE(VALID_NUMBER($_POST['stock'])),
         "description" => $DB->ESCAPE(VALID_STRING(trim($_POST['description']))),
-        'image' => $_SESSION['PRODUCT_THUMBNAIL'],
+        'image' => $_SESSION['PRODUCT_THUMBNAIL'] ?? '',
         "vendor_id"   => AUTH_USER_ID
     ];
 

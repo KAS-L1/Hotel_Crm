@@ -47,7 +47,7 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                         <div class="w-12 h-12 min-w-12 shrink-0">
                                             <img
                                                 class="w-full h-full rounded-md object-cover"
-                                                src="<?= DOMAIN ?>/upload/product/<?= $product['image'] ?>"
+                                                src="<?= DOMAIN ?>/upload/product/<?= !empty($product['image']) ? $product['image'] : 'default.png' ?>"
                                                 alt="Product Image" />
                                         </div>
 

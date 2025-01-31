@@ -4,7 +4,7 @@
      * INDEX PAGE ROUTING
     **/
 
-    ViewPage("request-for-quote", "list");
+    ViewPage("request-for-qoute", "list");
 
 ?>
 

@@ -32,7 +32,7 @@
                         </div>
                         <div>
                             <label for="contact">Contact</label>
-                            <?= input('text', "contact", $_SESSION['old']['contact'] ?? null, null, null, null, "required") ?>
+                            <?= input('number', "contact", $_SESSION['old']['contact'] ?? null, null, null, null, "required") ?>
                         </div>
                         <div>
                             <label for="address">Address</label>

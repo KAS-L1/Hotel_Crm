@@ -94,7 +94,7 @@ $responses = $DB->SELECT_JOIN(
                         <div class="alert alert-info">No responses yet</div>
                     <?php else: ?>
                         <?php foreach ($responses as $response): ?>
-                            <div class="border rounded p-4 <?= $response['status'] === 'Accepted' ? 'bg-success-light border-success' : '' ?>">
+                            <div class="border rounded p-4 <?= $response['status'] === 'Accepted' ? 'bg-success-light dark:bg-opacity-[0.08] border-success' : '' ?>">
                                 <div class="flex justify-between items-start mb-2">
                                     <div class="font-semibold"><?= $response['vendor_company'] ?></div>
                                     <div><?= badge($response['status']) ?></div>
@@ -128,7 +128,7 @@ $responses = $DB->SELECT_JOIN(
                                         <p><?= nl2br($response['vendor_terms']) ?></p>
                                     </div>
                                 <?php endif; ?>
-                                <!-- <input type="hidden" name="action" value="accept"> -->
+
                                 <?php if ($rfq['status'] === 'Open' && ($response['status'] === 'Pending' || $response['status'] === 'Submitted')): ?>
                                     <div class="flex gap-2 mt-4">
                                         <button class="btn btn-success btn-sm btnAcceptResponse" data-response-id="<?= $response['response_id'] ?>">

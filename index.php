@@ -39,7 +39,7 @@ switch ($PAGE) {
 
 require_once("api/auth/auth.php"); // AUTHENTICATED USER
 require_once("page/_utils/app.php"); // APPLICATION UTILITIY FUNCTIONS
-require_once("page/_component/App.php"); // APPLICATION COMPONENTS
+require_once("page/_component/app.php"); // APPLICATION COMPONENTS
 
 include_once("page/_template/Header.php");
 

@@ -3,23 +3,22 @@ $rfqId = $_GET['id'] ?? '';
 
 if (empty($rfqId)) die(toast('error', 'RFQ ID is required'));
 
+// Fetch RFQ details
+$rfq = $DB->SELECT_ONE_WHERE('rfq_requests', '*', ['rfq_id' => $rfqId]);
+if (!$rfq) die(toast('error', 'RFQ not found'));
 
-// Fetch RFQ details and vendor response
-$result = $DB->SELECT_JOIN(
-    ['rfq_requests', 'rfq_responses'],
-    't1.*, t2.unit_price, t2.available_qty, t2.delivery_lead_time, t2.moq, t2.vendor_terms, t2.status as response_status',
-    [
-        [['t1.rfq_id', 't2.rfq_id'], ['t2.vendor_id', AUTH_USER_ID]]
-    ],
-    ['LEFT JOIN'],
-    ['t1.rfq_id' => $rfqId],
-    'LIMIT 1'
-);
+// Check for existing vendor response
+$existingResponse = $DB->SELECT_ONE_WHERE('rfq_responses', '*', [
+    'rfq_id' => $rfqId,
+    'vendor_id' => AUTH_USER_ID
+]);
 
-if (empty($result)) die(toast('error', 'RFQ not found'));
-
-
-$rfq = $result[0];
+// Set form values
+$unit_price = $existingResponse['unit_price'] ?? '';
+$available_qty = $existingResponse['available_qty'] ?? '';
+$delivery_lead_time = $existingResponse['delivery_lead_time'] ?? '';
+$moq = $existingResponse['moq'] ?? '';
+$vendor_terms = $existingResponse['vendor_terms'] ?? '';
 ?>
 
 <div class="page-content">
@@ -124,38 +123,38 @@ $rfq = $result[0];
                         <!-- Unit Price -->
                         <div class="form-group">
                             <label for="unit_price" class="form-label">Unit Price (₱)</label>
-                            <?= input("number", "unit_price", $rfq['unit_price'] ?? '', null, null, null, 'required') ?>
+                            <?= input("number", "unit_price", $unit_price, null, null, null, 'required') ?>
                         </div>
 
                         <!-- Available Quantity -->
                         <div class="form-group">
                             <label for="available_qty" class="form-label">Available Quantity</label>
-                            <?= input("number", "available_qty", $rfq['available_qty'] ?? '', null, "step = '0.0.1'", null, 'required') ?>
+                            <?= input("number", "available_qty", $available_qty, null, "step = '0.0.1'", null, 'required') ?>
                         </div>
 
                         <!-- Delivery Lead Time -->
                         <div class="form-group">
                             <label for="delivery_lead_time" class="form-label">Delivery Lead Time</label>
-                            <?= input("text", "delivery_lead_time", $rfq['delivery_lead_time'] ?? '', "e.g., 14 days", null, null, 'required') ?>
+                            <?= input("text", "delivery_lead_time", $delivery_lead_time, "e.g., 14 days", null, null, 'required') ?>
                         </div>
 
                         <!-- MOQ -->
                         <div class="form-group">
                             <label for="moq" class="form-label">MOQ (Minimum Order Quantity)</label>
-                            <?= input("number", "moq", $product['moq'] ?? '', null, null, null, 'required') ?>
+                            <?= input("number", "moq", $moq, null, null, null, 'required') ?>
                         </div>
 
                         <!-- Vendor Terms -->
                         <div class="form-group md:col-span-2">
                             <label for="vendor_terms" class="form-label">Your Terms</label>
-                            <?= textarea("vendor_terms", $rfq['vendor_terms'] ?? '', null, null, null, "4", null) ?>
+                            <?= textarea("vendor_terms", $vendor_terms, null, null, null, "4", null) ?>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="flex justify-end mt-8">
                         <button type="submit" id="btnResponse" class="btn btn-primary">
-                            <?= $rfq ? 'Update Response' : 'Submit Response' ?>
+                            <?= $existingResponse ? 'Update Response' : 'Submit Response' ?>
                         </button>
                     </div>
                 </form>

@@ -56,13 +56,25 @@ class Database
 	}
 
 	// SELECT MULTITPLE ROW WHERE CONDITION
-	public function SELECT_WHERE($table, $fields, $where, $options = '')
-	{
+	public function SELECT_WHERE($table, $fields,
+		$where,
+		$options = ''
+	) {
 		$condition = "";
 		foreach ($where as $key => $value) {
-			$condition .= $key . " = '" . $value . "' AND ";
+			// Check if the key contains an operator (e.g., "!=")
+			if (strpos($key, ' ') !== false) {
+				// Split the key into column and operator
+				list($column, $operator) = explode(' ', $key, 2);
+				$condition .= "{$column} {$operator} '{$value}' AND ";
+			} else {
+				// Default to "=" if no operator is specified
+				$condition .= "{$key} = '{$value}' AND ";
+			}
 		}
-		$condition = substr($condition, 0, -5);
+		$condition = substr($condition, 0,
+			-5
+		); // Remove the last ' AND '
 		$query = "SELECT {$fields} FROM {$table} WHERE {$condition} {$options}";
 		$result = $this->DB->query($query) or die("Cannot execute SELECT_WHERE command: " . $this->DB->error);
 		$data = $result->fetch_all(MYSQLI_ASSOC);

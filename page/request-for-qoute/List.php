@@ -11,6 +11,7 @@ $rfqs = $DB->SELECT_JOIN(
 );
 ?>
 
+
 <div class="page-content">
     <?php
     breadcrumb([
@@ -56,7 +57,7 @@ $rfqs = $DB->SELECT_JOIN(
                                 </td>
                                 <td class="py-2 px-3 text-center">
                                     <div class="flex justify-center items-center">
-                                        <a href="/request-for-qoute/details?id=<?= $rfq['rfq_id'] ?>" 
+                                        <a href="/request-for-qoute/details?id=<?= $rfq['rfq_id'] ?>"
                                             x-tooltip="Details"
                                             class="text-primary">
                                             <i class="fa fa-eye text-lg"></i>

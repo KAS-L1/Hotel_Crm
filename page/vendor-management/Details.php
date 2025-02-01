@@ -45,7 +45,7 @@ $vendor = $DB->SELECT_ONE_WHERE('users', '*', ["user_id" => $vendor_id]); // Get
                                             <img
                                                 class="w-full h-full rounded-md object-cover"
                                                 src="<?= DOMAIN ?>/upload/product/<?= $product['image'] ?>"
-                                                alt="Profile picture" />
+                                                alt="Product Image" />
                                         </div>
                                         <div class="text-sm sm:text-base text-center sm:text-left break-words max-w-[200px]">
                                             <?= $product['name'] ?>

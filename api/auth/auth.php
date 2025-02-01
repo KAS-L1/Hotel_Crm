@@ -22,5 +22,5 @@ if (isset($_COOKIE['_xsrf-token'])) {
     }
 
 }else{
-    redirect("/403?res=1");
+    redirect("/login");
 }

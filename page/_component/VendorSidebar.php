@@ -56,6 +56,15 @@
                 );
 
                 renderNavItem(
+                    'fas fa-sitemap',
+                    'Contract Management',
+                    '/contract',
+                    null,
+                    [],
+                    $currentRoute
+                );
+
+                renderNavItem(
                     'fas fa-book-open',
                     'Product Catalog',
                     '/vendor-catalog',

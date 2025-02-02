@@ -5,6 +5,7 @@ vendor/
 /upload/document/*
 /upload/profile/*
 /upload/product/*
+/upload/contract/*
 
 # Ignore storage directory
 storage/

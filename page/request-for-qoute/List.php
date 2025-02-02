@@ -28,15 +28,15 @@ $rfqs = $DB->SELECT_JOIN(
 
             <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>RFQ ID</th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Delivery Date</th>
-                            <th>Status</th>
-                            <th>Responses</th>
-                            <th>Action</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">RFQ ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Delivery Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Responses</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody>

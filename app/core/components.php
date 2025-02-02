@@ -325,6 +325,12 @@ function badge($status, $outline = false) {
         case 'Accepted':
             $classes = $baseClass . 'primary';
             break;
+        case 'Renewed':
+            $classes = $baseClass . 'primary';
+            break;
+        case 'Expired':
+            $classes = $baseClass . 'primary';
+            break;
         default:
             $classes = $baseClass . 'secondary';
     }

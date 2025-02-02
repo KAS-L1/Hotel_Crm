@@ -1,4 +1,4 @@
-<?php
+ class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"<?php
 
 $vendors = $DB->SELECT_WHERE('users', '*', ['status' => 'Active', 'role' => 'Vendor']);
 
@@ -17,15 +17,15 @@ $vendors = $DB->SELECT_WHERE('users', '*', ['status' => 'Active', 'role' => 'Ven
         <div class="panel h-full flex-col">
             <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>ID</th>
-                            <th>Vendor ID</th>
-                            <th>Name</th>
-                            <th>Company</th>
-                            <th>Email</th>
-                            <th>Contact</th>
-                            <th>Actions</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vendor ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

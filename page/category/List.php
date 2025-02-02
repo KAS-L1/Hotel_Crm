@@ -15,14 +15,14 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
             </div>
             <div class="table-responsive overflow-y-auto mt-4">
                 <table id="dataTable" class="table-bordered table-hover w-full text-sm">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>ID</th>
-                            <th>Category ID</th>
-                            <th>Name</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Action</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Updated At</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody>

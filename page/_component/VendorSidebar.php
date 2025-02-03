@@ -58,7 +58,7 @@
                 renderNavItem(
                     'fas fa-sitemap',
                     'Contract Management',
-                    '/contract',
+                    '/vendor-contract',
                     null,
                     [],
                     $currentRoute

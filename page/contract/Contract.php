@@ -71,18 +71,18 @@ $contracts = $DB->SELECT_JOIN(
                                             <form class="inline" id="formContract">
                                                 <?= csrfProtect('generate') ?>
                                                 <input type="hidden" name="contract_id" value="<?= $contract['contract_id'] ?>">
-                                                <button type="submit" class="text-indigo-600 hover:text-indigo-900">
+                                                <button type="submit" class="text-indigo-600 hover:text-indigo-900" x-tooltip="Activate">
                                                     <i class="fas fa-check btn-lg"></i>
                                                 </button>
                                             </form>
                                         <?php endif; ?>
 
                                         <?php if (empty($contract['contract_file'])): ?>
-                                            <button class="text-primary btnOpenModalUpload" data-contract_id="<?= $contract['contract_id'] ?>">
+                                            <button class="text-primary btnOpenModalUpload" x-tooltip="Upload" data-contract_id="<?= $contract['contract_id'] ?>">
                                                 <i class="fas fa-upload btn-lg"></i>
                                             </button>
                                         <?php else: ?>
-                                            <a href="<?= $contract['contract_file'] ?>" class="text-gray-600 hover:text-gray-900"
+                                            <a href="<?= $contract['contract_file'] ?>" x-tooltip="Downlaod" class="text-gray-600 hover:text-gray-900"
                                                 download>
                                                 <i class="fas fa-download btn-lg"></i>
                                             </a>

@@ -88,7 +88,7 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
         if ($status === 'Accepted') {
             $contractId = GENERATE_ID('CON-', 6);
             $expiration_date = date('Y-m-d', strtotime('+1 year')); // Default 1 year expiration
-
+            
             $contractData = [
                 'contract_id' => $contractId,
                 'rfq_id' => $response['rfq_id'],

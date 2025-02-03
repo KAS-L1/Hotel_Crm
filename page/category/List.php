@@ -35,10 +35,10 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
                                 <td><?= $category['updated_at'] ?></td>
                                 <td class="py-2 text-center">
                                     <div class="flex justify-center items-center gap-2 text-lg">
-                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" data-toggle-modal="editModal" data-category_id="<?= $category['id'] ?>">
+                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" x-tooltip="Edit" data-toggle-modal="editModal" data-category_id="<?= $category['id'] ?>">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" data-category_id="<?= $category['id'] ?>">
+                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" x-tooltip="Delete" data-category_id="<?= $category['id'] ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>

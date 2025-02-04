@@ -2,14 +2,19 @@
 // Get RFQs where vendor was notified, grouped by rfq_group_id
 $rfqs = $DB->SELECT_JOIN(
     ['notifications', 'rfq_requests'],
-    't2.*, COUNT(t2.rfq_id) as product_count',
+    't2.*, (
+        SELECT COUNT(*) 
+        FROM rfq_requests r2 
+        WHERE r2.rfq_group_id = t2.rfq_group_id
+    ) as product_count',
     [
         [['t1.action', 'CONCAT("/vendor-rfq/details?group_id=", t2.rfq_group_id)']]
     ],
     ['INNER JOIN'],
     [
         't1.user_id' => AUTH_USER_ID,
-        't1.status' => 'Unread'
+        't1.status' => 'Unread',
+        't2.status' => 'Open'  // Only show open RFQs
     ],
     'GROUP BY t2.rfq_group_id'
 );

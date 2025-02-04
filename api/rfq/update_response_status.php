@@ -78,7 +78,7 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
                 'contract_file' => '',
                 'status' => 'Pending',
                 'renewal_status' => 'Pending',
-                'expiration_date' => NULL,
+                'expiration_date' => "0000-00-00",
                 'created_by' => AUTH_USER_ID,
                 'created_at' => date('Y-m-d H:i:s'),
                 'is_signed' => 0,
@@ -147,7 +147,9 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
         ]);
 
         toast("success", "RFQ response " . strtolower($status) . " successfully");
-        die(refresh(2000));
+        //die(refresh(2000));
+        die(redirect('/request-for-qoute'));
+
     } catch (Exception $e) {
         toast("error", $e->getMessage());
         die(redirect('/request-for-quote'));
@@ -155,4 +157,4 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
 }
 
 toast("error", "Invalid request parameters");
-die(redirect('/request-for-quote'));
+die(redirect('/request-for-qoute'));

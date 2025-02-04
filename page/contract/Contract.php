@@ -62,7 +62,11 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <?= date('M d, Y', strtotime($contract['expiration_date'])) ?>
+                                        <?php if($contract['expiration_date'] == '0000-00-00'): ?>
+                                            <span class="text-gray-500">N/A</span>
+                                        <?php else: ?>
+                                            <?= date('M d, Y', strtotime($contract['expiration_date'])) ?>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="py-2 px-3 text-center">
                                         <div class="flex justify-center items-center space-x-2">

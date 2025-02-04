@@ -6,17 +6,18 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
     $response_id = $DB->ESCAPE($_POST['response_id']);
     $status = $DB->ESCAPE($_POST['status']);
 
-   
+    try {
         // Validate status
         if (!in_array($status, ['Accepted', 'Rejected'])) {
             throw new Exception("Invalid status specified");
         }
 
-        // Get RFQ response details with locking
+        // Get RFQ response details
         $response = $DB->SELECT_ONE_WHERE(
             "rfq_responses",
             "rfq_id, vendor_id",
-            ["response_id" => $response_id]);
+            ["response_id" => $response_id]
+        );
 
         if (!$response) {
             throw new Exception("RFQ response not found");
@@ -43,17 +44,17 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
         }
 
         if ($status === 'Accepted') {
-            // Update RFQ status and reject other responses
+            // Update RFQ status
             $update_rfq = $DB->UPDATE("rfq_requests", [
                 "status" => "Awarded",
-                "updated_at" => date('Y-m-d H-i-s')
+                "updated_at" => date('Y-m-d H:i:s')
             ], ["rfq_id" => $response['rfq_id']]);
 
             if (!$update_rfq['success']) {
                 throw new Exception("Failed to update RFQ status");
             }
 
-            // Reject other responses
+            // Reject other responses for this RFQ
             $reject_others = $DB->UPDATE("rfq_responses", [
                 "status" => "Rejected",
                 "updated_at" => date('Y-m-d H:i:s')
@@ -66,11 +67,46 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
                 throw new Exception("Failed to reject other responses");
             }
 
-            // Notify other vendors
+            // Create new contract
+            $contractId = GENERATE_ID('CON-', 6);
+            //$expiration_date = date('Y-m-d', strtotime('+1 year'));
+
+            $contractData = [
+                'contract_id' => $contractId,
+                'rfq_id' => $response['rfq_id'],
+                'vendor_id' => $response['vendor_id'],
+                'contract_file' => '',
+                'status' => 'Pending',
+                'renewal_status' => 'Pending',
+                'expiration_date' => NULL,
+                'created_by' => AUTH_USER_ID,
+                'created_at' => date('Y-m-d H:i:s'),
+                'is_signed' => 0,
+                'is_expired' => 0
+            ];
+
+            $insertContract = $DB->INSERT('contracts', $contractData);
+            if (!$insertContract['success']) {
+                throw new Exception("Failed to create contract");
+            }
+
+            // Notify vendor about new contract
+            $DB->INSERT('notifications', [
+                'user_id' => $response['vendor_id'],
+                'message' => "A new contract has been created for RFQ #{$response['rfq_id']} ({$rfq['product_name']}). Please review and sign.",
+                'action' => "/vendor-contract",
+                'status' => 'Unread',
+                'created_at' => DATE_TIME
+            ]);
+
+            // Notify other vendors about rejection
             $other_vendors = $DB->SELECT_WHERE(
                 "rfq_responses",
                 "vendor_id",
-                ["rfq_id" => $response['rfq_id'], "response_id !=" => $response_id]
+                [
+                    "rfq_id" => $response['rfq_id'],
+                    "response_id !=" => $response_id
+                ]
             );
 
             foreach ($other_vendors as $vendor) {
@@ -84,38 +120,7 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
             }
         }
 
-        // Create contract only for accepted responses
-        if ($status === 'Accepted') {
-            $contractId = GENERATE_ID('CON-', 6);
-            $expiration_date = date('Y-m-d', strtotime('+1 year')); // Default 1 year expiration
-            
-            $contractData = [
-                'contract_id' => $contractId,
-                'rfq_id' => $response['rfq_id'],
-                'vendor_id' => $response['vendor_id'],
-                'contract_file' => '',
-                'status' => 'Pending',
-                'renewal_status' => 'Pending',
-                'expiration_date' => $expiration_date,
-                'created_by' => AUTH_USER_ID
-            ];
-
-            $insertContract = $DB->INSERT('contracts', $contractData);
-            if (!$insertContract['success']) {
-                throw new Exception("Failed to create contract");
-            }
-
-            // Notify vendor about contract creation
-            $DB->INSERT('notifications', [
-                'user_id' => $response['vendor_id'],
-                'message' => "A contract has been created for your accepted RFQ response. Please review and approve.",
-                'action' => "/vendor-contract",
-                'status' => 'Unread',
-                'created_at' => DATE_TIME
-            ]);
-        }
-
-        // Common notifications
+        // Notify vendor of response status
         $vendor_message = ($status === 'Accepted')
             ? "Your response to RFQ #{$response['rfq_id']} for {$rfq['product_name']} has been accepted."
             : "Your response to RFQ #{$response['rfq_id']} for {$rfq['product_name']} has been rejected.";
@@ -128,6 +133,7 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
             "created_at" => DATE_TIME
         ]);
 
+        // Notify action user
         $action_user_message = ($status === 'Accepted')
             ? "You have accepted the response from vendor #{$response['vendor_id']} for RFQ #{$response['rfq_id']} ({$rfq['product_name']})."
             : "You have rejected the response from vendor #{$response['vendor_id']} for RFQ #{$response['rfq_id']} ({$rfq['product_name']}).";
@@ -142,7 +148,11 @@ if (isset($_POST['response_id']) && isset($_POST['status'])) {
 
         toast("success", "RFQ response " . strtolower($status) . " successfully");
         die(refresh(2000));
+    } catch (Exception $e) {
+        toast("error", $e->getMessage());
+        die(redirect('/request-for-quote'));
     }
+}
 
 toast("error", "Invalid request parameters");
-die(redirect('/request-for-qoute'));
+die(redirect('/request-for-quote'));

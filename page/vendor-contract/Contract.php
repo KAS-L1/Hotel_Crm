@@ -8,10 +8,14 @@ $contracts = $DB->SELECT_JOIN(
     'ORDER BY t1.created_at DESC'
 );
 
-foreach ($contracts as &$contract) {
+
+foreach ($contracts as $key => $contract) {
+   if ($contract['expiration_date'] == '0000-00-00') {
+    continue;
+    }
     $currentDate = new DateTime(date('Y-m-d'));
     $expirationDate = new DateTime($contract['expiration_date']);
-    $is_expired = ($expirationDate <= $currentDate); // Check if expired
+    $is_expired = ($expirationDate <= $currentDate);
 
     // Update renewal_status and is_expired in the database if expired
     if ($is_expired && $contract['renewal_status'] !== 'Expired') {
@@ -21,10 +25,11 @@ foreach ($contracts as &$contract) {
         ], [
             "contract_id" => $contract['contract_id']
         ]);
-        $contract['renewal_status'] = 'Expired';
-        $contract['is_expired'] = 1;
+        $contract[$key]['renewal_status'] = 'Expired';
+        $contract[$key]['is_expired'] = 1;
     }
 }
+
 ?>
 
 <div class="page-content">
@@ -53,16 +58,21 @@ foreach ($contracts as &$contract) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($contracts as $contract):
+                        <?php foreach ($contracts as $contract):    
+
                             $currentDate = new DateTime(date('Y-m-d'));
                             $expirationDate = new DateTime($contract['expiration_date']);
                             $interval = $currentDate->diff($expirationDate);
-                            $expire_label = $interval->format('%y years, %m months, %d days');
-                            $is_expired = ($expirationDate <= $currentDate) ? 1 : 0; // Real-time check
+                            $is_expired = 0;
+                            $expire_label = ' <span class="text-gray-500">N/A</span>';
+                            if ($contract['expiration_date'] != '0000-00-00') {
+                                $expire_label = $interval->format('%y years, %m months, %d days');
+                                $is_expired = ($expirationDate <= $currentDate) ? 1 : 0; // Real-time check
+                            }
                         ?>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div><?= $contract['contract_id'] ?></div>
+                                    <div><?= $contract['contract_id'] . '-' . $contract['id'] ?></div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <?= $contract['product_name'] ?>
@@ -78,7 +88,11 @@ foreach ($contracts as &$contract) {
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <?= date('M d, Y', strtotime($contract['expiration_date'])) ?>
+                                    <?php if ($contract['expiration_date'] == '0000-00-00'): ?>
+                                        <span class="text-gray-500">N/A</span>
+                                    <?php else: ?>
+                                        <?= date('M d, Y', strtotime($contract['expiration_date'])) ?>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <?= $expire_label ?>

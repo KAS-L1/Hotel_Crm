@@ -5,6 +5,9 @@ vendor/
 /upload/document/*
 /upload/profile/*
 /upload/product/*
+/upload/contract/*
+
+
 
 # Ignore storage directory
 storage/
@@ -12,3 +15,5 @@ storage/
 # Allow a specific file inside ignored directories
 !upload/profile/default.png
 !upload/product/default.png
+!/upload/contract/.gitkeep
+!/upload/document/.gitkeep

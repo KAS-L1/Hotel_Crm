@@ -31,7 +31,7 @@ foreach ($responses as $response) {
     breadcrumb([
         ['label' => 'Home', 'url' => '/dashboard'],
         ['label' => 'RFQ Management', 'url' => '/vendor-rfq'],
-        ['label' => 'Bulk Response', 'url' => '/vendor-rfq/bulk-response'],
+        ['label' => 'Details', 'url' => '/vendor-rfq/Details'],
     ]);
     ?>
 

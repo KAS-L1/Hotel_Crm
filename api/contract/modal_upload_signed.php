@@ -4,7 +4,7 @@
     $contract = $DB->SELECT_ONE_WHERE('contracts', "*", ['contract_id' => $contract_id]);
     ?>
 
-    <div id="modalContract" class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto flex items-start justify-center min-h-screen px-4">
+    <div id="modalUploadSigned" class="fixed inset-0 bg-[black]/60 z-[999] hidden overflow-y-auto flex items-start justify-center min-h-screen px-4">
         <div class="panel border-0 py-1 px-4 rounded-lg overflow-hidden w-full max-w-sm my-8">
             <div class="flex items-center justify-between p-5 font-semibold text-lg dark:text-white">
                 Upload Signed Contract

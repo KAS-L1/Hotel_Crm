@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <div id="#responseSignedModal"></div>
+    <div id="responseSignedModal"></div>
     <script>
         let table = new DataTable('#dataTable', {
             order: [
@@ -118,7 +118,7 @@
         }
 
         $('.btnUploadSigned').click(function() {
-            const contract_id = $(this).data('contract_id');
+            const contract_id = $(this).data('id');
             $.post('../api/contract/modal_upload_signed.php', {
                 contract_id: contract_id
             }, function(res) {

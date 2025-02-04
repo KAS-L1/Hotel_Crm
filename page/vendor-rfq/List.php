@@ -2,14 +2,19 @@
 // Get RFQs where vendor was notified, grouped by rfq_group_id
 $rfqs = $DB->SELECT_JOIN(
     ['notifications', 'rfq_requests'],
-    't2.*, COUNT(t2.rfq_id) as product_count',
+    't2.*, (
+        SELECT COUNT(*) 
+        FROM rfq_requests r2 
+        WHERE r2.rfq_group_id = t2.rfq_group_id
+    ) as product_count',
     [
         [['t1.action', 'CONCAT("/vendor-rfq/details?group_id=", t2.rfq_group_id)']]
     ],
     ['INNER JOIN'],
     [
         't1.user_id' => AUTH_USER_ID,
-        't1.status' => 'Unread'
+        't1.status' => 'Unread',
+        't2.status' => 'Open'  // Only show open RFQs
     ],
     'GROUP BY t2.rfq_group_id'
 );
@@ -27,12 +32,12 @@ $rfqs = $DB->SELECT_JOIN(
             <div class="text-xl font-bold mb-4">Active RFQs</div>
             <div class="table-responsive min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>RFQ ID</th>
-                            <th>Products</th>
-                            <th>Delivery Date</th>
-                            <th>Action</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">RFQ ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Delivery Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody>

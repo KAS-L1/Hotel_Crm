@@ -15,14 +15,14 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
             </div>
             <div class="table-responsive overflow-y-auto mt-4">
                 <table id="dataTable" class="table-bordered table-hover w-full text-sm">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>ID</th>
-                            <th>Category ID</th>
-                            <th>Name</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Action</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Created At</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Updated At</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,10 +35,10 @@ $categories = $DB->SELECT('product_categories', '*', 'ORDER BY id DESC');
                                 <td><?= $category['updated_at'] ?></td>
                                 <td class="py-2 text-center">
                                     <div class="flex justify-center items-center gap-2 text-lg">
-                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" data-toggle-modal="editModal" data-category_id="<?= $category['id'] ?>">
+                                        <button type="button" class="text-dark hover:text-danger-dark btnEdit" x-tooltip="Edit" data-toggle-modal="editModal" data-category_id="<?= $category['id'] ?>">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" data-category_id="<?= $category['id'] ?>">
+                                        <button type="button" class="text-danger hover:text-danger-dark btnDelete" x-tooltip="Delete" data-category_id="<?= $category['id'] ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>

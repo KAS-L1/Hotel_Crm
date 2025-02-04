@@ -23,6 +23,8 @@
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="<?= DOMAIN ?>/assets/js/sweetalert.min.js"></script>
     <script src="<?= DOMAIN ?>/assets/js/perfect-scrollbar.min.js"></script>
     <script defer="" src="<?= DOMAIN ?>/assets/js/popper.min.js"></script>
@@ -43,8 +45,9 @@
 
     <!-- Scroll to top button -->
     <?php include_once('page/_component/Scrolltop.php') ?>
-    
-    <?php //include_once('page/_component/Customizer.php') ?>
+
+    <?php //include_once('page/_component/Customizer.php') 
+    ?>
 
     <div class="main-container min-h-screen text-black dark:text-white-dark" :class="[$store.app.navbar]">
 

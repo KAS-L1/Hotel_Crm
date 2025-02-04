@@ -16,6 +16,11 @@ function predie($data){
     die(print_r($data));
 }
 
+function ROUTE($path)
+{
+    return DOMAIN . "/" . $path;
+}
+
 // INPUT VALIDATION
 function VALID_STRING($string){
     return strip_tags(preg_replace('/[^a-zA-Z0-9_@.]+/', ' ', trim($string)));
@@ -170,7 +175,7 @@ function csrfProtect($action = 'generate')
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate CSRF token
         }
         // Return hidden input for the CSRF token
-        return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($_SESSION['csrf_token']) . '">';
+        return '<input type="hidden" id="csrf_token" name="csrf_token" value="' . htmlspecialchars($_SESSION['csrf_token']) . '">';
     }
 
     if ($action === 'verify') {

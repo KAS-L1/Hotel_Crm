@@ -27,16 +27,16 @@ $applications = $DB->SELECT_JOIN(
         <div class="panel h-full flex-col">
             <div class="table-responsive  min-h-[400px] grow overflow-y-auto sm:min-h-[300px]">
                 <table id="dataTable" class="table-bordered table-hover">
-                    <thead>
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th>ID</th>
-                            <th class="whitespacce-nowrap">Vendor Name</th>
-                            <th>Email</th>
-                            <th>Vendor Company</th>
-                            <th>Status</th>
-                            <th>Submited Date</th>
-                            <th>Updated Date</th>
-                            <th>Action</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vendor Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vendor Company</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Submited Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Updated Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,9 +81,8 @@ $applications = $DB->SELECT_JOIN(
 
 <script>
     let table = new DataTable('#dataTable', {
-            order: [
-                [0, 'desc']
-            ]
-        }
-    );
+        order: [
+            [0, 'desc']
+        ]
+    });
 </script>

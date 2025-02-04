@@ -53,7 +53,7 @@
                             ['title' => 'Category Management', 'route' => '/category'],
                             ['title' => 'Vendor Management', 'route' => '/vendor-management'],
                             ['title' => 'Request For Qoute', 'route' => '/request-for-qoute'],
-                            ['title' => 'Contract Management', 'route' => '#'],
+                            ['title' => 'Contract Management', 'route' => '/contract'],
                             ['title' => 'Invoice', 'route' => '#']
                         ],
                         $currentRoute

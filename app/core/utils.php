@@ -16,6 +16,22 @@ function predie($data){
     die(print_r($data));
 }
 
+function dd($data)
+{
+    ob_start();
+    var_dump($data);
+    $output = ob_get_clean();
+    echo '<pre>' . $output . '</pre>';
+}
+function dds($data)
+{
+    ob_start();
+    var_dump($data);
+    $output = ob_get_clean();
+    echo '<pre>' . $output . '</pre>';
+    die();
+}
+
 function ROUTE($path)
 {
     return DOMAIN . "/" . $path;

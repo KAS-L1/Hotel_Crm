@@ -70,7 +70,6 @@ $contracts = $DB->SELECT_JOIN(
                                 </td>
                                 <td class="py-2 px-3 text-center">
                                     <div class="flex justify-center items-center space-x-2">
-
                                         <?php if ($contract['status'] === 'Pending Approval' && !empty($contract['contract_file'])): ?>
                                             <form class="inline formContractApprove">
                                                 <?= csrfProtect('generate') ?>
